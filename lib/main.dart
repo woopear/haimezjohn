@@ -11,8 +11,10 @@ import 'package:woo_theme_mode/woo_theme_mode.dart';
 Future<void> main() async {
   /// enleve le # dans l'url
   setPathUrlStrategy();
+
   /// pour android
   WidgetsFlutterBinding.ensureInitialized();
+
   /// init firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

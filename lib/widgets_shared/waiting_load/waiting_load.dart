@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -5,7 +7,7 @@ import 'package:haimezjohn/utils/config/theme/colors.dart';
 
 class WaitingLoad extends ConsumerWidget {
   double size;
-  
+
   WaitingLoad({
     Key? key,
     this.size = 100,
