@@ -1,8 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:haimezjohn/utils/config/routes/routes.dart';
+import 'package:haimezjohn/utils/config/theme/theme.dart';
+import 'package:haimezjohn/utils/const/globals.dart';
 import 'package:haimezjohn/utils/fire/firebase_options.dart';
 import 'package:url_strategy/url_strategy.dart';
+import 'package:woo_theme_mode/woo_theme_mode.dart';
 
 Future<void> main() async {
   /// enleve le # dans l'url
@@ -26,6 +30,14 @@ class MyApp extends ConsumerStatefulWidget {
 class _MyAppState extends ConsumerState<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: Globals.titleApp,
+      themeMode: ref.watch(wooThemeChange).themeMode,
+      theme: themeClaire,
+      darkTheme: themeDark,
+      initialRoute: Routes().home,
+      routes: Routes().urls(),
+    );
   }
 }
