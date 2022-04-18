@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:haimezjohn/widgets_shared/index.dart';
+import 'package:haimezjohn/components/index.dart';
 
 class ErrorPage extends ConsumerWidget {
   String messageError;
