@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:haimezjohn/models/setting/state/setting_provider.dart';
+import 'package:haimezjohn/src/models/setting/state/setting_provider.dart';
 import 'package:haimezjohn/pages/error_page.dart';
 import 'package:haimezjohn/pages/loading_page.dart';
-import 'package:haimezjohn/utils/const/text_error.dart';
+import 'package:haimezjohn/src/utils/const/text_error.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key}) : super(key: key);

@@ -1,10 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:haimezjohn/utils/config/routes/routes.dart';
-import 'package:haimezjohn/utils/config/theme/theme.dart';
-import 'package:haimezjohn/utils/const/globals.dart';
-import 'package:haimezjohn/utils/fire/firebase_options.dart';
+import 'package:haimezjohn/src/utils/config/routes/routes.dart';
+import 'package:haimezjohn/src/utils/config/theme/theme.dart';
+import 'package:haimezjohn/src/utils/const/globals.dart';
+import 'package:haimezjohn/src/utils/fire/firebase_options.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:woo_theme_mode/woo_theme_mode.dart';
 
