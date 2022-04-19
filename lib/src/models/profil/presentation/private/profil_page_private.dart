@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/index.dart';
-import 'package:haimezjohn/src/components/title_page_admin/title_page_admin.dart';
-import 'package:haimezjohn/src/models/profil/presentation/private/profil_update.dart';
+import 'package:haimezjohn/src/models/profil/presentation/private/profil_update_form.dart';
 import 'package:haimezjohn/src/models/profil/state/profil_provider.dart';
 import 'package:haimezjohn/src/utils/const/globals.dart';
 import 'package:haimezjohn/src/utils/const/text_error.dart';
@@ -18,9 +17,6 @@ class ProfilPagePrivate extends ConsumerStatefulWidget {
 class _ProfilPagePrivateState extends ConsumerState<ProfilPagePrivate> {
   @override
   Widget build(BuildContext context) {
-    final _width = MediaQuery.of(context).size.width;
-    final _height = MediaQuery.of(context).size.height;
-
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -39,15 +35,13 @@ class _ProfilPagePrivateState extends ConsumerState<ProfilPagePrivate> {
                               ),
 
                               /// update profil
-                              ProfilUpdate(),
+                              ProfilUpdateForm(),
                             ],
                           )
 
                         /// creation du profil
                         : Center(
                             child: SizedBox(
-                              width: _width,
-                              height: _height,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -59,7 +53,7 @@ class _ProfilPagePrivateState extends ConsumerState<ProfilPagePrivate> {
                                   ),
 
                                   /// creer profil
-                                  ProfilUpdate(created: true),
+                                  ProfilUpdateForm(created: true),
                                 ],
                               ),
                             ),

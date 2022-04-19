@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 /// mode claire
 final themeClaire = WooTheme.modeClair(
   scaffolBackground: ColorCustom().fondClaire,
-  primary: ColorCustom().greenMedium,
+  primary: ColorCustom().green,
   secondary: ColorCustom().blueMedium,
   tbodyPrincipal: GoogleFonts.openSans(fontSize: 20.0),
   tbodySecondaire: GoogleFonts.openSans(fontSize: 16.0),
