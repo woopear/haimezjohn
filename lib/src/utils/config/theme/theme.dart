@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:haimezjohn/src/utils/config/theme/colors.dart';
 import 'package:haimezjohn/src/utils/config/theme/elevated_button_theme.dart';
+import 'package:haimezjohn/src/utils/config/theme/input_decoration_theme.dart';
 import 'package:haimezjohn/src/utils/config/theme/text_button_theme.dart';
 import 'package:woo_theme_mode/woo_theme_mode.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,6 +23,7 @@ final themeClaire = WooTheme.modeClair(
   tsmall: GoogleFonts.openSans(color: Colors.black),
   elevatedButtonTheme: elevatedButtonClaire,
   textButtonStyle: textButtonStyleClaire,
+  inputDecorationTheme: inputDecorationClaire,
 );
 
 /// mode dark
@@ -41,4 +43,5 @@ final themeDark = WooTheme.modeDark(
   tsmall: GoogleFonts.openSans(color: Colors.white),
   elevatedButtonTheme: elevatedButtonDark,
   textButtonStyle: textButtonStyleDark,
+  inputDecorationTheme: inputDecorationDark,
 );

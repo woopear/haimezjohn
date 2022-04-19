@@ -4,10 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 /// dark
 final elevatedButtonDark = ElevatedButtonThemeData(
   style: ButtonStyle(
-    foregroundColor: MaterialStateProperty.all<Color?>(Colors.white),
+    elevation: MaterialStateProperty.all<double?>(0.0),
+    foregroundColor: MaterialStateProperty.all<Color?>(Colors.black),
     textStyle: MaterialStateProperty.all<TextStyle?>(
       GoogleFonts.openSans(
-        fontSize: 18.0,
+        fontSize: 20.0,
         fontWeight: FontWeight.w400,
       ),
     ),
@@ -21,7 +22,7 @@ final elevatedButtonDark = ElevatedButtonThemeData(
     ),
     shape: MaterialStateProperty.all<OutlinedBorder?>(
       RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
+        borderRadius: BorderRadius.circular(10.0),
       ),
     ),
   ),
@@ -31,10 +32,10 @@ final elevatedButtonDark = ElevatedButtonThemeData(
 final elevatedButtonClaire = ElevatedButtonThemeData(
   style: ButtonStyle(
     elevation: MaterialStateProperty.all<double?>(0.0),
-    foregroundColor: MaterialStateProperty.all<Color?>(Colors.white),
+    foregroundColor: MaterialStateProperty.all<Color?>(Colors.black),
     textStyle: MaterialStateProperty.all<TextStyle?>(
       GoogleFonts.openSans(
-        fontSize: 18.0,
+        fontSize: 20.0,
         fontWeight: FontWeight.w400,
       ),
     ),
@@ -48,7 +49,7 @@ final elevatedButtonClaire = ElevatedButtonThemeData(
     ),
     shape: MaterialStateProperty.all<OutlinedBorder?>(
       RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
+        borderRadius: BorderRadius.circular(10.0),
       ),
     ),
   ),
