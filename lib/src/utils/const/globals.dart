@@ -12,6 +12,9 @@ class Globals {
   /// profil page admin
   static String titlePageProfilPrivateUpdate = "Profil";
   static String titlePageProfilPrivateCreate = "Créer un profil";
+  static String messageSuccesDelProfil = "Profil supprimé";
+  static String messageErrorDelProfil = "Une erreur est survenu";
+
 
   /// profil update form
   static String labelImageProfil = "Image profil : ";
@@ -19,6 +22,14 @@ class Globals {
   static String btnDeleteOneProfil = "Supprimer l'image";
   static String btnElevatedCreerProfil = "Créer";
   static String btnElevatedUpdateProfil = "Modifier";
+  static String adresseStorageProfil = "profils/image-profil";
+  static String messageSuccesCreateProfil = "Profil créé avec succès";
+  static String messageSuccesUpdateProfil = "Profil modifier avec succès";
+  static String messageErrorCreateProfil = "Impossible de créer le profil";
+  static String messageErrorUpdateProfil = "Impossible de modifier le profil";
+  static String messageErrorImageProfil = "Une erreur est survenu";
+  static String messageSuccesImageProfil = "Image enregistrée avec succès";
+  static String messageSuccesImageDelProfil = "Image supprimmer avec succès";
 
   /// display image
   static String urlAucuneImage =

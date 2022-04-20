@@ -8,6 +8,8 @@ import 'package:haimezjohn/src/models/profil/schema/profil_schema.dart';
 import 'package:haimezjohn/src/models/profil/state/profil_provider.dart';
 import 'package:haimezjohn/src/models_shared/upload/state/upload_provider.dart';
 import 'package:haimezjohn/src/utils/const/globals.dart';
+import 'package:haimezjohn/src/utils/const/text_error.dart';
+import 'package:haimezjohn/src/utils/mixins/validator.dart';
 
 class ProfilUpdateForm extends ConsumerStatefulWidget {
   bool created;
@@ -24,10 +26,19 @@ class ProfilUpdateForm extends ConsumerStatefulWidget {
 
 class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
   final _formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   /// input
   TextEditingController _title = TextEditingController(text: '');
   TextEditingController _text = TextEditingController(text: '');
+
+  @override
+  void didChangeDependencies() {
+    if (_scaffoldKey.currentContext != null) {
+      _scaffoldKey.currentContext!.dependOnInheritedWidgetOfExactType();
+    }
+    super.didChangeDependencies();
+  }
 
   @override
   void dispose() {
@@ -47,6 +58,14 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
     _formKey.currentState!.reset();
     _title.clear();
     _text.clear();
+    _file = null;
+    _extention = null;
+    _url = null;
+    _picker = null;
+  }
+
+  /// reset variable image
+  void resetValueImage() {
     _file = null;
     _extention = null;
     _url = null;
@@ -75,10 +94,10 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
       if (_picker == null) {
         /// notification error
         Notif(
-          text: "Impossible de télécharger l'image",
+          text: Globals.messageErrorImageProfil,
           error: true,
         ).notification(context);
-        throw Exception("Impossible de télécharger l'image");
+        throw Exception(Globals.messageErrorImageProfil);
       }
 
       /// on recupere le path
@@ -111,6 +130,8 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
         await _uploadImage();
       }
 
+      
+
       /// creation objet
       /// si url != null on met l'url dans image
       /// sinon on met ''
@@ -123,17 +144,10 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
       /// creation bdd
       await ref.watch(profilChange).addProfil(newProfil);
 
-      /// notification succes
-      Notif(
-        text: "Profil créé avec succès",
-        error: false,
-      ).notification(context);
-
-      resetInput();
     } else {
       /// notification error
       Notif(
-        text: "Impossible de créer le profil",
+        text: Globals.messageErrorCreateProfil,
         error: true,
       ).notification(context);
     }
@@ -156,13 +170,17 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
 
       /// notification succes
       Notif(
-        text: 'Profil modifier',
+        text: Globals.messageSuccesUpdateProfil,
         error: false,
       ).notification(context);
+
+      resetValueImage();
     } else {
+      resetValueImage();
+
       /// notification error
       Notif(
-        text: 'Impossible de modifier le profil',
+        text: Globals.messageErrorUpdateProfil,
         error: true,
       ).notification(context);
     }
@@ -186,13 +204,17 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
 
       /// notif succes
       Notif(
-        text: 'Image modifier avec succes',
+        text: Globals.messageSuccesImageProfil,
         error: false,
       ).notification(context);
+
+      resetValueImage();
     } else {
+      resetValueImage();
+
       /// notif error
       Notif(
-        text: "Impossible de modifier l'image",
+        text: Globals.messageErrorImageProfil,
         error: false,
       ).notification(context);
     }
@@ -207,17 +229,23 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
       await ref.watch(profilChange).updateProfil(oldProfil.id!, newProfil);
 
       /// suppression de l'image dans storage
-      await ref.watch(uploadFileChange).deleteImage('profils/image-profil');
+      await ref
+          .watch(uploadFileChange)
+          .deleteImage(Globals.adresseStorageProfil);
 
       /// notif succes
       Notif(
-        text: 'Image supprimer avec succès',
+        text: Globals.messageSuccesImageDelProfil,
         error: false,
       ).notification(context);
+
+      resetValueImage();
     } else {
+      resetValueImage();
+
       /// notif error
       Notif(
-        text: "Impossible de supprimer l'image",
+        text: Globals.messageErrorImageProfil,
         error: true,
       ).notification(context);
     }
@@ -233,6 +261,7 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
       _title = TextEditingController(text: value[0].title);
       _text = TextEditingController(text: value[0].text);
       profil = value[0];
+      
     });
 
     return Container(
@@ -261,6 +290,7 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
                             if (widget.created) {
                               await _selectImage();
                             } else {
+                              
                               if (profil != null) {
                                 await _updateImageDirectly(profil!);
                               }
@@ -292,22 +322,26 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
               ),
             ),
 
-            /// TODO : faire les validators input
-            /// TODO : faire des tests
             /// TODO : regler bug creation
-            
+
             /// title
             inputBasic(
-              controller: _title,
-              labelText: Globals.inputTitle,
-            ),
+                controller: _title,
+                labelText: Globals.inputTitle,
+                validator: (value) => Validator.validatorInputTextBasic(
+                      textError: TextError.inputErrorTitle,
+                      value: value,
+                    )),
 
             /// text
             inputBasic(
-              controller: _text,
-              hintText: Globals.inputTextContent,
-              maxLines: 7,
-            ),
+                controller: _text,
+                hintText: Globals.inputTextContent,
+                maxLines: 7,
+                validator: (value) => Validator.validatorInputTextBasic(
+                      textError: TextError.inputErrorText,
+                      value: value,
+                    )),
 
             /// btn save
             btnElevated(

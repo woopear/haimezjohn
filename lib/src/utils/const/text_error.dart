@@ -9,4 +9,8 @@ class TextError {
 
   /// widget waiting_error
   static String titleWidgetWaitingError = "Une erreur est survenu !";
+
+  /// input global
+  static String inputErrorTitle = "Titre obligatoire";
+  static String inputErrorText = "Text obligatoire";
 }

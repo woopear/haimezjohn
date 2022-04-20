@@ -1,5 +1,6 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
+import 'package:haimezjohn/src/utils/const/globals.dart';
 
 class UploadFile extends ChangeNotifier {
   final _firebaseStorage = FirebaseStorage.instance;
@@ -9,7 +10,7 @@ class UploadFile extends ChangeNotifier {
     UploadTask? file;
 
     /// on creer la reference de l'image (nom)
-    final ref = _firebaseStorage.ref().child('profils/image-profil');
+    final ref = _firebaseStorage.ref().child(Globals.adresseStorageProfil);
 
     if (kIsWeb) {
       /// on enregistre sur firebase mode web
@@ -64,38 +65,6 @@ class UploadFile extends ChangeNotifier {
     /// on recupere l'url et on la retourne pour enregistrer
     final url = await snapshot.ref.getDownloadURL();
     return url;
-  }
-
-  /// upload image presentation
-  Future<String> uploadImagePresentation(data, {String extension = ''}) async {
-        UploadTask? file;
-
-    /// on creer la reference de l'image (nom)
-    final ref = _firebaseStorage.ref().child('presentation/pres-woopear');
-
-    if (kIsWeb) {
-      /// on enregistre sur firebase mode web
-      file =
-          ref.putData(data, SettableMetadata(contentType: 'image/$extension'));
-
-      /// on recupere le fichier
-      final snapshot = await file.whenComplete(() {});
-
-      /// on recupere l'url et on la retourne pour enregistrer dans le user
-      final url = await snapshot.ref.getDownloadURL();
-      return url;
-    }
-
-    /// on enregistre sur firebase mode mobile
-    file = ref.putFile(data);
-
-    /// on recupere le fichier
-    final snapshot = await file.whenComplete(() {});
-
-    /// on recupere l'url et on la retourne pour enregistrer
-    final url = await snapshot.ref.getDownloadURL();
-    return url;
-
   }
 
   /// delete image presentation
