@@ -20,7 +20,7 @@ class WaitingLoad extends ConsumerWidget {
       child: SizedBox(
         width: _width,
         height: _height,
-        child: SpinKitCircle(
+        child: SpinKitSpinningLines(
           color: ColorCustom().greenMedium,
           size: size,
         ),
