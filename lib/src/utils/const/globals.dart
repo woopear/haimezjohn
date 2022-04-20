@@ -14,6 +14,7 @@ class Globals {
   static String titlePageProfilPrivateCreate = "Créer un profil";
   static String messageSuccesDelProfil = "Profil supprimé";
   static String messageErrorDelProfil = "Une erreur est survenu";
+  static String tooltipMessageDeleteProfil = "Supprimer le profil";
 
 
   /// profil update form

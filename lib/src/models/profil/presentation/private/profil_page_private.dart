@@ -93,10 +93,11 @@ class _ProfilPagePrivateState extends ConsumerState<ProfilPagePrivate> {
 
                                   /// btn delete
                                   btnDeleteOne(
-                                      onPressed: () async {
-                                        await _deleteProfil(profils[0]);
-                                      },
-                                      message: "supprimer le profil")
+                                    onPressed: () async {
+                                      await _deleteProfil(profils[0]);
+                                    },
+                                    message: Globals.tooltipMessageDeleteProfil,
+                                  )
                                 ],
                               ),
 

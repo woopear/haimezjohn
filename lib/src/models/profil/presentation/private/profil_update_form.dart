@@ -124,26 +124,31 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
   /// creation profil
   Future<void> _creationProfil(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
-      /// si input image contient une image
-      /// on enregistre l'image et on recupere l'url
-      if (_picker != null) {
-        await _uploadImage();
+      try {
+        /// si input image contient une image
+        /// on enregistre l'image et on recupere l'url
+        if (_picker != null) {
+          await _uploadImage();
+        }
+
+        /// creation objet
+        /// si url != null on met l'url dans image
+        /// sinon on met ''
+        final newProfil = ProfilSchema(
+          title: _title.text.trim(),
+          text: _text.text.trim(),
+          image: _url ?? '',
+        );
+
+        /// creation bdd
+        await ref.watch(profilChange).addProfil(newProfil);
+      } catch (e) {
+        /// notification error
+        Notif(
+          text: Globals.messageErrorCreateProfil,
+          error: true,
+        ).notification(context);
       }
-
-      
-
-      /// creation objet
-      /// si url != null on met l'url dans image
-      /// sinon on met ''
-      final newProfil = ProfilSchema(
-        title: _title.text.trim(),
-        text: _text.text.trim(),
-        image: _url ?? '',
-      );
-
-      /// creation bdd
-      await ref.watch(profilChange).addProfil(newProfil);
-
     } else {
       /// notification error
       Notif(
@@ -156,25 +161,35 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
   /// update présentation
   Future<void> _updatePresentation(ProfilSchema oldProfil) async {
     if (_formKey.currentState!.validate()) {
-      /// creation objet
-      final newPresentation = ProfilSchema(
-        title: _title.text.trim(),
-        text: _text.text.trim(),
-        image: oldProfil.image,
-      );
+      try {
+        /// creation objet
+        final newPresentation = ProfilSchema(
+          title: _title.text.trim(),
+          text: _text.text.trim(),
+          image: oldProfil.image,
+        );
 
-      /// creation bdd de la
-      await ref
-          .watch(profilChange)
-          .updateProfil(oldProfil.id!, newPresentation);
+        /// creation bdd de la
+        await ref
+            .watch(profilChange)
+            .updateProfil(oldProfil.id!, newPresentation);
 
-      /// notification succes
-      Notif(
-        text: Globals.messageSuccesUpdateProfil,
-        error: false,
-      ).notification(context);
+        /// notification succes
+        Notif(
+          text: Globals.messageSuccesUpdateProfil,
+          error: false,
+        ).notification(context);
 
-      resetValueImage();
+        resetValueImage();
+      } catch (e) {
+        resetValueImage();
+
+        /// notification error
+        Notif(
+          text: Globals.messageErrorUpdateProfil,
+          error: true,
+        ).notification(context);
+      }
     } else {
       resetValueImage();
 
@@ -189,26 +204,36 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
   /// update image en directe BDD
   Future<void> _updateImageDirectly(ProfilSchema oldProfil) async {
     if (_formKey.currentState!.validate()) {
-      /// selection image
-      await _selectImage();
+      try {
+        /// selection image
+        await _selectImage();
 
-      /// upload image
-      await _uploadImage();
+        /// upload image
+        await _uploadImage();
 
-      /// creation objet
-      final newProfil = oldProfil;
-      newProfil.image = _url ?? '';
+        /// creation objet
+        final newProfil = oldProfil;
+        newProfil.image = _url ?? '';
 
-      /// update bdd
-      await ref.watch(profilChange).updateProfil(oldProfil.id!, newProfil);
+        /// update bdd
+        await ref.watch(profilChange).updateProfil(oldProfil.id!, newProfil);
 
-      /// notif succes
-      Notif(
-        text: Globals.messageSuccesImageProfil,
-        error: false,
-      ).notification(context);
+        /// notif succes
+        Notif(
+          text: Globals.messageSuccesImageProfil,
+          error: false,
+        ).notification(context);
 
-      resetValueImage();
+        resetValueImage();
+      } catch (e) {
+        resetValueImage();
+
+        /// notif error
+        Notif(
+          text: Globals.messageErrorImageProfil,
+          error: false,
+        ).notification(context);
+      }
     } else {
       resetValueImage();
 
@@ -223,23 +248,33 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
   /// suppression image
   Future<void> _deleteImageDirectly(ProfilSchema oldProfil) async {
     if (_formKey.currentState!.validate()) {
-      /// supprimer proprieter image
-      final newProfil = oldProfil;
-      newProfil.image = '';
-      await ref.watch(profilChange).updateProfil(oldProfil.id!, newProfil);
+      try {
+        /// supprimer proprieter image
+        final newProfil = oldProfil;
+        newProfil.image = '';
+        await ref.watch(profilChange).updateProfil(oldProfil.id!, newProfil);
 
-      /// suppression de l'image dans storage
-      await ref
-          .watch(uploadFileChange)
-          .deleteImage(Globals.adresseStorageProfil);
+        /// suppression de l'image dans storage
+        await ref
+            .watch(uploadFileChange)
+            .deleteImage(Globals.adresseStorageProfil);
 
-      /// notif succes
-      Notif(
-        text: Globals.messageSuccesImageDelProfil,
-        error: false,
-      ).notification(context);
+        /// notif succes
+        Notif(
+          text: Globals.messageSuccesImageDelProfil,
+          error: false,
+        ).notification(context);
 
-      resetValueImage();
+        resetValueImage();
+      } catch (e) {
+        resetValueImage();
+
+        /// notif error
+        Notif(
+          text: Globals.messageErrorImageProfil,
+          error: true,
+        ).notification(context);
+      }
     } else {
       resetValueImage();
 
@@ -261,7 +296,6 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
       _title = TextEditingController(text: value[0].title);
       _text = TextEditingController(text: value[0].text);
       profil = value[0];
-      
     });
 
     return Container(
@@ -290,7 +324,6 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
                             if (widget.created) {
                               await _selectImage();
                             } else {
-                              
                               if (profil != null) {
                                 await _updateImageDirectly(profil!);
                               }
@@ -321,8 +354,6 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
                 ],
               ),
             ),
-
-            /// TODO : regler bug creation
 
             /// title
             inputBasic(
