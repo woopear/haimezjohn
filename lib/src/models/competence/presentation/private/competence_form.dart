@@ -7,6 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/index.dart';
 import 'package:haimezjohn/src/models/competence/schema/competence_schema.dart';
 import 'package:haimezjohn/src/models/competence/state/competence_provider.dart';
+import 'package:haimezjohn/src/models/techno/schema/techno_schema.dart';
+import 'package:haimezjohn/src/models/techno/state/techno_provider.dart';
 import 'package:haimezjohn/src/models_shared/upload/state/upload_provider.dart';
 import 'package:haimezjohn/src/utils/const/globals.dart';
 import 'package:haimezjohn/src/utils/const/text_error.dart';
@@ -242,157 +244,184 @@ class _CompetenceFormState extends ConsumerState<CompetenceForm> {
       padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 30.0),
       child: Form(
         key: _formKey,
-        child: ref.watch(competencesStream).when(
-              data: (competences) {
-                CompetenceSchema? competence;
-                if (competences.isNotEmpty) {
-                  competence = competences[0];
-                  _title = TextEditingController(text: competence.title);
-                  _subTitle = TextEditingController(text: competence.subTitle);
-                }
+        child: Column(
+          children: [
+            ref.watch(competencesStream).when(
+                  data: (competences) {
+                    CompetenceSchema? competence;
+                    if (competences.isNotEmpty) {
+                      competence = competences[0];
+                      _title = TextEditingController(text: competence.title);
+                      _subTitle =
+                          TextEditingController(text: competence.subTitle);
+                    }
 
-                return Container(
-                  child: Column(
-                    children: [
-                      /// input title
-                      inputBasic(
-                        labelText: "Titre",
-                        controller: _title,
-                        validator: (value) => Validator.validatorInputTextBasic(
-                          textError: TextError.inputErrorTitle,
-                          value: value,
-                        ),
-                      ),
-
-                      /// input subTitle
-                      labelInput(
-                        text: "Sous titre :",
-                        margin: const EdgeInsets.only(top: 30.0),
-                      ),
-                      inputBasic(
-                        controller: _subTitle,
-                        hintText: "Sous titre de la compétence",
-                        maxLines: 4,
-                        validator: (value) => Validator.validatorInputTextBasic(
-                          textError: TextError.inputErrorText,
-                          value: value,
-                        ),
-                      ),
-
-                      /// telecharger image cv
-                      labelInput(
-                        text: "Image CV",
-                        margin: const EdgeInsets.only(top: 30.0),
-                      ),
-                      Row(
+                    return Container(
+                      child: Column(
                         children: [
-                          /// btn add update image
-                          btnAddUpdateImage(
-                            alignment: Alignment.centerLeft,
-                            onPressed: () async {
-                              await _selectImage();
-                            },
-                            message: "Image CV",
-                            iconSize: 40.0,
+                          /// input title
+                          inputBasic(
+                            labelText: "Titre",
+                            controller: _title,
+                            validator: (value) =>
+                                Validator.validatorInputTextBasic(
+                              textError: TextError.inputErrorTitle,
+                              value: value,
+                            ),
                           ),
 
-                          /// delete image
-                          btnDeleteOne(
-                            onPressed: () async {
-                              if (competence!.image != '') {
-                                await deleteImageCompetence(competence);
-                              }
-                              setState(() {
-                                _picker = null;
-                              });
-                            },
-                            message: "Supprimer l'image",
-                            iconSize: 40.0,
+                          /// input subTitle
+                          labelInput(
+                            text: "Sous titre :",
+                            margin: const EdgeInsets.only(top: 30.0),
                           ),
-                        ],
-                      ),
+                          inputBasic(
+                            controller: _subTitle,
+                            hintText: "Sous titre de la compétence",
+                            maxLines: 4,
+                            validator: (value) =>
+                                Validator.validatorInputTextBasic(
+                              textError: TextError.inputErrorText,
+                              value: value,
+                            ),
+                          ),
 
-                      /// affichage image
-                      displayImage(
-                        height: 250,
-                        urlE: competence!.image,
-                        picker: _picker,
-                        margin: const EdgeInsets.only(bottom: 50.0),
-                      ),
-
-                      /// si pdf enregistrer
-                      competence.cvPdf != ''
-                          ? Container(
-                              margin: const EdgeInsets.only(top: 50.0),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  labelInput(
-                                    text: 'Vous avez déja une version pdf',
-                                  ),
-
-                                  /// delete pdf
-                                  btnDeleteOne(
-                                    onPressed: () async {
-                                      if (competence!.image != '') {
-                                        await deletePdfCompetence(competence);
-                                      }
-                                      setState(() {
-                                        _pickerPdf = null;
-                                      });
-                                    },
-                                    margin: const EdgeInsets.only(left: 20.0),
-                                    message: "Supprimer le pdf existant",
-                                    iconSize: 30.0,
-                                  ),
-                                ],
+                          /// telecharger image cv
+                          labelInput(
+                            text: "Image CV",
+                            margin: const EdgeInsets.only(top: 30.0),
+                          ),
+                          Row(
+                            children: [
+                              /// btn add update image
+                              btnAddUpdateImage(
+                                alignment: Alignment.centerLeft,
+                                onPressed: () async {
+                                  await _selectImage();
+                                },
+                                message: "Image CV",
+                                iconSize: 40.0,
                               ),
-                            )
-                          : Container(),
 
-                      /// partie telechargement cv pdf
-                      Row(
-                        children: [
-                          BtnText(
-                            text: _pickerPdf != null
-                                ? "1 fichier en attente d'enregistrement"
-                                : competence.cvPdf != ''
-                                    ? 'Modifier la version pdf'
-                                    : 'Télécharger la version pdf',
-                            message: 'Télécharger la version pdf',
-                            icon: Icons.file_download_outlined,
-                            onPressed: () async {
-                              await _selectPdf();
-                            },
+                              /// delete image
+                              btnDeleteOne(
+                                onPressed: () async {
+                                  if (competence!.image != '') {
+                                    await deleteImageCompetence(competence);
+                                  }
+                                  setState(() {
+                                    _picker = null;
+                                  });
+                                },
+                                message: "Supprimer l'image",
+                                iconSize: 40.0,
+                              ),
+                            ],
                           ),
-                          _pickerPdf != null
-                              ? btnDeleteOne(
-                                  onPressed: () {
-                                    setState(() {
-                                      _pickerPdf = null;
-                                    });
-                                  },
-                                  message: 'annuler le document téléchargé')
+
+                          /// affichage image
+                          displayImage(
+                            height: 250,
+                            urlE: competence!.image,
+                            picker: _picker,
+                            margin: const EdgeInsets.only(bottom: 50.0),
+                          ),
+
+                          /// si pdf enregistrer
+                          competence.cvPdf != ''
+                              ? Container(
+                                  margin: const EdgeInsets.only(top: 50.0),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      labelInput(
+                                        text: 'Vous avez déja une version pdf',
+                                      ),
+
+                                      /// delete pdf
+                                      btnDeleteOne(
+                                        onPressed: () async {
+                                          if (competence!.image != '') {
+                                            await deletePdfCompetence(
+                                                competence);
+                                          }
+                                          setState(() {
+                                            _pickerPdf = null;
+                                          });
+                                        },
+                                        margin:
+                                            const EdgeInsets.only(left: 20.0),
+                                        message: "Supprimer le pdf existant",
+                                        iconSize: 30.0,
+                                      ),
+                                    ],
+                                  ),
+                                )
                               : Container(),
+
+                          /// partie telechargement cv pdf
+                          Row(
+                            children: [
+                              BtnText(
+                                text: _pickerPdf != null
+                                    ? "1 fichier en attente d'enregistrement"
+                                    : competence.cvPdf != ''
+                                        ? 'Modifier la version pdf'
+                                        : 'Télécharger la version pdf',
+                                message: 'Télécharger la version pdf',
+                                icon: Icons.file_download_outlined,
+                                onPressed: () async {
+                                  await _selectPdf();
+                                },
+                              ),
+                              _pickerPdf != null
+                                  ? btnDeleteOne(
+                                      onPressed: () {
+                                        setState(() {
+                                          _pickerPdf = null;
+                                        });
+                                      },
+                                      message: 'annuler le document téléchargé')
+                                  : Container(),
+                            ],
+                          ),
+
+                          /// btn creer ou modifier
+                          btnElevated(
+                            margin:
+                                const EdgeInsets.only(bottom: 20.0, top: 40.0),
+                            onPressed: () async {
+                              await createUpdateCompetence(competence);
+                            },
+                            text: 'Enregistrer',
+                          ),
+
+                          /// btn ajoute techno
+                          BtnText(
+                            text: 'Ajouter une techno',
+                            onPressed: () async {
+                              final newTechno = TechnoSchema(
+                                  image: "",
+                                  text: "",
+                                  title: "Pas encore de titre");
+                              await ref
+                                  .watch(technoChange)
+                                  .addTechno(competence!.id!, newTechno);
+                            },
+                            icon: Icons.add_circle_outline_rounded,
+                            message: 'ajouter une techno',
+                          ),
                         ],
                       ),
-
-                      /// btn creer ou modifier
-                      btnElevated(
-                        margin: const EdgeInsets.only(bottom: 20.0, top: 40.0),
-                        onPressed: () async {
-                          await createUpdateCompetence(competence);
-                        },
-                        text: 'Enregistrer',
-                      ),
-                    ],
-                  ),
-                );
-              },
-              error: (error, stack) =>
-                  WaitingError(messageError: "Une erreur est survenu"),
-              loading: () => WaitingLoad(),
-            ),
+                    );
+                  },
+                  error: (error, stack) =>
+                      WaitingError(messageError: "Une erreur est survenu"),
+                  loading: () => WaitingLoad(),
+                ),
+          ],
+        ),
       ),
     );
   }

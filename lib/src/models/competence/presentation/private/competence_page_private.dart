@@ -27,17 +27,8 @@ class _CompetencePagePrivateState extends ConsumerState<CompetencePagePrivate> {
 
                 /// form competence
                 const CompetenceForm(),
-
-                /// btn ajoute techno
-                BtnText(
-                  text: 'Ajouter une techno',
-                  onPressed: () {},
-                  icon: Icons.add_circle_outline_rounded,
-                  message: 'ajouter une techno',
-                ),
-
+                
                 /// liste techo
-                /// todo faire list techno
                 const TechnoList(),
 
                 /// form techno
