@@ -16,7 +16,6 @@ class Globals {
   static String messageErrorDelProfil = "Une erreur est survenu";
   static String tooltipMessageDeleteProfil = "Supprimer le profil";
 
-
   /// profil update form
   static String labelImageProfil = "Image profil : ";
   static String btnAddUpdateImageProfil = "Ajouter/Modifier l'image";
@@ -35,4 +34,8 @@ class Globals {
   /// display image
   static String urlAucuneImage =
       "https://firebasestorage.googleapis.com/v0/b/haimezjohn-90748.appspot.com/o/divers%2Faucune_image.jpg?alt=media&token=621eac40-50d4-4d2b-98b9-eb624dd691e7";
+
+  /// upload image competence
+  static String adresseStorageImageCompetence = 'competences/cvimage-competence';
+  static String adresseStoragePdfCompetence = 'competences/cvpdf-competence';
 }

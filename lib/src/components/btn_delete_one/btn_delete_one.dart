@@ -6,6 +6,7 @@ Widget btnDeleteOne({
   EdgeInsetsGeometry margin = const EdgeInsets.symmetric(vertical: 20.0),
   AlignmentGeometry alignment = Alignment.center,
   EdgeInsetsGeometry? padding,
+  double iconSize = 30,
 }) =>
     Align(
       alignment: alignment,
@@ -15,6 +16,7 @@ Widget btnDeleteOne({
         child: Tooltip(
           message: message,
           child: IconButton(
+            iconSize: iconSize,
             onPressed: onPressed,
             icon: const Icon(
               Icons.delete,

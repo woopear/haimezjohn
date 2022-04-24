@@ -7,6 +7,8 @@ Widget btnAddUpdateImage({
   EdgeInsetsGeometry margin = const EdgeInsets.symmetric(vertical: 20.0),
   AlignmentGeometry alignment = Alignment.center,
   EdgeInsetsGeometry? padding,
+  bool file = false,
+  double iconSize = 30,
 }) =>
     Align(
       alignment: alignment,
@@ -16,9 +18,10 @@ Widget btnAddUpdateImage({
         child: Tooltip(
           message: message,
           child: IconButton(
+            iconSize: iconSize,
             onPressed: onPressed,
             icon: Icon(
-              Icons.image,
+              file ? Icons.file_download_outlined : Icons.image,
               color: ColorCustom().blueLight,
             ),
           ),

@@ -8,3 +8,4 @@ export 'btn_delete_one/btn_delete_one.dart' show btnDeleteOne;
 export 'display_image_form/display_image_form.dart' show displayImage;
 export 'title_page_admin/title_page_admin.dart' show titlePageAdmin;
 export 'notif/notif.dart' show Notif;
+export 'btn_text/btn_text.dart' show BtnText;
