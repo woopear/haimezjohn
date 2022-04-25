@@ -43,6 +43,7 @@ class _CompetenceFormState extends ConsumerState<CompetenceForm> {
   FilePickerResult? _picker;
   FilePickerResult? _pickerPdf;
 
+  /// reset les variable simples
   void resetValueImagePdf() {
     setState(() {
       _file = null;
@@ -180,6 +181,7 @@ class _CompetenceFormState extends ConsumerState<CompetenceForm> {
     }
   }
 
+  /// suppression image competence
   Future<void> deleteImageCompetence(CompetenceSchema oldCompetence) async {
     try {
       /// suppression image
@@ -207,6 +209,7 @@ class _CompetenceFormState extends ConsumerState<CompetenceForm> {
     }
   }
 
+  /// suppression du pdf cv
   Future<void> deletePdfCompetence(CompetenceSchema oldCompetence) async {
     try {
       /// suppression image
@@ -232,6 +235,13 @@ class _CompetenceFormState extends ConsumerState<CompetenceForm> {
         error: true,
       ).notification(context);
     }
+  }
+
+  /// creation d'une techno
+  Future<void> createNewTecho(CompetenceSchema competence) async {
+    final newTechno =
+        TechnoSchema(image: "", text: "", title: "Pas encore de titre");
+    await ref.watch(technoChange).addTechno(competence.id!, newTechno);
   }
 
   @override
@@ -401,16 +411,10 @@ class _CompetenceFormState extends ConsumerState<CompetenceForm> {
                           BtnText(
                             text: 'Ajouter une techno',
                             onPressed: () async {
-                              final newTechno = TechnoSchema(
-                                  image: "",
-                                  text: "",
-                                  title: "Pas encore de titre");
-                              await ref
-                                  .watch(technoChange)
-                                  .addTechno(competence!.id!, newTechno);
+                              await createNewTecho(competence!);
                             },
                             icon: Icons.add_circle_outline_rounded,
-                            message: 'ajouter une techno',
+                            message: 'Créer une nouvelle techno',
                           ),
                         ],
                       ),

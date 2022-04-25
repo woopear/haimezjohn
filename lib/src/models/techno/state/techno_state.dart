@@ -6,12 +6,25 @@ import 'package:woo_firestore_crud/woo_firestore_crud.dart';
 class TechnoState extends ChangeNotifier {
   final _firestore = WooFirestore.instance;
 
+  late Stream<TechnoSchema?>? _technoSelected;
+  Stream<TechnoSchema?>? get technoSelected => _technoSelected;
+
   /// ecoute toute les technos
   Stream<List<TechnoSchema>> streamTechnos(String idCompetence) {
     return _firestore.streamCol(
       path: FirestorePath.technos(idCompetence),
       builder: (data, documentId) => TechnoSchema.fromMap(data, documentId),
     );
+  }
+
+  /// ecoute une techno
+  Stream<TechnoSchema?>? streamTechno(String idCompetence, String idTechno) {
+    _technoSelected = _firestore.streamDoc<TechnoSchema>(
+      path: FirestorePath.techno(idCompetence, idTechno),
+      builder: (data, documentId) => TechnoSchema.fromMap(data, documentId),
+    );
+    notifyListeners();
+    return null;
   }
 
   /// add
@@ -34,6 +47,11 @@ class TechnoState extends ChangeNotifier {
   /// delete
   Future<void> deleteTechno(String idCompetence, String idTechno) async {
     await _firestore.delete(path: FirestorePath.techno(idCompetence, idTechno));
+  }
+
+  void resetTechnoSelected() {
+    _technoSelected = null;
+    notifyListeners();
   }
 
   /// delete all

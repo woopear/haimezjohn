@@ -6,6 +6,14 @@ import 'package:woo_firestore_crud/woo_firestore_crud.dart';
 class CompetenceState extends ChangeNotifier {
   final _firestore = WooFirestore.instance;
 
+  String? _idCompetence;
+  String? get idCompetence => _idCompetence;
+
+  /// recupere l'id de competence
+  void getIdCompetence(String idCompetence) {
+    _idCompetence = idCompetence;
+  }
+
   /// ecoute toutes les competences
   Stream<List<CompetenceSchema>> streamCompetences() {
     return _firestore.streamCol(

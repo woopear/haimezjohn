@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/index.dart';
+import 'package:haimezjohn/src/models/competence/state/competence_provider.dart';
 import 'package:haimezjohn/src/models/techno/presentation/private/techno_list_title.dart';
 import 'package:haimezjohn/src/models/techno/presentation/private/tecno_list_btn_action.dart';
 import 'package:haimezjohn/src/models/techno/state/techno_provider.dart';
@@ -13,15 +14,24 @@ class TechnoList extends ConsumerStatefulWidget {
 }
 
 class _TechnoListState extends ConsumerState<TechnoList> {
+  Future<void> deleteTechno(String idCompetence, String idTechno) async {
+    /// delete image avant delete techno
+
+    /// delete
+    await ref.watch(technoChange).deleteTechno(idCompetence, idTechno);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final competenceProgress = ref.watch(competencesProvider);
+
     return Container(
       padding: const EdgeInsets.only(left: 30.0, right: 30.0),
       margin: const EdgeInsets.only(
-          top: 40.0, bottom: 50.0, left: 30.0, right: 30.0),
+          top: 0.0, bottom: 50.0, left: 30.0, right: 30.0),
       child: Column(
         children: [
-          ref.watch(t).when(
+          ref.watch(technosStream).when(
                 data: (technos) {
                   /// si pas de techno affiche message
                   if (technos.isEmpty) {
@@ -55,10 +65,20 @@ class _TechnoListState extends ConsumerState<TechnoList> {
                             ),
 
                             /// btn action
-                            /// todo faire les action et l'affichage de la techno selectionné
                             btnActionListTechno(
-                              onPressedDelete: () {},
-                              onPressedUpdate: () {},
+                              onPressedDelete: () async {
+                                await deleteTechno(
+                                    competenceProgress!.id!, techno.id!);
+                              },
+                              onPressedUpdate: () {
+                                /// on recupere toute la techno selectionné
+                                ref.watch(technoChange).streamTechno(
+                                    competenceProgress!.id!, techno.id!);
+                                /// on recupere l'id de la competence concerné
+                                ref
+                                    .watch(competenceChange)
+                                    .getIdCompetence(competenceProgress.id!);
+                              },
                             ),
                           ],
                         ),

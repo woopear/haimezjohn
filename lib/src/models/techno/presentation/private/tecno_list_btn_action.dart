@@ -11,14 +11,14 @@ Widget btnActionListTechno({
         children: [
           /// update entité
           btnUpdateEntite(
-            onPressed: () {},
+            onPressed: onPressedUpdate,
             message: 'Modifier la techno',
             iconSize: 20.0,
           ),
 
           /// delete entitié
           btnDeleteOne(
-            onPressed: () {},
+            onPressed: onPressedDelete,
             message: 'Supprimer la techno',
             iconSize: 20.0,
           ),
