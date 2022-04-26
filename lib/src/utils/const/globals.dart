@@ -22,7 +22,6 @@ class Globals {
   static String btnDeleteOneProfil = "Supprimer l'image";
   static String btnElevatedCreerProfil = "Créer";
   static String btnElevatedUpdateProfil = "Modifier";
-  static String adresseStorageProfil = "profils/image-profil";
   static String messageSuccesCreateProfil = "Profil créé avec succès";
   static String messageSuccesUpdateProfil = "Profil modifier avec succès";
   static String messageErrorCreateProfil = "Impossible de créer le profil";
@@ -31,11 +30,18 @@ class Globals {
   static String messageSuccesImageProfil = "Image enregistrée avec succès";
   static String messageSuccesImageDelProfil = "Image supprimmer avec succès";
 
+  /// upload image profil
+  static String adresseStorageProfil = "profils/image-profil";
+
   /// display image
   static String urlAucuneImage =
       "https://firebasestorage.googleapis.com/v0/b/haimezjohn-90748.appspot.com/o/divers%2Faucune_image.jpg?alt=media&token=621eac40-50d4-4d2b-98b9-eb624dd691e7";
 
   /// upload image competence
-  static String adresseStorageImageCompetence = 'competences/cvimage-competence';
+  static String adresseStorageImageCompetence =
+      'competences/cvimage-competence';
   static String adresseStoragePdfCompetence = 'competences/cvpdf-competence';
+
+  /// upload image techno
+  static String adresseStorageImageTechno = 'technos/techno-';
 }

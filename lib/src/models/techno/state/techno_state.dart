@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:haimezjohn/src/models/techno/schema/techno_schema.dart';
+import 'package:haimezjohn/src/models_shared/upload/state/upload_state.dart';
+import 'package:haimezjohn/src/utils/const/globals.dart';
 import 'package:haimezjohn/src/utils/fire/firestorepath.dart';
 import 'package:woo_firestore_crud/woo_firestore_crud.dart';
 
 class TechnoState extends ChangeNotifier {
   final _firestore = WooFirestore.instance;
+  final _upload = UploadFile();
 
   late Stream<TechnoSchema?>? _technoSelected;
   Stream<TechnoSchema?>? get technoSelected => _technoSelected;
@@ -46,13 +49,18 @@ class TechnoState extends ChangeNotifier {
 
   /// delete
   Future<void> deleteTechno(String idCompetence, String idTechno) async {
+    /// delete image de la techno
+    await _upload.deleteImage('${Globals.adresseStorageImageTechno}$idTechno');
+
+    ///delete techno
     await _firestore.delete(path: FirestorePath.techno(idCompetence, idTechno));
   }
 
+  /// reset techno selectionné
   void resetTechnoSelected() {
     _technoSelected = null;
     notifyListeners();
   }
 
-  /// delete all
+  /// todo delete all
 }
