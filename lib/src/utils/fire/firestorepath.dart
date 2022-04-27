@@ -19,4 +19,11 @@ class FirestorePath {
   /// portfolio
   static String portfolios() => 'portfolios';
   static String portfolio(String idPortfolio) => 'portfolios/$idPortfolio';
+
+  /// projet
+  static String projets(String idPortfolio) =>
+      'portfolios/$idPortfolio/projets';
+  static String projet(String idPortfolio, String idProjet) =>
+      'portfolios/$idPortfolio/projets/$idProjet';
+  
 }

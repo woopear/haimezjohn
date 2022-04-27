@@ -33,6 +33,7 @@ class PortfolioState extends ChangeNotifier {
 
   /// delete
   Future<void> deletePortfolio(String idPortfolio) async {
+    /// todo delete tout les projets
     await _firestore.delete(path: FirestorePath.portfolio(idPortfolio));
   }
 }
