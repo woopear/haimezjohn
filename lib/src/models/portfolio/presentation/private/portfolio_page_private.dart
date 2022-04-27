@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/index.dart';
 import 'package:haimezjohn/src/models/portfolio/presentation/private/portfolio_form.dart';
+import 'package:haimezjohn/src/models/projet/presentation/private/projet_list.dart';
 
 class PortfolioPagePrivate extends ConsumerStatefulWidget {
   const PortfolioPagePrivate({Key? key}) : super(key: key);
@@ -27,6 +28,7 @@ class _PortfolioPagePrivateState extends ConsumerState<PortfolioPagePrivate> {
                 const PortfolioForm(),
                 
                 /// list projet
+                const ProjetList(),
                 
                 /// form projet
               ],

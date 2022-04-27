@@ -117,6 +117,7 @@ class _PortfolioFormState extends ConsumerState<PortfolioForm> {
                           inputBasic(
                             controller: _subTitle,
                             labelText: 'Sous titre',
+                            maxLines: 4,
                             validator: (value) =>
                                 Validator.validatorInputTextBasic(
                               textError: 'Texte oblogatoire',
