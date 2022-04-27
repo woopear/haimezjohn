@@ -17,7 +17,7 @@ class _PortfolioPagePrivateState extends ConsumerState<PortfolioPagePrivate> {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          child: Container(
+          child: Center(child: Container(
             child: Column(
               children: [
                 /// title page
@@ -31,7 +31,7 @@ class _PortfolioPagePrivateState extends ConsumerState<PortfolioPagePrivate> {
                 /// form projet
               ],
             ),
-          ),
+          ),), 
         ),
       ),
     );

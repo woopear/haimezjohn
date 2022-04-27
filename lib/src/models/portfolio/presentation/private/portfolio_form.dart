@@ -27,6 +27,54 @@ class _PortfolioFormState extends ConsumerState<PortfolioForm> {
     super.dispose();
   }
 
+  /// creation portfolio
+  Future<void> _createPortfolio() async {
+    if (_formKey.currentState!.validate()) {
+      /// creation portfolio
+      final newPortfolio = PortfolioSchema(
+        subTitle: _subTitle.text.trim(),
+        title: _title.text.trim(),
+      );
+
+      /// creation dans la bdd
+      await ref.watch(portfolioChange).addPortfolio(newPortfolio);
+      Notif(
+        text: 'Creation réussis',
+        error: false,
+      ).notification(context);
+    } else {
+      Notif(
+        text: 'Impossible de créer le profil',
+        error: true,
+      ).notification(context);
+    }
+  }
+
+  /// update portfolio
+  Future<void> _updatePortfolio(String idPortfolio) async {
+    if (_formKey.currentState!.validate()) {
+      /// creation du portfolio
+      final newPortfolio = PortfolioSchema(
+        subTitle: _subTitle.text.trim(),
+        title: _title.text.trim(),
+      );
+
+      /// modification de la bdd
+      await ref
+          .watch(portfolioChange)
+          .updatePortfolio(idPortfolio, newPortfolio);
+      Notif(
+        text: 'Modification réussis',
+        error: false,
+      ).notification(context);
+    } else {
+      Notif(
+        text: 'Impossible de modifier le profil',
+        error: true,
+      ).notification(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     /// on recupere la largeur
@@ -34,7 +82,8 @@ class _PortfolioFormState extends ConsumerState<PortfolioForm> {
 
     return Container(
       width: _width > 700 ? 600 : double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 30.0),
+      margin: const EdgeInsets.only(top: 30.0, bottom: 50.0),
+      padding: const EdgeInsets.symmetric(horizontal: 30.0),
       child: Form(
         key: _formKey,
         child: Column(
@@ -77,8 +126,10 @@ class _PortfolioFormState extends ConsumerState<PortfolioForm> {
 
                           /// btn create/update
                           btnElevated(
-                            onPressed: () {
-                              /// todo creer les actions
+                            onPressed: () async {
+                              portfolio != null
+                                  ? await _updatePortfolio(portfolio.id!)
+                                  : await _createPortfolio();
                             },
                             text: 'Enregistrer',
                           ),
