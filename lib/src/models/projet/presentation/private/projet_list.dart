@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/index.dart';
 import 'package:haimezjohn/src/models/portfolio/state/portfolio_provider.dart';
+import 'package:haimezjohn/src/models/projet/presentation/private/projet_list_btn_action.dart';
 import 'package:haimezjohn/src/models/projet/schema/projet_schema.dart';
 import 'package:haimezjohn/src/models/projet/state/projet_provider.dart';
 import 'package:haimezjohn/src/models/techno/presentation/private/techno_list_title.dart';
@@ -14,6 +15,7 @@ class ProjetList extends ConsumerStatefulWidget {
 }
 
 class _ProjetListState extends ConsumerState<ProjetList> {
+  
   /// creation projet vierge
   Future<void> _createProjet(String idPortfolio) async {
     final newProjet = ProjetSchema(
@@ -41,6 +43,7 @@ class _ProjetListState extends ConsumerState<ProjetList> {
 
     /// on recupere le portfolio en cours
     final portfolioProgress = ref.watch(portfolioProgressProvider);
+    final idPortfolioProgress = portfolioProgress!.id;
 
     return Container(
       width: _width > 700 ? 600 : double.infinity,
@@ -57,7 +60,7 @@ class _ProjetListState extends ConsumerState<ProjetList> {
               text: 'Créer un projet',
               onPressed: () async {
                 await _createProjet(
-                  portfolioProgress!.id!,
+                  portfolioProgress.id!,
                 );
               }),
 
@@ -95,8 +98,19 @@ class _ProjetListState extends ConsumerState<ProjetList> {
                               child: titleListTechno(text: projet.title),
                             ),
 
-                            /// todo btn action
-                            
+                            /// btn action
+                            btnActionListProjet(
+                              onPressedUpdate: () async {
+                                ref
+                                    .watch(projetChange)
+                                    .streamProjetSelected(
+                                        idPortfolioProgress!, projet.id);
+                              },
+                              onPressedDelete: () async {
+                                await ref.watch(projetChange).deleteProjet(
+                                    idPortfolioProgress!, projet.id);
+                              },
+                            ),
                           ],
                         ),
                       );

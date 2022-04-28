@@ -7,6 +7,9 @@ import 'package:woo_firestore_crud/woo_firestore_crud.dart';
 class ProjetState extends ChangeNotifier {
   final _firestore = WooFirestore.instance;
 
+  late Stream<ProjetSchema?>? _projetSelectedUpdate;
+  Stream<ProjetSchema?>? get projetSelectedUpdate => _projetSelectedUpdate;
+
   /// stream all
   Stream<List<ProjetSchema>> streamAllProjetWithIdPortfolio(
     String idPortfolio,
@@ -15,6 +18,17 @@ class ProjetState extends ChangeNotifier {
       path: FirestorePath.projets(idPortfolio),
       builder: (data, documentId) => ProjetSchema.fromMap(data, documentId),
     );
+  }
+
+  /// stream one
+  Stream<ProjetSchema?>? streamProjetSelected(
+      String idPortfolio, String idProjet) {
+    _projetSelectedUpdate = _firestore.streamDoc<ProjetSchema>(
+      path: FirestorePath.projet(idPortfolio, idProjet),
+      builder: (data, documentId) => ProjetSchema.fromMap(data, documentId),
+    );
+    notifyListeners();
+    return null;
   }
 
   /// add
@@ -74,5 +88,11 @@ class ProjetState extends ChangeNotifier {
       notifyListeners();
       return batch.commit();
     });
+  }
+
+  /// reset projet selectionné pour modification
+  void resetProjetSelectedUpdate() {
+    _projetSelectedUpdate = null;
+    notifyListeners();
   }
 }
