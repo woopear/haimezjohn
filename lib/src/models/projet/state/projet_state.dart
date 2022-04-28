@@ -1,14 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:haimezjohn/src/models/projet/schema/projet_schema.dart';
 import 'package:haimezjohn/src/utils/fire/firestorepath.dart';
 import 'package:woo_firestore_crud/woo_firestore_crud.dart';
 
 class ProjetState extends ChangeNotifier {
   final _firestore = WooFirestore.instance;
+  final _firebaseStorage = FirebaseStorage.instance;
 
   late Stream<ProjetSchema?>? _projetSelectedUpdate;
   Stream<ProjetSchema?>? get projetSelectedUpdate => _projetSelectedUpdate;
+
+  String? _idPortfolioCurrent;
+  String? get idPortfolioCurrent => _idPortfolioCurrent;
 
   /// stream all
   Stream<List<ProjetSchema>> streamAllProjetWithIdPortfolio(
@@ -90,9 +95,46 @@ class ProjetState extends ChangeNotifier {
     });
   }
 
+   /// upload image projet
+  Future<String> uploadImageProjet(data, String idProjet, {String extension = ''}) async {
+    UploadTask? file;
+
+    /// on creer la reference de l'image (nom)
+    final ref = _firebaseStorage.ref().child('projets/proj-$idProjet');
+
+    if (kIsWeb) {
+      /// on enregistre sur firebase mode web
+      file =
+          ref.putData(data, SettableMetadata(contentType: 'image/$extension'));
+
+      /// on recupere le fichier
+      final snapshot = await file.whenComplete(() {});
+
+      /// on recupere l'url et on la retourne pour enregistrer dans le user
+      final url = await snapshot.ref.getDownloadURL();
+      return url;
+    }
+
+    /// on enregistre sur firebase mode mobile
+    file = ref.putFile(data);
+
+    /// on recupere le fichier
+    final snapshot = await file.whenComplete(() {});
+
+    /// on recupere l'url et on la retourne pour enregistrer
+    final url = await snapshot.ref.getDownloadURL();
+    return url;
+  }
+
   /// reset projet selectionné pour modification
   void resetProjetSelectedUpdate() {
     _projetSelectedUpdate = null;
+    notifyListeners();
+  }
+
+  /// affecte id du portfolio en cours
+  void getIdPortfolio(String idPortfolio) {
+    _idPortfolioCurrent = idPortfolio;
     notifyListeners();
   }
 }

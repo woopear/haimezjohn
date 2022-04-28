@@ -62,8 +62,6 @@ class Upload {
   /// upload bdd
   Future<void> uploadFile({
     required bool pdf,
-    String? url,
-    modelUpload,
   }) async {
     /// si web sinon le reste
     if (kIsWeb) {

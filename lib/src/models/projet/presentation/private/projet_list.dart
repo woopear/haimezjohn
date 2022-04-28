@@ -15,7 +15,6 @@ class ProjetList extends ConsumerStatefulWidget {
 }
 
 class _ProjetListState extends ConsumerState<ProjetList> {
-  
   /// creation projet vierge
   Future<void> _createProjet(String idPortfolio) async {
     final newProjet = ProjetSchema(
@@ -43,7 +42,6 @@ class _ProjetListState extends ConsumerState<ProjetList> {
 
     /// on recupere le portfolio en cours
     final portfolioProgress = ref.watch(portfolioProgressProvider);
-    final idPortfolioProgress = portfolioProgress!.id;
 
     return Container(
       width: _width > 700 ? 600 : double.infinity,
@@ -60,7 +58,7 @@ class _ProjetListState extends ConsumerState<ProjetList> {
               text: 'Créer un projet',
               onPressed: () async {
                 await _createProjet(
-                  portfolioProgress.id!,
+                  portfolioProgress!.id!,
                 );
               }),
 
@@ -101,14 +99,17 @@ class _ProjetListState extends ConsumerState<ProjetList> {
                             /// btn action
                             btnActionListProjet(
                               onPressedUpdate: () async {
+                                ref.watch(projetChange).streamProjetSelected(
+                                    portfolioProgress!.id!, projet.id);
+
+                                /// recuperation de l'id du portfolio en cours
                                 ref
                                     .watch(projetChange)
-                                    .streamProjetSelected(
-                                        idPortfolioProgress!, projet.id);
+                                    .getIdPortfolio(portfolioProgress.id!);
                               },
                               onPressedDelete: () async {
                                 await ref.watch(projetChange).deleteProjet(
-                                    idPortfolioProgress!, projet.id);
+                                    portfolioProgress!.id!, projet.id);
                               },
                             ),
                           ],
