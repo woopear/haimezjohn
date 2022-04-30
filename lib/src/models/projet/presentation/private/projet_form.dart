@@ -74,13 +74,13 @@ class _ProjetFormState extends ConsumerState<ProjetForm> {
       pdf: false,
     );
 
-    final url = await ref
+    _uploadFile.url = await ref
         .watch(projetChange)
-        .uploadImageProjet(_uploadFile.file, projetSelected.id!);
+        .uploadImageProjet(_uploadFile.file, projetSelected.id!, extension: _uploadFile.extention!);
 
     /// creation projet
     final newProjet = projetSelected;
-    newProjet.image = url;
+    newProjet.image = _uploadFile.url!;
 
     /// update dans bdd
     await ref.watch(projetChange).updateProjet(
@@ -178,11 +178,11 @@ class _ProjetFormState extends ConsumerState<ProjetForm> {
                   btnAddUpdateImage(
                     margin: const EdgeInsets.only(top: 40.0),
                     alignment: Alignment.centerLeft,
+                    message: 'Telecharger une image',
                     onPressed: () async {
                       await _uploadImageProjet(
                           projetSelected, portfolioCurrentId!);
                     },
-                    message: 'Telecharger une image',
                   ),
 
                   /// affichage de l'image
