@@ -22,8 +22,8 @@ class ContactSchema {
 
   Map<String, dynamic> toMap() {
     return {
-      title: title,
-      subTitle: subTitle,
+      'title': title,
+      'subTitle': subTitle,
     };
   }
 }

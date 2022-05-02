@@ -25,5 +25,8 @@ class FirestorePath {
       'portfolios/$idPortfolio/projets';
   static String projet(String idPortfolio, String idProjet) =>
       'portfolios/$idPortfolio/projets/$idProjet';
-  
+
+  /// contact
+  static String contacts() => "contacts";
+  static String contact(String idContact) => "contacts/$idContact";
 }
