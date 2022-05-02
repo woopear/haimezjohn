@@ -30,7 +30,12 @@ class FirestorePath {
   static String contacts() => "contacts";
   static String contact(String idContact) => "contacts/$idContact";
 
-  /// contact
+  /// info perso
   static String infoPersos() => "info_persos";
   static String infoPerso(String idInfoPerso) => "info_persos/$idInfoPerso";
+
+    /// footer
+  static String footers() => "footers";
+  static String footer(String idFooter) => "footers/$idFooter";
+
 }
