@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/title_page_admin/title_page_admin.dart';
+import 'package:haimezjohn/src/models_shared/footer/presentation/private/footer_form.dart';
 
 class FooterPagePrivate extends ConsumerStatefulWidget {
   const FooterPagePrivate({Key? key}) : super(key: key);
@@ -26,6 +27,7 @@ class _FooterPagePrivateState extends ConsumerState<FooterPagePrivate> {
                   titlePageAdmin(text: 'Le footer', context: context),
 
                   /// formulaire
+                  const FooterForm(),
                 ],
               ),
             ),
