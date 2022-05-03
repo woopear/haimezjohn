@@ -44,4 +44,8 @@ class Globals {
 
   /// upload image techno
   static String adresseStorageImageTechno = 'technos/techno-';
+
+  /// list des link pour comparaison
+  static String github = 'github';
+  static String linkedin = 'linkedin';
 }

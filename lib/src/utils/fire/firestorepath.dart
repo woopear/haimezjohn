@@ -34,8 +34,12 @@ class FirestorePath {
   static String infoPersos() => "info_persos";
   static String infoPerso(String idInfoPerso) => "info_persos/$idInfoPerso";
 
-    /// footer
+  /// footer
   static String footers() => "footers";
   static String footer(String idFooter) => "footers/$idFooter";
+
+  /// link
+  static String links() => "links";
+  static String link(String idLink) => "links/$idLink";
 
 }
