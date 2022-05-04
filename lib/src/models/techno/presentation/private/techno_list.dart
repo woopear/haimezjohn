@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:haimezjohn/src/components/index.dart';
+import 'package:haimezjohn/src/components/waiting_error/waiting_error.dart';
+import 'package:haimezjohn/src/components/waiting_load/waiting_load.dart';
 import 'package:haimezjohn/src/models/competence/state/competence_provider.dart';
 import 'package:haimezjohn/src/models/techno/presentation/private/techno_list_title.dart';
 import 'package:haimezjohn/src/models/techno/presentation/private/tecno_list_btn_action.dart';
@@ -15,7 +16,7 @@ class TechnoList extends ConsumerStatefulWidget {
 
 class _TechnoListState extends ConsumerState<TechnoList> {
   Future<void> deleteTechno(String idCompetence, String idTechno) async {
-    /// delete image avant delete techno
+    /// todo delete image avant delete techno
 
     /// delete
     await ref.watch(technoChange).deleteTechno(idCompetence, idTechno);

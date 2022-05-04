@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:haimezjohn/src/models/competence/presentation/private/competence_page_private.dart';
+import 'package:haimezjohn/src/models/condition_gene/presentation/private/condition_gene_page_private.dart';
 import 'package:haimezjohn/src/models/contact/presentation/private/contact_page_private.dart';
 import 'package:haimezjohn/src/models/link/presentation/private/link_page_private.dart';
 import 'package:haimezjohn/src/models/portfolio/presentation/private/portfolio_page_private.dart';
@@ -20,6 +21,7 @@ class Routes {
   final String _infoPersoPrivate = '/admin/info-perso';
   final String _footerPagePrivate = '/admin/footer';
   final String _linkPagePrivate = '/admin/link';
+  final String _conditionGenePagePrivate = '/admin/condition-gene';
 
   /// getter
   String get home => _home;
@@ -32,6 +34,7 @@ class Routes {
   String get infoPersoPrivate => _infoPersoPrivate;
   String get footerPagePrivate => _footerPagePrivate;
   String get linkPagePrivate => _linkPagePrivate;
+  String get conditionGenePagePrivate => _conditionGenePagePrivate;
 
   /// retourne un widget en fonction de la routes
   Map<String, Widget Function(BuildContext)> urls() {
@@ -47,6 +50,7 @@ class Routes {
       _infoPersoPrivate: (context) => const InfoPersoPagePrivate(),
       _footerPagePrivate: (context) => const FooterPagePrivate(),
       _linkPagePrivate: (context) => const LinkPagePrivate(),
+      _conditionGenePagePrivate: (context) => const ConditionGenePagePrivate(),
     };
   }
 }

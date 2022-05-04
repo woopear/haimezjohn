@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:haimezjohn/src/components/btn_delete_one/btn_delete_one.dart';
 import 'package:haimezjohn/src/components/btn_update_entitie/btn_update_entite.dart';
-import 'package:haimezjohn/src/components/index.dart';
 
 Widget btnActionListProjet({
   required void Function()? onPressedUpdate,

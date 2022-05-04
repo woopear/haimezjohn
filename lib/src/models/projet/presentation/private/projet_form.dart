@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:haimezjohn/src/components/index.dart';
+import 'package:haimezjohn/src/components/btn_add_update_image/btn_add_update_image.dart';
+import 'package:haimezjohn/src/components/display_image_form/display_image_form.dart';
+import 'package:haimezjohn/src/components/input_basic/input_basic.dart';
+import 'package:haimezjohn/src/components/label_input/label_input.dart';
+import 'package:haimezjohn/src/components/notif/notif.dart';
 import 'package:haimezjohn/src/models/projet/presentation/private/projet_form_btn_action.dart';
 import 'package:haimezjohn/src/models/projet/schema/projet_schema.dart';
 import 'package:haimezjohn/src/models/projet/state/projet_provider.dart';

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:haimezjohn/src/components/index.dart';
+import 'package:haimezjohn/src/components/btn_delete_one/btn_delete_one.dart';
+import 'package:haimezjohn/src/components/notif/notif.dart';
+import 'package:haimezjohn/src/components/title_page_admin/title_page_admin.dart';
+import 'package:haimezjohn/src/components/waiting_error/waiting_error.dart';
+import 'package:haimezjohn/src/components/waiting_load/waiting_load.dart';
 import 'package:haimezjohn/src/models/profil/presentation/private/profil_update_form.dart';
 import 'package:haimezjohn/src/models/profil/schema/profil_schema.dart';
 import 'package:haimezjohn/src/models/profil/state/profil_provider.dart';

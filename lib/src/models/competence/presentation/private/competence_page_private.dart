@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:haimezjohn/src/components/index.dart';
+import 'package:haimezjohn/src/components/title_page_admin/title_page_admin.dart';
 import 'package:haimezjohn/src/models/competence/presentation/private/competence_form.dart';
 import 'package:haimezjohn/src/models/techno/presentation/private/techno_form.dart';
 import 'package:haimezjohn/src/models/techno/presentation/private/techno_list.dart';

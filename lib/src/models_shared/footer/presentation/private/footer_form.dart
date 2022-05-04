@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:haimezjohn/src/components/index.dart';
+import 'package:haimezjohn/src/components/btn_elevated/btn_elevated.dart';
+import 'package:haimezjohn/src/components/input_basic/input_basic.dart';
+import 'package:haimezjohn/src/components/notif/notif.dart';
+import 'package:haimezjohn/src/components/waiting_error/waiting_error.dart';
+import 'package:haimezjohn/src/components/waiting_load/waiting_load.dart';
 import 'package:haimezjohn/src/models_shared/footer/schema/footer_schema.dart';
 import 'package:haimezjohn/src/models_shared/footer/state/footer_provider.dart';
 import 'package:haimezjohn/src/utils/mixins/validator.dart';
