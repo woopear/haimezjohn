@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:haimezjohn/src/models/condition_gene/presentation/private/condition_gene_list.dart';
 
 class ConditionGenePagePrivate extends ConsumerStatefulWidget {
   const ConditionGenePagePrivate({Key? key}) : super(key: key);
@@ -21,7 +22,10 @@ class _ConditionGenePagePrivateState extends ConsumerState<ConditionGenePagePriv
               padding:
                   const EdgeInsets.symmetric(vertical: 70.0, horizontal: 30.0),
               child: Column(
-                children: const [],
+                children: const [
+                  /// list condition gene
+                  ConditionGeneList(),
+                ],
               )
             ),
           ),

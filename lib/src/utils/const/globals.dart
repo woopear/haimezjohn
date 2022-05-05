@@ -1,4 +1,6 @@
 class Globals {
+  Globals();
+
   /// material app
   static String titleApp = 'Haimez john';
 
@@ -48,4 +50,7 @@ class Globals {
   /// list des link pour comparaison
   static String github = 'github';
   static String linkedin = 'linkedin';
+
+  /// tableau
+  static double paddingTabHoriz = 10.0;
 }
