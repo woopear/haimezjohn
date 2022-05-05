@@ -9,5 +9,9 @@ Widget titlePageAdmin({
     Container(
       margin: margin,
       padding: padding,
-      child: Text(text, style: Theme.of(context).textTheme.headline3,),
+      child: Text(
+        text,
+        style: Theme.of(context).textTheme.headline3,
+        textAlign: TextAlign.center,
+      ),
     );

@@ -33,12 +33,12 @@ TableRow arrayRow({
 
                     /// si il y a le bon text on mets les btn action
                     ? arrayBtnActionUpdateDelete(
-                        onPressedUpdate: seeAction ? onPressedUpdate : null,
-                        onPressedDelete: seeAction ? onPressedDelete : null,
+                        onPressedUpdate: onPressedUpdate,
+                        onPressedDelete: onPressedDelete,
                       )
 
                     /// si pas btn action on affiche la donnée
-                    : Padding(
+                    : Container(
                         padding: EdgeInsets.all(paddingArray),
                         child: Text(
                           cell,

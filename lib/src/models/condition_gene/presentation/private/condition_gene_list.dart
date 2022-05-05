@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/array/array.dart';
 import 'package:haimezjohn/src/components/array/array_row.dart';
+import 'package:haimezjohn/src/components/notif/notif.dart';
 import 'package:haimezjohn/src/components/waiting_error/waiting_error.dart';
 import 'package:haimezjohn/src/components/waiting_load/waiting_load.dart';
 import 'package:haimezjohn/src/models/condition_gene/schema/condition_gene_schema.dart';
@@ -16,6 +17,23 @@ class ConditionGeneList extends ConsumerStatefulWidget {
 }
 
 class _ConditionGeneListState extends ConsumerState<ConditionGeneList> {
+  /// delete condition gene
+  Future<void> _deleteConditionGene(String idConditionGene) async {
+    try {
+      /// delete
+      await ref.watch(conditionGeneChange).deleteConditionGene(idConditionGene);
+      Notif(
+        text: 'Condition générale supprimée',
+        error: false,
+      ).notification(context);
+    } catch (e) {
+      Notif(
+        text: 'Une Erreur est survenu',
+        error: true,
+      ).notification(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,12 +56,14 @@ class _ConditionGeneListState extends ConsumerState<ConditionGeneList> {
                     cells: conditions
                         .map(
                           (condition) => arrayRow(
-                            cells: [
-                              condition!.title,
-                              'date',
-                              'btnaction',
-                            ],
-                          ),
+                              cells: [
+                                condition!.title,
+                                'date',
+                                'btnaction',
+                              ],
+                              onPressedDelete: () async {
+                                await _deleteConditionGene(condition.id!);
+                              }),
                         )
                         .toList(),
                   );
