@@ -22,3 +22,8 @@ final projetSelectedUpdateProvider = Provider((ref) {
   });
   return condition;
 });
+
+/// provider pour l'id de la condition selectionné
+final idConditionGeneProvider = Provider((ref) {
+  return ref.watch(conditionGeneChange).idConditionSelected;
+});

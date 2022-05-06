@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:haimezjohn/src/models/condition_gene/models/article_condition/state/article_condition_state.dart';
 import 'package:haimezjohn/src/models/condition_gene/schema/condition_gene_schema.dart';
 import 'package:haimezjohn/src/utils/fire/firestorepath.dart';
 import 'package:woo_firestore_crud/woo_firestore_crud.dart';
 
 class ConditionGeneState extends ChangeNotifier {
   final _firestore = WooFirestore.instance;
+  final _articleConditionState = ArticleConditionState();
 
   late Stream<ConditionGeneSchema?>? _conditionSelected;
   Stream<ConditionGeneSchema?>? get conditionSelected => _conditionSelected;
@@ -14,12 +16,14 @@ class ConditionGeneState extends ChangeNotifier {
 
   /// recupere id condition gene selectionnée
   void setidConditionSelected(String idConditionGene) {
-    _idConditionSelected = idConditionSelected;
+    _idConditionSelected = idConditionGene;
+    notifyListeners();
   }
 
   /// reset conditionSelected
   void resetConditionSelected() {
     _conditionSelected = null;
+    _idConditionSelected = null;
     notifyListeners();
   }
 
@@ -68,7 +72,8 @@ class ConditionGeneState extends ChangeNotifier {
   Future<void> deleteConditionGene(
     String idConditionGene,
   ) async {
-    /// todo delete tous les article si delete condition
+    /// delete tous les article si delete condition
+    await _articleConditionState.deleteAllArticleOfCondition(idConditionGene);
 
     /// delete
     await _firestore.delete(

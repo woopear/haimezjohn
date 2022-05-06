@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:haimezjohn/src/models/condition_gene/models/article_condition/schema/article_condition_schema.dart';
 import 'package:haimezjohn/src/utils/fire/firestorepath.dart';
@@ -44,7 +45,7 @@ class ArticleConditionState extends ChangeNotifier {
 
   /// delete
   Future<void> deleteArticleCondition(
-        String idConditionGene,
+    String idConditionGene,
     String idArticleConditionGene,
   ) async {
     await _firestore.delete(
@@ -55,5 +56,25 @@ class ArticleConditionState extends ChangeNotifier {
     );
   }
 
-  /// todo delete tous les articles d'une condition
+  /// supprimer tous les articles d'une condition
+  Future<void> deleteAllArticleOfCondition(String idCondition) async {
+    /// instance firestore pour batch
+    WriteBatch batch = FirebaseFirestore.instance.batch();
+
+    /// ref collection path
+    CollectionReference refArticles = FirebaseFirestore.instance.collection(
+      FirestorePath.articleConditionGenes(idCondition),
+    );
+
+    /// boucle pour delete les articles
+    return refArticles.get().then((querySnapshot) async {
+      for (var doc in querySnapshot.docs) {
+        /// delete article
+        batch.delete(doc.reference);
+      }
+
+      notifyListeners();
+      return batch.commit();
+    });
+  }
 }

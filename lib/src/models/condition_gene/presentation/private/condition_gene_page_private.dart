@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/btn_text/btn_text.dart';
 import 'package:haimezjohn/src/components/notif/notif.dart';
 import 'package:haimezjohn/src/components/title_page_admin/title_page_admin.dart';
+import 'package:haimezjohn/src/models/condition_gene/models/article_condition/presentation/private/article_condition_list_form.dart';
 import 'package:haimezjohn/src/models/condition_gene/presentation/private/condition_gene_form.dart';
 import 'package:haimezjohn/src/models/condition_gene/presentation/private/condition_gene_list.dart';
 import 'package:haimezjohn/src/models/condition_gene/schema/condition_gene_schema.dart';
@@ -65,7 +66,7 @@ class _ConditionGenePagePrivateState
                   BtnText(
                     text: 'Ajouter une condition',
                     alignment: Alignment.centerLeft,
-                    icon: Icons.add,
+                    icon: Icons.add_circle_outline_rounded,
                     message: 'Ajouter une condition',
                     onPressed: () async {
                       await _createConditionGene();
@@ -77,6 +78,9 @@ class _ConditionGenePagePrivateState
 
                   /// formulaire condition
                   const ConditionGeneForm(),
+
+                  /// list form article condition
+                  const ArticleConditionListForm(),
                 ],
               ),
             ),
