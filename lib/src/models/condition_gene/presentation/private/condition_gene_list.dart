@@ -58,9 +58,24 @@ class _ConditionGeneListState extends ConsumerState<ConditionGeneList> {
                           (condition) => arrayRow(
                               cells: [
                                 condition!.title,
-                                'date',
+                                '${condition.date!.toDate().day < 10 ? '0${condition.date!.toDate().day}' : '${condition.date!.toDate().day}'}/${condition.date!.toDate().month < 10 ? '0${condition.date!.toDate().month}' : '${condition.date!.toDate().month}'}/${condition.date!.toDate().year}',
                                 'btnaction',
                               ],
+
+                              /// action pour voir la condition à modifier
+                              onPressedUpdate: () async {
+                                /// stream sur la condition
+                                ref
+                                    .watch(conditionGeneChange)
+                                    .streamOneConditionGene(condition.id!);
+
+                                /// recupere l'id de la condition selectionnée
+                                ref
+                                    .watch(conditionGeneChange)
+                                    .setidConditionSelected(condition.id!);
+                              },
+
+                              /// action delete
                               onPressedDelete: () async {
                                 await _deleteConditionGene(condition.id!);
                               }),

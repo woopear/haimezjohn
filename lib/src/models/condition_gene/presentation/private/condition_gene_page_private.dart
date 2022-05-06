@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/btn_text/btn_text.dart';
 import 'package:haimezjohn/src/components/notif/notif.dart';
 import 'package:haimezjohn/src/components/title_page_admin/title_page_admin.dart';
+import 'package:haimezjohn/src/models/condition_gene/presentation/private/condition_gene_form.dart';
 import 'package:haimezjohn/src/models/condition_gene/presentation/private/condition_gene_list.dart';
 import 'package:haimezjohn/src/models/condition_gene/schema/condition_gene_schema.dart';
 import 'package:haimezjohn/src/models/condition_gene/state/condition_gene_provider.dart';
@@ -73,6 +74,9 @@ class _ConditionGenePagePrivateState
 
                   /// list condition gene
                   const ConditionGeneList(),
+
+                  /// formulaire condition
+                  const ConditionGeneForm(),
                 ],
               ),
             ),

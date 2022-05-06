@@ -6,8 +6,8 @@ import 'package:woo_firestore_crud/woo_firestore_crud.dart';
 class ConditionGeneState extends ChangeNotifier {
   final _firestore = WooFirestore.instance;
 
-  late Stream<ConditionGeneSchema?> _conditionSelected;
-  Stream<ConditionGeneSchema?> get conditionSelected => _conditionSelected;
+  late Stream<ConditionGeneSchema?>? _conditionSelected;
+  Stream<ConditionGeneSchema?>? get conditionSelected => _conditionSelected;
 
   String? _idConditionSelected;
   String? get idConditionSelected => _idConditionSelected;
@@ -15,6 +15,12 @@ class ConditionGeneState extends ChangeNotifier {
   /// recupere id condition gene selectionnée
   void setidConditionSelected(String idConditionGene) {
     _idConditionSelected = idConditionSelected;
+  }
+
+  /// reset conditionSelected
+  void resetConditionSelected() {
+    _conditionSelected = null;
+    notifyListeners();
   }
 
   /// stream all
@@ -33,7 +39,7 @@ class ConditionGeneState extends ChangeNotifier {
       builder: (data, documentId) =>
           ConditionGeneSchema.fromMap(data, documentId),
     );
-
+    notifyListeners();
     return null;
   }
 
