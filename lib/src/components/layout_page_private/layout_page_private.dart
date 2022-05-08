@@ -48,6 +48,8 @@ Widget layoutPagePrivate({
           Expanded(
             flex: 4,
             child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              controller: ScrollController(),
               child: Center(
                 child: child,
               ),
