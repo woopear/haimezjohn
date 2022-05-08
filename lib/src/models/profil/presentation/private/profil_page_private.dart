@@ -76,6 +76,7 @@ class _ProfilPagePrivateState extends ConsumerState<ProfilPagePrivate> {
   @override
   Widget build(BuildContext context) {
     return layoutPagePrivate(
+      context: context,
       child: layoutContentOneChildPrivate(
         child: ref.watch(profilsStream).when(
               data: (profils) {

@@ -17,6 +17,7 @@ class _FooterPagePrivateState extends ConsumerState<FooterPagePrivate> {
   @override
   Widget build(BuildContext context) {
     return layoutPagePrivate(
+      context: context,
       child: layoutContentPrivate(
         children: [
           /// title

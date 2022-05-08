@@ -19,6 +19,7 @@ class _PortfolioPagePrivateState extends ConsumerState<PortfolioPagePrivate> {
   @override
   Widget build(BuildContext context) {
     return layoutPagePrivate(
+      context: context,
       child: layoutContentPrivate(
         children: [
           /// title page

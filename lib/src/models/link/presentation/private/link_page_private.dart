@@ -44,6 +44,7 @@ class _LinkPagePrivateState extends ConsumerState<LinkPagePrivate> {
   @override
   Widget build(BuildContext context) {
     return layoutPagePrivate(
+      context: context,
       child: layoutContentPrivate(
         children: [
           /// title

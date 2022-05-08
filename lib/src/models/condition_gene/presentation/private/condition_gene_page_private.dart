@@ -47,6 +47,7 @@ class _ConditionGenePagePrivateState
   @override
   Widget build(BuildContext context) {
     return layoutPagePrivate(
+      context: context,
       child: layoutContentPrivate(
         children: [
           /// title

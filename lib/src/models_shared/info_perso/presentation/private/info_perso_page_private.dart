@@ -17,6 +17,7 @@ class _InfoPersoPagePrivateState extends ConsumerState<InfoPersoPagePrivate> {
   @override
   Widget build(BuildContext context) {
     return layoutPagePrivate(
+      context: context,
       child: layoutContentPrivate(
         children: [
           /// title

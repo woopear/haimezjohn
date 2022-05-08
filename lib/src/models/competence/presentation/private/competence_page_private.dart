@@ -19,6 +19,7 @@ class _CompetencePagePrivateState extends ConsumerState<CompetencePagePrivate> {
   @override
   Widget build(BuildContext context) {
     return layoutPagePrivate(
+      context: context,
       child: layoutContentPrivate(
         children: [
           /// title page

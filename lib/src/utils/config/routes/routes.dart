@@ -22,6 +22,7 @@ class Routes {
   final String _footerPagePrivate = '/admin/footer';
   final String _linkPagePrivate = '/admin/link';
   final String _conditionGenePagePrivate = '/admin/condition-gene';
+  final String _settingPrivate = '/admin/setting';
 
   /// getter
   String get home => _home;
@@ -35,6 +36,7 @@ class Routes {
   String get footerPagePrivate => _footerPagePrivate;
   String get linkPagePrivate => _linkPagePrivate;
   String get conditionGenePagePrivate => _conditionGenePagePrivate;
+  String get settingPrivate => _settingPrivate;
 
   /// retourne un widget en fonction de la routes
   Map<String, Widget Function(BuildContext)> urls() {
@@ -51,6 +53,7 @@ class Routes {
       _footerPagePrivate: (context) => const FooterPagePrivate(),
       _linkPagePrivate: (context) => const LinkPagePrivate(),
       _conditionGenePagePrivate: (context) => const ConditionGenePagePrivate(),
+      _settingPrivate: (context) => const HomePage(), /// todo a changer
     };
   }
 }

@@ -16,6 +16,7 @@ class _ContactPagePrivateState extends ConsumerState<ContactPagePrivate> {
   @override
   Widget build(BuildContext context) {
     return layoutPagePrivate(
+      context: context,
       child: layoutContentPrivate(
         children: [
           /// formulaire contact update
