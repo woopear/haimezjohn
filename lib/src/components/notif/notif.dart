@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:haimezjohn/main.dart';
 
 class Notif {
   String? text;
@@ -12,7 +13,7 @@ class Notif {
 
   ScaffoldFeatureController<SnackBar, SnackBarClosedReason> notification(
       BuildContext context) {
-    return ScaffoldMessenger.of(context).showSnackBar(
+    return scaffoldMessengerKey.currentState!.showSnackBar(
       SnackBar(
         content: Text(
           text!,

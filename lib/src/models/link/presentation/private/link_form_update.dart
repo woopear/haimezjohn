@@ -31,7 +31,7 @@ class _LinkFormUpdateState extends ConsumerState<LinkFormUpdate> {
   }
 
   /// update link
-  Future<void> _updateLink(LinkSchema oldLink) async {
+  Future<void> _updateLink(LinkSchema oldLink, BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       try {
         /// create du lien
@@ -63,12 +63,12 @@ class _LinkFormUpdateState extends ConsumerState<LinkFormUpdate> {
   }
 
   /// delete link
-  Future<void> _deleteLink(String idLink) async {
+  Future<void> _deleteLink(String idLink, BuildContext context) async {
     try {
       /// delete
       await ref.watch(linkChange).deleteLink(idLink);
       Notif(
-        text: 'Impossible de supprimer le lien',
+        text: 'Lien supprimer avec succès',
         error: false,
       ).notification(context);
     } catch (e) {
@@ -98,7 +98,7 @@ class _LinkFormUpdateState extends ConsumerState<LinkFormUpdate> {
                   btnDeleteOne(
                     alignment: Alignment.centerLeft,
                     onPressed: () async {
-                      await _deleteLink(widget.link!.id!);
+                      await _deleteLink(widget.link!.id!, context);
                     },
                     message: 'Supprimer le lien',
                   ),
@@ -126,7 +126,7 @@ class _LinkFormUpdateState extends ConsumerState<LinkFormUpdate> {
                   /// btn update
                   btnElevated(
                     onPressed: () async {
-                      await _updateLink(widget.link!);
+                      await _updateLink(widget.link!, context);
                     },
                     text: 'Enregistrer',
                   ),

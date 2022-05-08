@@ -32,19 +32,10 @@ class ProfilUpdateForm extends ConsumerStatefulWidget {
 
 class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
   final _formKey = GlobalKey<FormState>();
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   /// input
   TextEditingController _title = TextEditingController(text: '');
   TextEditingController _text = TextEditingController(text: '');
-
-  @override
-  void didChangeDependencies() {
-    if (_scaffoldKey.currentContext != null) {
-      _scaffoldKey.currentContext!.dependOnInheritedWidgetOfExactType();
-    }
-    super.didChangeDependencies();
-  }
 
   @override
   void dispose() {
@@ -72,10 +63,14 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
 
   /// reset variable image
   void resetValueImage() {
-    _file = null;
-    _extention = null;
-    _url = null;
-    _picker = null;
+    if (mounted) {
+      setState(() {
+        _file = null;
+        _extention = null;
+        _url = null;
+        _picker = null;
+      });
+    }
   }
 
   /// creation conteneur pour fichier
@@ -175,16 +170,16 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
           image: oldProfil.image,
         );
 
-        /// creation bdd de la
-        await ref
-            .watch(profilChange)
-            .updateProfil(oldProfil.id!, newPresentation);
-
         /// notification succes
         Notif(
           text: Globals.messageSuccesUpdateProfil,
           error: false,
         ).notification(context);
+
+        /// creation bdd de la
+        await ref
+            .watch(profilChange)
+            .updateProfil(oldProfil.id!, newPresentation);
 
         resetValueImage();
       } catch (e) {
@@ -221,14 +216,14 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
         final newProfil = oldProfil;
         newProfil.image = _url ?? '';
 
-        /// update bdd
-        await ref.watch(profilChange).updateProfil(oldProfil.id!, newProfil);
-
         /// notif succes
         Notif(
           text: Globals.messageSuccesImageProfil,
           error: false,
         ).notification(context);
+
+        /// update bdd
+        await ref.watch(profilChange).updateProfil(oldProfil.id!, newProfil);
 
         resetValueImage();
       } catch (e) {
@@ -260,16 +255,16 @@ class _ProfilUpdateFormState extends ConsumerState<ProfilUpdateForm> {
         newProfil.image = '';
         await ref.watch(profilChange).updateProfil(oldProfil.id!, newProfil);
 
-        /// suppression de l'image dans storage
-        await ref
-            .watch(uploadFileChange)
-            .deleteImage(Globals.adresseStorageProfil);
-
         /// notif succes
         Notif(
           text: Globals.messageSuccesImageDelProfil,
           error: false,
         ).notification(context);
+
+        /// suppression de l'image dans storage
+        await ref
+            .watch(uploadFileChange)
+            .deleteImage(Globals.adresseStorageProfil);
 
         resetValueImage();
       } catch (e) {

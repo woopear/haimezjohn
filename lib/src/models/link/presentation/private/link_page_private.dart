@@ -20,7 +20,7 @@ class LinkPagePrivate extends ConsumerStatefulWidget {
 }
 
 class _LinkPagePrivateState extends ConsumerState<LinkPagePrivate> {
-  Future<void> _createLink() async {
+  Future<void> _createLink(BuildContext context) async {
     try {
       /// creation du lien
       final newLink = LinkSchema(name: 'Aucun nom', link: '');
@@ -58,7 +58,7 @@ class _LinkPagePrivateState extends ConsumerState<LinkPagePrivate> {
             icon: Icons.add_circle_outline_rounded,
             message: 'Créer un lien',
             onPressed: () async {
-              await _createLink();
+              await _createLink(context);
             },
           ),
 

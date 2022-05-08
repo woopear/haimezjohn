@@ -8,6 +8,8 @@ import 'package:haimezjohn/src/utils/fire/firebase_options.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:woo_theme_mode/woo_theme_mode.dart';
 
+GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey=GlobalKey<ScaffoldMessengerState>();
+
 Future<void> main() async {
   /// enleve le # dans l'url
   setPathUrlStrategy();
@@ -33,6 +35,7 @@ class _MyAppState extends ConsumerState<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scaffoldMessengerKey: scaffoldMessengerKey,
       debugShowCheckedModeBanner: false,
       title: Globals.titleApp,
       themeMode: ref.watch(wooThemeChange).themeMode,

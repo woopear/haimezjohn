@@ -60,7 +60,7 @@ class _ContactFormState extends ConsumerState<ContactForm> {
 
         Notif(
           text: 'Enregistrement réussi',
-          error: true,
+          error: false,
         ).notification(context);
       } catch (e) {
         Notif(
