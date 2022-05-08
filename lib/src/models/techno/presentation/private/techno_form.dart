@@ -15,6 +15,7 @@ import 'package:haimezjohn/src/models/techno/presentation/private/techno_form_bt
 import 'package:haimezjohn/src/models/techno/schema/techno_schema.dart';
 import 'package:haimezjohn/src/models/techno/state/techno_provider.dart';
 import 'package:haimezjohn/src/models_shared/upload/state/upload_provider.dart';
+import 'package:haimezjohn/src/utils/config/theme/responsive.dart';
 import 'package:haimezjohn/src/utils/const/globals.dart';
 import 'package:haimezjohn/src/utils/const/text_error.dart';
 import 'package:haimezjohn/src/utils/mixins/validator.dart';
@@ -179,8 +180,6 @@ class _TechnoFormState extends ConsumerState<TechnoForm> {
 
   @override
   Widget build(BuildContext context) {
-    /// on recupere la largeur
-    final _width = MediaQuery.of(context).size.width;
 
     /// stream techno selected
     final techno = ref.watch(technoSelectedUpdateProvider);
@@ -191,7 +190,7 @@ class _TechnoFormState extends ConsumerState<TechnoForm> {
     }
 
     return Container(
-      width: _width > 700 ? 600 : double.infinity,
+      width: Responsive.isMobile(context) ? 600 : double.infinity,
       margin: const EdgeInsets.only(
           top: 0.0, left: 30.0, right: 30.0, bottom: 70.0),
       child: Form(

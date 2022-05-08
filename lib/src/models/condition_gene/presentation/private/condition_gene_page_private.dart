@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/btn_text/btn_text.dart';
+import 'package:haimezjohn/src/components/layout_content_private/layout_content_private.dart';
+import 'package:haimezjohn/src/components/layout_page_private/layout_page_private.dart';
 import 'package:haimezjohn/src/components/notif/notif.dart';
 import 'package:haimezjohn/src/components/title_page_admin/title_page_admin.dart';
 import 'package:haimezjohn/src/models/condition_gene/models/article_condition/presentation/private/article_condition_list_form.dart';
@@ -19,8 +21,7 @@ class ConditionGenePagePrivate extends ConsumerStatefulWidget {
 
 class _ConditionGenePagePrivateState
     extends ConsumerState<ConditionGenePagePrivate> {
-
-      /// creation condition gene
+  /// creation condition gene
   Future<void> _createConditionGene() async {
     try {
       /// creation condition gene
@@ -45,47 +46,36 @@ class _ConditionGenePagePrivateState
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Center(
-            child: Container(
-              width: 900,
-              padding:
-                  const EdgeInsets.symmetric(vertical: 70.0, horizontal: 30.0),
-              child: Column(
-                children: [
-                  /// title
-                  titlePageAdmin(
-                    margin: const EdgeInsets.only(bottom: 70.0),
-                    text: 'Les conditions générales',
-                    context: context,
-                  ),
-
-                  /// btn ajouter condition
-                  BtnText(
-                    text: 'Ajouter une condition',
-                    alignment: Alignment.centerLeft,
-                    icon: Icons.add_circle_outline_rounded,
-                    message: 'Ajouter une condition',
-                    onPressed: () async {
-                      await _createConditionGene();
-                    },
-                  ),
-
-                  /// list condition gene
-                  const ConditionGeneList(),
-
-                  /// formulaire condition
-                  const ConditionGeneForm(),
-
-                  /// list form article condition
-                  const ArticleConditionListForm(),
-                ],
-              ),
-            ),
+    return layoutPagePrivate(
+      child: layoutContentPrivate(
+        children: [
+          /// title
+          titlePageAdmin(
+            margin: const EdgeInsets.only(bottom: 70.0),
+            text: 'Les conditions générales',
+            context: context,
           ),
-        ),
+
+          /// btn ajouter condition
+          BtnText(
+            text: 'Ajouter une condition',
+            alignment: Alignment.centerLeft,
+            icon: Icons.add_circle_outline_rounded,
+            message: 'Ajouter une condition',
+            onPressed: () async {
+              await _createConditionGene();
+            },
+          ),
+
+          /// list condition gene
+          const ConditionGeneList(),
+
+          /// formulaire condition
+          const ConditionGeneForm(),
+
+          /// list form article condition
+          const ArticleConditionListForm(),
+        ],
       ),
     );
   }

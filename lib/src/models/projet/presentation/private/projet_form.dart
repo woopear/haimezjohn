@@ -8,6 +8,7 @@ import 'package:haimezjohn/src/components/notif/notif.dart';
 import 'package:haimezjohn/src/models/projet/presentation/private/projet_form_btn_action.dart';
 import 'package:haimezjohn/src/models/projet/schema/projet_schema.dart';
 import 'package:haimezjohn/src/models/projet/state/projet_provider.dart';
+import 'package:haimezjohn/src/utils/config/theme/responsive.dart';
 import 'package:haimezjohn/src/utils/const/text_error.dart';
 import 'package:haimezjohn/src/utils/mixins/validator.dart';
 import 'package:haimezjohn/src/utils/upload/upload.dart';
@@ -99,7 +100,6 @@ class _ProjetFormState extends ConsumerState<ProjetForm> {
 
   @override
   Widget build(BuildContext context) {
-    final _width = MediaQuery.of(context).size.width;
 
     /// projet selectionné
     final projetSelected = ref.watch(projetSelectedUpdateProvider);
@@ -115,7 +115,7 @@ class _ProjetFormState extends ConsumerState<ProjetForm> {
     }
 
     return Container(
-      width: _width > 700 ? 600 : double.infinity,
+      width: Responsive.isMobile(context) ? 600 : double.infinity,
       margin: const EdgeInsets.only(top: 40.0, bottom: 80.0),
       padding: const EdgeInsets.only(left: 30.0, right: 30.0),
       child: Form(

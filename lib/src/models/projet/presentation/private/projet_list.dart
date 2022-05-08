@@ -9,6 +9,7 @@ import 'package:haimezjohn/src/models/projet/presentation/private/projet_list_bt
 import 'package:haimezjohn/src/models/projet/schema/projet_schema.dart';
 import 'package:haimezjohn/src/models/projet/state/projet_provider.dart';
 import 'package:haimezjohn/src/models/techno/presentation/private/techno_list_title.dart';
+import 'package:haimezjohn/src/utils/config/theme/responsive.dart';
 
 class ProjetList extends ConsumerStatefulWidget {
   const ProjetList({Key? key}) : super(key: key);
@@ -40,14 +41,11 @@ class _ProjetListState extends ConsumerState<ProjetList> {
 
   @override
   Widget build(BuildContext context) {
-    /// on recupere la largeur
-    final _width = MediaQuery.of(context).size.width;
-
     /// on recupere le portfolio en cours
     final portfolioProgress = ref.watch(portfolioProgressProvider);
 
     return Container(
-      width: _width > 700 ? 600 : double.infinity,
+      width: Responsive.isMobile(context) ? 600 : double.infinity,
       padding: const EdgeInsets.only(left: 30.0, right: 30.0),
       margin: const EdgeInsets.only(bottom: 60.0),
       child: Column(

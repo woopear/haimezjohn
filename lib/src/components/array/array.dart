@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:haimezjohn/src/components/array/array_config.dart';
 import 'package:haimezjohn/src/components/array/array_row.dart';
+import 'package:haimezjohn/src/utils/config/theme/responsive.dart';
 
 Widget array<T>({
   required List<String> cellsHead,
@@ -8,9 +9,12 @@ Widget array<T>({
   required BuildContext context,
   Map<int, TableColumnWidth>? columnWidths = const {
     0: FractionColumnWidth(0.5)
-  }
-}) =>
-    Table(
+  },
+}) {
+  
+  return SizedBox(
+    width: Responsive.isMobile(context) ? 600 : double.infinity,
+    child: Table(
       columnWidths: columnWidths,
       border: Theme.of(context).brightness == Brightness.dark
           ? borderOfArrayDark
@@ -25,4 +29,6 @@ Widget array<T>({
         /// corps
         ...cells
       ],
-    );
+    ),
+  );
+}

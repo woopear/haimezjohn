@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/btn_delete_one/btn_delete_one.dart';
+import 'package:haimezjohn/src/components/layout_content_one_child_private/layout_content_one_child_private.dart';
+import 'package:haimezjohn/src/components/layout_page_private/layout_page_private.dart';
 import 'package:haimezjohn/src/components/notif/notif.dart';
 import 'package:haimezjohn/src/components/title_page_admin/title_page_admin.dart';
 import 'package:haimezjohn/src/components/waiting_error/waiting_error.dart';
@@ -73,69 +75,65 @@ class _ProfilPagePrivateState extends ConsumerState<ProfilPagePrivate> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            child: ref.watch(profilsStream).when(
-                  data: (profils) {
-                    return profils.isNotEmpty
+    return layoutPagePrivate(
+      child: layoutContentOneChildPrivate(
+        child: ref.watch(profilsStream).when(
+              data: (profils) {
+                return profils.isNotEmpty
 
-                        /// affichage du profil
-                        ? Column(
+                    /// affichage du profil
+                    ? Column(
+                        children: [
+                          /// title + btn delete
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              /// title + btn delete
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  /// title page
-                                  titlePageAdmin(
-                                    text: Globals.titlePageProfilPrivateUpdate,
-                                    context: context,
-                                  ),
-
-                                  /// btn delete
-                                  btnDeleteOne(
-                                    onPressed: () async {
-                                      await _deleteProfil(profils[0]);
-                                    },
-                                    message: Globals.tooltipMessageDeleteProfil,
-                                  )
-                                ],
+                              /// title page
+                              titlePageAdmin(
+                                text: Globals.titlePageProfilPrivateUpdate,
+                                context: context,
                               ),
 
-                              /// update profil
-                              ProfilUpdateForm(),
+                              /// btn delete
+                              btnDeleteOne(
+                                onPressed: () async {
+                                  await _deleteProfil(profils[0]);
+                                },
+                                message: Globals.tooltipMessageDeleteProfil,
+                              )
                             ],
-                          )
+                          ),
 
-                        /// creation du profil
-                        : Center(
-                            child: SizedBox(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  /// title page creer profil
-                                  titlePageAdmin(
-                                    text: Globals.titlePageProfilPrivateCreate,
-                                    context: context,
-                                  ),
+                          /// update profil
+                          ProfilUpdateForm(),
+                        ],
+                      )
 
-                                  /// creer profil
-                                  ProfilUpdateForm(created: true),
-                                ],
+                    /// creation du profil
+                    : Center(
+                        child: SizedBox(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              /// title page creer profil
+                              titlePageAdmin(
+                                text: Globals.titlePageProfilPrivateCreate,
+                                context: context,
                               ),
-                            ),
-                          );
-                  },
-                  error: (error, stack) => WaitingError(
-                      messageError: TextError.errorDataPageProfilPrivate),
-                  loading: () => WaitingLoad(),
-                ),
-          ),
-        ),
+
+                              /// creer profil
+                              ProfilUpdateForm(created: true),
+                            ],
+                          ),
+                        ),
+                      );
+              },
+              error: (error, stack) => WaitingError(
+                  messageError: TextError.errorDataPageProfilPrivate),
+              loading: () => WaitingLoad(),
+            ),
       ),
     );
   }
