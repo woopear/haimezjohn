@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:haimezjohn/src/components/layout_page_public/layout_page_public.dart';
+import 'package:haimezjohn/src/models/profil/presentation/public/profil_public_widget.dart';
 import 'package:haimezjohn/src/models/setting/state/setting_provider.dart';
 import 'package:haimezjohn/pages/error_page.dart';
 import 'package:haimezjohn/pages/loading_page.dart';
@@ -13,7 +15,6 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
-
   @override
   Widget build(BuildContext context) {
     final _width = MediaQuery.of(context).size.width;
@@ -27,21 +28,18 @@ class _HomePageState extends ConsumerState<HomePage> {
             }*/
 
             /// page home
-            return SafeArea(
-              child: Scaffold(
-                body: SingleChildScrollView(
-                  child: SizedBox(
-                    width: _width,
-                    height: _height,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
-                        
-                      ],
-                    ),
-                  ),
-                ),
+            return layoutPagePublic(
+              context: context,
+              child: Column(
+                children: const [
+                  /// a propos
+                  ProfilPublicWidget(),
+                  
+                  /// competence
+                  /// portfolio
+                  /// contact
+                  /// footer
+                ],
               ),
             );
           },
