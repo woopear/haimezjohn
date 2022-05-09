@@ -43,9 +43,6 @@ class _ProfilPublicWidgetState extends ConsumerState<ProfilPublicWidget> {
                   profil: profil,
                 ),
 
-                /// todo link réseau en mode pc assez gros
-                /// todo en mode mobile plus petit
-
                 /// title de la partie link
                 linkTitle(context: context),
 
@@ -66,6 +63,7 @@ class _ProfilPublicWidgetState extends ConsumerState<ProfilPublicWidget> {
                               }
                               return linkPublicWidget(
                                 links[index]!,
+                                context: context,
                                 finishTab: links.length == index,
                                 onPressed: () {},
                               );

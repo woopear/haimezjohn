@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:haimezjohn/src/utils/config/theme/colors.dart';
+import 'package:haimezjohn/src/utils/config/theme/responsive.dart';
 
 Widget linkTitle({required BuildContext context}) {
   return Container(
@@ -11,16 +12,16 @@ Widget linkTitle({required BuildContext context}) {
         Text(
           'Moi, moi, moi',
           style: const TextStyle().copyWith(
-            fontSize: 36,
+            fontSize: Responsive.isDesktop(context) ? 36 : 26,
             color: Theme.of(context).brightness == Brightness.dark
                 ? ColorCustom().greyTextDark
                 : ColorCustom().greyText,
           ),
         ),
         Text(
-          'et encore MOI',
+          'et encore plus de MOI',
           style: const TextStyle().copyWith(
-            fontSize: 56,
+            fontSize: Responsive.isDesktop(context) ? 56 : 36,
             color: ColorCustom().greenLight,
           ),
         ),
