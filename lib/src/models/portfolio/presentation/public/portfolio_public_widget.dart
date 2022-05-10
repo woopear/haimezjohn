@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/layout_partial_public/layout_partial_public.dart';
 import 'package:haimezjohn/src/components/title_cat_public/title_cat_public.dart';
+import 'package:haimezjohn/src/models/projet/presentation/public/projet_public_list.dart';
 
 class PortfolioPublicWidget extends ConsumerStatefulWidget {
   const PortfolioPublicWidget({Key? key}) : super(key: key);
@@ -17,6 +18,7 @@ class _PortfolioPublicWidgetState extends ConsumerState<PortfolioPublicWidget> {
     return layoutPartialPublic(
       context: context,
       child: Column(
+        mainAxisSize: MainAxisSize.max,
         children: [
           /// title
           titleCatPublic(
@@ -27,6 +29,7 @@ class _PortfolioPublicWidgetState extends ConsumerState<PortfolioPublicWidget> {
           ),
 
           /// list des réalisations
+          const ProjetPublicList(),
         ],
       ),
     );

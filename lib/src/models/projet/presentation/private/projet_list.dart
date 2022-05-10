@@ -101,7 +101,7 @@ class _ProjetListState extends ConsumerState<ProjetList> {
                             btnActionListProjet(
                               onPressedUpdate: () async {
                                 ref.watch(projetChange).streamProjetSelected(
-                                    portfolioProgress!.id!, projet.id);
+                                    portfolioProgress!.id!, projet.id!);
 
                                 /// recuperation de l'id du portfolio en cours
                                 ref
@@ -110,7 +110,7 @@ class _ProjetListState extends ConsumerState<ProjetList> {
                               },
                               onPressedDelete: () async {
                                 await ref.watch(projetChange).deleteProjet(
-                                    portfolioProgress!.id!, projet.id);
+                                    portfolioProgress!.id!, projet.id!);
                               },
                             ),
                           ],

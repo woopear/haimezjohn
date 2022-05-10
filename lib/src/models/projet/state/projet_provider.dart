@@ -8,8 +8,8 @@ final projetChange = ChangeNotifierProvider<ProjetState>(
 );
 
 /// stream de tous les projet du portfolio
-final projetsOfProfilStream = StreamProvider((ref) {
-  Stream<Object?>? refStream;
+final projetsOfProfilStream = StreamProvider<List<ProjetSchema>>((ref) {
+  Stream<List<ProjetSchema>?>? refStream;
   ref.watch(portfoliosStream).whenData((value) {
     refStream =
         ref.watch(projetChange).streamAllProjetWithIdPortfolio(value[0].id!);
