@@ -9,6 +9,7 @@ Widget displayImage({
   FilePickerResult? picker,
   required String urlE,
   double? height = 100.0,
+  bool? circle = false,
   double? width = double.infinity,
   EdgeInsetsGeometry margin = const EdgeInsets.symmetric(vertical: 20.0),
   EdgeInsetsGeometry? padding,
@@ -23,11 +24,19 @@ Widget displayImage({
               width: width,
             )
           : urlE != ''
-              ? Image.network(
-                  urlE,
-                  height: height,
-                  width: width,
-                )
+              ? circle!
+                  ? CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      radius: height! / 2,
+                      backgroundImage: NetworkImage(
+                        urlE,
+                      ),
+                    )
+                  : Image.network(
+                      urlE,
+                      height: height,
+                      width: width,
+                    )
               : Image.network(
                   Globals.urlAucuneImage,
                   height: height,

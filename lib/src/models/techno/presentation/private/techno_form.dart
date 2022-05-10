@@ -132,19 +132,19 @@ class _TechnoFormState extends ConsumerState<TechnoForm> {
   }
 
   /// update une techno
-  Future<void> _updateTechno(String idTechno) async {
+  Future<void> _updateTechno(TechnoSchema oldTechno) async {
     if (_formKey.currentState!.validate()) {
       try {
         /// creation techno
         final newTechno = TechnoSchema(
-          image: '',
+          image: oldTechno.image,
           text: _text.text.trim(),
           title: _title.text.trim(),
         );
 
         /// si image picker renseigné
         if (_picker != null) {
-          await _uploadImage(idTechno);
+          await _uploadImage(oldTechno.id!);
         }
 
         /// si url est different de nul on affecte
@@ -154,7 +154,7 @@ class _TechnoFormState extends ConsumerState<TechnoForm> {
 
         /// update techno bdd
         await ref.watch(technoChange).updateTechno(
-            ref.watch(competenceChange).idCompetence!, idTechno, newTechno);
+            ref.watch(competenceChange).idCompetence!, oldTechno.id!, newTechno);
 
         /// reset variable image + reset validate formKay
         _resetValueImage();
@@ -201,7 +201,7 @@ class _TechnoFormState extends ConsumerState<TechnoForm> {
                   /// btn save + btn fermer volet update techno (delete technoSelected)
                   btnActionFormTechno(
                     onPressedSave: () async {
-                      await _updateTechno(techno.id!);
+                      await _updateTechno(techno);
                     },
                     onPressedClose: () {
                       ref.watch(technoChange).resetTechnoSelected();

@@ -11,7 +11,7 @@ final competencesStream = StreamProvider((ref) {
   return ref.watch(competenceChange).streamCompetences();
 });
 
-/// list de toutes les competences
+/// provider de une competences
 final competencesProvider = Provider((ref) {
   CompetenceSchema? c;
   ref.watch(competencesStream).whenData((value) {

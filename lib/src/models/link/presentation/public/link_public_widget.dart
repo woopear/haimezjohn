@@ -46,7 +46,7 @@ Widget linkPublicWidget(
         ? const EdgeInsets.only(right: 0.0)
         : const EdgeInsets.only(right: 70.0),
     child: InkWell(
-      splashColor: ColorCustom().greenLight, // splash color
+      splashColor: ColorCustom().greenLight,
       onTap: () {
         launchUrl(Uri.parse(link.link));
       },

@@ -19,7 +19,7 @@ Widget linkTitle({required BuildContext context}) {
           ),
         ),
         Text(
-          'et encore plus de MOI',
+          'Et encore plus de MOI',
           style: const TextStyle().copyWith(
             fontSize: Responsive.isDesktop(context) ? 56 : 36,
             color: ColorCustom().greenLight,

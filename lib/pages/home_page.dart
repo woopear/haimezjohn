@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/layout_page_public/layout_page_public.dart';
+import 'package:haimezjohn/src/models/competence/presentation/public/competence_public_widget.dart';
+import 'package:haimezjohn/src/models/portfolio/presentation/public/portfolio_public_widget.dart';
 import 'package:haimezjohn/src/models/profil/presentation/public/profil_public_widget.dart';
 import 'package:haimezjohn/src/models/setting/state/setting_provider.dart';
 import 'package:haimezjohn/pages/error_page.dart';
@@ -36,7 +38,11 @@ class _HomePageState extends ConsumerState<HomePage> {
                   ProfilPublicWidget(),
                   
                   /// competence
+                  CompetencePublicWidget(),
+
                   /// portfolio
+                  PortfolioPublicWidget(), 
+                  
                   /// contact
                   /// footer
                 ],
