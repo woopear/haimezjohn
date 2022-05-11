@@ -1,11 +1,11 @@
 {
-    "name": "haimezjohn",
-    "short_name": "haimezjohn",
+    "name": "John Haimez",
+    "short_name": "John Haimez",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "johnhaimez.fr et une partie de moi, retrouver mon parcours, mes compétences, mes technos favoris, ou encore contactez moi, enjoy !!!",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

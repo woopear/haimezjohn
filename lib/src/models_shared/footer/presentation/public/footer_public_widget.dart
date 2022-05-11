@@ -23,14 +23,14 @@ class _FooterPublicWidgetState extends ConsumerState<FooterPublicWidget> {
   Widget build(BuildContext context) {
     final footer = ref.watch(footerOneStream);
     return Container(
-      padding: const EdgeInsets.only(top: 30.0),
+      padding: const EdgeInsets.only(top: 30.0,),
       width: double.infinity,
       color: Theme.of(context).brightness == Brightness.dark
           ? ColorCustom().inputDark
           : ColorCustom().inputClaire,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         children: [
           /// copyright
           footer.when(
@@ -72,20 +72,66 @@ class _FooterPublicWidgetState extends ConsumerState<FooterPublicWidget> {
                           );
                         }),
 
-                    if (FirebaseAuth.instance.currentUser != null)
+                    FirebaseAuth.instance.currentUser != null
+                        ? BtnText(
+                            fontSize: 14,
+                            message: 'Tableau de bord',
+                            text: 'Accès admin',
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                Routes().profilPrivate,
+                              );
+                            })
+                        : BtnText(
+                            fontSize: 14,
+                            message: 'Connexion admin',
+                            text: 'Connexion',
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                Routes().connexionPublic,
+                              );
+                            })
+                  ],
+                )
+              : Column(
+                  children: [
+                    /// condition gene
                     BtnText(
                         fontSize: 14,
-                        message: 'Tableau de bord',
-                        text: 'Accès admin',
+                        message: 'Voir les conditions du site',
+                        text: 'Conditions générales',
                         onPressed: () {
                           Navigator.pushNamed(
                             context,
-                            Routes().profilPrivate,
+                            Routes().conditionGenePublic,
                           );
                         }),
+
+                    FirebaseAuth.instance.currentUser != null
+                        ? BtnText(
+                            fontSize: 14,
+                            message: 'Tableau de bord',
+                            text: 'Accès admin',
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                Routes().profilPrivate,
+                              );
+                            })
+                        : BtnText(
+                            fontSize: 14,
+                            message: 'Connexion admin',
+                            text: 'Connexion',
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                Routes().connexionPublic,
+                              );
+                            })
                   ],
-                )
-              : Column()
+                ),
         ],
       ),
     );
