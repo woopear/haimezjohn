@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/btn_delete_one/btn_delete_one.dart';
@@ -11,6 +12,7 @@ import 'package:haimezjohn/src/models/profil/presentation/private/profil_update_
 import 'package:haimezjohn/src/models/profil/schema/profil_schema.dart';
 import 'package:haimezjohn/src/models/profil/state/profil_provider.dart';
 import 'package:haimezjohn/src/models_shared/upload/state/upload_provider.dart';
+import 'package:haimezjohn/src/utils/config/routes/routes.dart';
 import 'package:haimezjohn/src/utils/const/globals.dart';
 import 'package:haimezjohn/src/utils/const/text_error.dart';
 
@@ -70,6 +72,19 @@ class _ProfilPagePrivateState extends ConsumerState<ProfilPagePrivate> {
         text: Globals.messageErrorDelProfil,
         error: false,
       ).notification(context);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    /// si deconnecter retour sur la page app (connexion ou dashboard)
+    if (FirebaseAuth.instance.currentUser == null) {
+      WidgetsBinding.instance!.addPostFrameCallback((_) => setState(() {
+            Navigator.pop(context);
+            Navigator.popAndPushNamed(context, Routes().home);
+          }));
     }
   }
 

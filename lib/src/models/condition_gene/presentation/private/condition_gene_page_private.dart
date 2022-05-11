@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/btn_text/btn_text.dart';
@@ -10,6 +11,7 @@ import 'package:haimezjohn/src/models/condition_gene/presentation/private/condit
 import 'package:haimezjohn/src/models/condition_gene/presentation/private/condition_gene_list.dart';
 import 'package:haimezjohn/src/models/condition_gene/schema/condition_gene_schema.dart';
 import 'package:haimezjohn/src/models/condition_gene/state/condition_gene_provider.dart';
+import 'package:haimezjohn/src/utils/config/routes/routes.dart';
 
 class ConditionGenePagePrivate extends ConsumerStatefulWidget {
   const ConditionGenePagePrivate({Key? key}) : super(key: key);
@@ -21,6 +23,20 @@ class ConditionGenePagePrivate extends ConsumerStatefulWidget {
 
 class _ConditionGenePagePrivateState
     extends ConsumerState<ConditionGenePagePrivate> {
+
+      @override
+  void initState() {
+    super.initState();
+
+    /// si deconnecter retour sur la page app (connexion ou dashboard)
+    if (FirebaseAuth.instance.currentUser == null) {
+      WidgetsBinding.instance!.addPostFrameCallback((_) => setState(() {
+            Navigator.pop(context);
+            Navigator.popAndPushNamed(context, Routes().home);
+          }));
+    }
+  }
+  
   /// creation condition gene
   Future<void> _createConditionGene() async {
     try {

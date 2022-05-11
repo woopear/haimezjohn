@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/btn_text/btn_text.dart';
@@ -10,6 +11,7 @@ import 'package:haimezjohn/src/components/waiting_load/waiting_load.dart';
 import 'package:haimezjohn/src/models/link/presentation/private/link_form_update.dart';
 import 'package:haimezjohn/src/models/link/schema/link_schema.dart';
 import 'package:haimezjohn/src/models/link/state/link_provider.dart';
+import 'package:haimezjohn/src/utils/config/routes/routes.dart';
 
 class LinkPagePrivate extends ConsumerStatefulWidget {
   const LinkPagePrivate({Key? key}) : super(key: key);
@@ -38,6 +40,19 @@ class _LinkPagePrivateState extends ConsumerState<LinkPagePrivate> {
         text: 'Une Erreur est survenu',
         error: true,
       ).notification(context);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    /// si deconnecter retour sur la page app (connexion ou dashboard)
+    if (FirebaseAuth.instance.currentUser == null) {
+      WidgetsBinding.instance!.addPostFrameCallback((_) => setState(() {
+            Navigator.pop(context);
+            Navigator.popAndPushNamed(context, Routes().home);
+          }));
     }
   }
 

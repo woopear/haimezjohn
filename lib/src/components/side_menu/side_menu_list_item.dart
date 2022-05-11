@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:haimezjohn/src/components/side_menu/side_menu_item.dart';
 import 'package:haimezjohn/src/utils/config/routes/routes.dart';
@@ -53,6 +54,11 @@ List<Map<String, dynamic>> textMenu = [
     'nav': Routes().conditionGenePagePrivate,
     'icon': Icons.account_balance,
   },
+  {
+    'name': 'Déconnection',
+    'nav': Routes().home,
+    'icon': Icons.logout_rounded,
+  },
 ];
 
 List<Widget> items(List<Map<String, dynamic>> textMenu, BuildContext context) {
@@ -61,8 +67,13 @@ List<Widget> items(List<Map<String, dynamic>> textMenu, BuildContext context) {
       text: e['name'],
       icon: e['icon'],
       context: context,
-      onTapText: () {
+      onTapText: () async {
+        if (e['name'] == 'Déconnection') {
+         await FirebaseAuth.instance.signOut();
         Navigator.popAndPushNamed(context, e['nav']);
+        } else {
+        Navigator.popAndPushNamed(context, e['nav']);
+        }
       },
     );
   }).toList();

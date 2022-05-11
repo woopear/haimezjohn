@@ -10,7 +10,10 @@ Widget inputBasic({
   String? Function(String?)? validator,
   void Function(String)? onChanged,
   String? hintText,
-  String? errorText
+  String? errorText,
+  bool obscureText = false,
+  Widget? prefixIcon,
+  Widget? suffixIcon,
 }) => Container(
       margin: margin,
       padding: padding,
@@ -19,7 +22,10 @@ Widget inputBasic({
         maxLines: maxLines,
         initialValue: initialValue,
         controller: controller,
+        obscureText: obscureText,
         decoration: InputDecoration(
+          prefixIcon: prefixIcon,
+          suffixIcon: suffixIcon,
           labelText: labelText,
           hintText: hintText,
           errorText: errorText,

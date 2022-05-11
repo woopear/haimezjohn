@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/btn_text/btn_text.dart';
@@ -68,6 +69,18 @@ class _FooterPublicWidgetState extends ConsumerState<FooterPublicWidget> {
                           Navigator.pushNamed(
                             context,
                             Routes().conditionGenePublic,
+                          );
+                        }),
+
+                    if (FirebaseAuth.instance.currentUser != null)
+                    BtnText(
+                        fontSize: 14,
+                        message: 'Tableau de bord',
+                        text: 'Accès admin',
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            Routes().profilPrivate,
                           );
                         }),
                   ],
