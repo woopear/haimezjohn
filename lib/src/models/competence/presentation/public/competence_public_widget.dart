@@ -9,6 +9,7 @@ import 'package:haimezjohn/src/models/competence/presentation/public/competence_
 import 'package:haimezjohn/src/models/competence/state/competence_provider.dart';
 import 'package:haimezjohn/src/models/techno/presentation/public/techno_public_list.dart';
 import 'package:haimezjohn/src/utils/config/theme/responsive.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class CompetencePublicWidget extends ConsumerStatefulWidget {
   const CompetencePublicWidget({Key? key}) : super(key: key);
@@ -51,7 +52,9 @@ class _CompetencePublicWidgetState
                       btnElevated(
                         alignment: Alignment.center,
                         margin: const EdgeInsets.only(top: 90),
-                        onPressed: () {},
+                        onPressed: () {
+                          launchUrlString(competence.cvPdf);
+                        },
                         text: 'Version pdf',
                       ),
 

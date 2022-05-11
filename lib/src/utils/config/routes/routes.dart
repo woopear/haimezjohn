@@ -9,11 +9,13 @@ import 'package:haimezjohn/src/models/profil/presentation/private/profil_page_pr
 import 'package:haimezjohn/pages/home_page.dart';
 import 'package:haimezjohn/src/models_shared/footer/presentation/private/footer_page_private.dart';
 import 'package:haimezjohn/src/models_shared/info_perso/presentation/private/info_perso_page_private.dart';
+import 'package:haimezjohn/src/models_shared/user/presentation/public/user_connexion.dart';
 
 class Routes {
   /// les routes
   final String _home = '/';
   final String _conditionGenePublic = '/condition-gene';
+  final String _connexionPublic = '/admin';
 
   /// les routes admin
   final String _profilPrivate = '/admin/profil';
@@ -29,6 +31,7 @@ class Routes {
   /// getter
   String get home => _home;
   String get conditionGenePublic => _conditionGenePublic;
+  String get connexionPublic => _connexionPublic;
 
   /// getter admin
   String get profilPrivate => _profilPrivate;
@@ -47,6 +50,7 @@ class Routes {
       /// widgets
       _home: (context) => const HomePage(),
       _conditionGenePublic: (context) => const ConditionGenePagePublic(),
+      _connexionPublic: (context) => const UserConnexion(),
 
       /// widgets admin
       _profilPrivate: (context) => const ProfilPagePrivate(),
