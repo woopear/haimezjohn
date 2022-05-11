@@ -8,6 +8,8 @@ import 'package:haimezjohn/src/models/profil/presentation/public/profil_public_w
 import 'package:haimezjohn/src/models/setting/state/setting_provider.dart';
 import 'package:haimezjohn/pages/error_page.dart';
 import 'package:haimezjohn/pages/loading_page.dart';
+import 'package:haimezjohn/src/models_shared/footer/presentation/public/footer_public_widget.dart';
+import 'package:haimezjohn/src/utils/config/theme/responsive.dart';
 import 'package:haimezjohn/src/utils/const/text_error.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -34,20 +36,30 @@ class _HomePageState extends ConsumerState<HomePage> {
             return layoutPagePublic(
               context: context,
               child: Column(
-                children: const [
-                  /// a propos
-                  ProfilPublicWidget(),
-                  
-                  /// competence
-                  CompetencePublicWidget(),
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    width:
+                        Responsive.isDesktop(context) ? 950 : double.infinity,
+                    child: Column(
+                      children: const [
+                        /// a propos
+                        ProfilPublicWidget(),
 
-                  /// portfolio
-                  PortfolioPublicWidget(), 
-                  
-                  /// contact
-                  ContactPublicWidget(),
-                  
+                        /// competence
+                        CompetencePublicWidget(),
+
+                        /// portfolio
+                        PortfolioPublicWidget(),
+
+                        /// contact
+                        ContactPublicWidget(),
+                      ],
+                    ),
+                  ),
+
                   /// footer
+                  const FooterPublicWidget(),
                 ],
               ),
             );

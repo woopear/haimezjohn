@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:haimezjohn/src/utils/config/theme/responsive.dart';
 
 Widget layoutPagePublic({
   required BuildContext context,
   required Widget child,
+  bool seeAppBar = false,
 }) {
   return SafeArea(
     child: Scaffold(
+      appBar: seeAppBar ? AppBar(
+      ) : null,
       body: SingleChildScrollView(
         child: Center(
           child: Container(
-            padding: const EdgeInsets.all(30.0),
-            margin: const EdgeInsets.only(bottom: 70.0),
-            width: Responsive.isDesktop(context) ? 950 : double.infinity,
+            padding: const EdgeInsets.only(top: 30.0),
+            margin: const EdgeInsets.only(bottom: 0.0),
             child: child,
           ),
         ),

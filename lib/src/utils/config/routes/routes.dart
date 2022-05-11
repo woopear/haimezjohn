@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:haimezjohn/src/models/competence/presentation/private/competence_page_private.dart';
 import 'package:haimezjohn/src/models/condition_gene/presentation/private/condition_gene_page_private.dart';
+import 'package:haimezjohn/src/models/condition_gene/presentation/public/condition_gene_page_public.dart';
 import 'package:haimezjohn/src/models/contact/presentation/private/contact_page_private.dart';
 import 'package:haimezjohn/src/models/link/presentation/private/link_page_private.dart';
 import 'package:haimezjohn/src/models/portfolio/presentation/private/portfolio_page_private.dart';
@@ -12,6 +13,7 @@ import 'package:haimezjohn/src/models_shared/info_perso/presentation/private/inf
 class Routes {
   /// les routes
   final String _home = '/';
+  final String _conditionGenePublic = '/condition-gene';
 
   /// les routes admin
   final String _profilPrivate = '/admin/profil';
@@ -26,6 +28,7 @@ class Routes {
 
   /// getter
   String get home => _home;
+  String get conditionGenePublic => _conditionGenePublic;
 
   /// getter admin
   String get profilPrivate => _profilPrivate;
@@ -43,6 +46,7 @@ class Routes {
     return {
       /// widgets
       _home: (context) => const HomePage(),
+      _conditionGenePublic: (context) => const ConditionGenePagePublic(),
 
       /// widgets admin
       _profilPrivate: (context) => const ProfilPagePrivate(),

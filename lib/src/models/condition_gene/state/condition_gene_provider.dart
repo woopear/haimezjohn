@@ -10,6 +10,15 @@ final conditionGeneAllStream = StreamProvider((ref) {
   return ref.watch(conditionGeneChange).streamAllConditionGene();
 });
 
+final conditionGenePublicStream = StreamProvider((ref) {
+  Stream<ConditionGeneSchema?>? c;
+  ref.watch(conditionGeneAllStream).whenData((value) {
+    ref.watch(conditionGeneChange).streamOneConditionGene(value[0]!.id!);
+    c = ref.watch(conditionGeneChange).conditionSelected!;
+  });
+  return c!.cast();
+});
+
 final conditionGeneOneStream = StreamProvider((ref) {
   return ref.watch(conditionGeneChange).conditionSelected!;
 });
