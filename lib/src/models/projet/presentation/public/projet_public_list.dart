@@ -5,6 +5,7 @@ import 'package:haimezjohn/src/components/display_image_form/display_image_form.
 import 'package:haimezjohn/src/components/waiting_error/waiting_error.dart';
 import 'package:haimezjohn/src/components/waiting_load/waiting_load.dart';
 import 'package:haimezjohn/src/models/projet/state/projet_provider.dart';
+import 'package:haimezjohn/src/utils/config/theme/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProjetPublicList extends ConsumerStatefulWidget {
@@ -43,7 +44,7 @@ class _ProjetPublicListState extends ConsumerState<ProjetPublicList> {
                         style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.primary,
+                          color: ColorCustom().greenLight,
                         ),
                       ),
                     ),
