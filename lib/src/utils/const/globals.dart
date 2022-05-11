@@ -2,7 +2,7 @@ class Globals {
   Globals();
 
   /// material app
-  static String titleApp = 'Haimez john';
+  static String titleApp = 'John Haimez';
 
   /// input global
   static String inputTitle = "Titre";

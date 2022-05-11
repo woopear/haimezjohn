@@ -10,8 +10,8 @@ Widget titleCatPublic({
   bool oneOnOne = false,
   required BuildContext context,
 }) {
-  double sizeTitle = Responsive.isDesktop(context) ? 86 : 56 ;
-  double sizeSubTitle = Responsive.isDesktop(context) ? 40 : 28 ;
+  double sizeTitle = Responsive.isDesktop(context) ? 86 : 40 ;
+  double sizeSubTitle = Responsive.isDesktop(context) ? 40 : 24 ;
 
   return Container(
     margin: margin,
