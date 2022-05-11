@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:haimezjohn/models/setting/state/setting_provider.dart';
-import 'package:haimezjohn/pages/build_page.dart';
+import 'package:haimezjohn/src/components/layout_page_public/layout_page_public.dart';
+import 'package:haimezjohn/src/models/competence/presentation/public/competence_public_widget.dart';
+import 'package:haimezjohn/src/models/contact/presentation/public/contact_public_widget.dart';
+import 'package:haimezjohn/src/models/portfolio/presentation/public/portfolio_public_widget.dart';
+import 'package:haimezjohn/src/models/profil/presentation/public/profil_public_widget.dart';
+import 'package:haimezjohn/src/models/setting/state/setting_provider.dart';
 import 'package:haimezjohn/pages/error_page.dart';
 import 'package:haimezjohn/pages/loading_page.dart';
-import 'package:haimezjohn/utils/const/globals.dart';
-import 'package:haimezjohn/utils/const/text_error.dart';
+import 'package:haimezjohn/src/models_shared/footer/presentation/public/footer_public_widget.dart';
+import 'package:haimezjohn/src/utils/config/theme/responsive.dart';
+import 'package:haimezjohn/src/utils/const/text_error.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,7 +20,6 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
-
   @override
   Widget build(BuildContext context) {
     final _width = MediaQuery.of(context).size.width;
@@ -23,27 +27,40 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     return ref.watch(settingsStream).when(
           data: (settings) {
-            /// build
+            /* build
             if (settings[0].build) {
               return BuildPage(textInfo: Globals.textInfoPageBuild,);
-            }
+            }*/
 
             /// page home
-            return SafeArea(
-              child: Scaffold(
-                body: SingleChildScrollView(
-                  child: SizedBox(
-                    width: _width,
-                    height: _height,
+            return layoutPagePublic(
+              context: context,
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    width:
+                        Responsive.isDesktop(context) ? 950 : double.infinity,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: const [
-                        
+                        /// a propos
+                        ProfilPublicWidget(),
+
+                        /// competence
+                        CompetencePublicWidget(),
+
+                        /// portfolio
+                        PortfolioPublicWidget(),
+
+                        /// contact
+                        ContactPublicWidget(),
                       ],
                     ),
                   ),
-                ),
+
+                  /// footer
+                  const FooterPublicWidget(),
+                ],
               ),
             );
           },
