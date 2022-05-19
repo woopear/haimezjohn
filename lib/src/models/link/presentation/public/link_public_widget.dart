@@ -12,7 +12,7 @@ Widget linkPublicWidget(
   required BuildContext context,
 }) {
   Widget? icon;
-  double sizeIcon = Responsive.isDesktop(context) ? 80 : 50;
+  double sizeIcon = Responsive.isDesktop(context) ? 50 : 28;
 
   switch (link.name) {
     case 'Linkedin':
@@ -42,9 +42,16 @@ Widget linkPublicWidget(
   }
 
   return Container(
+    alignment: Alignment.center,
+    padding: const EdgeInsets.all(10),
+    width: Responsive.isDesktop(context) ? sizeIcon * 2 : sizeIcon * 4,
+    decoration: BoxDecoration(
+      color: ColorCustom().greyPerso,
+      borderRadius: const BorderRadius.all(Radius.circular(10))
+    ),
     margin: finishTab
         ? const EdgeInsets.only(right: 0.0)
-        : const EdgeInsets.only(right: 70.0),
+        : Responsive.isDesktop(context) ? const EdgeInsets.only(right: 70.0) : const EdgeInsets.only(right: 20.0),
     child: InkWell(
       splashColor: ColorCustom().greenLight,
       onTap: () {
@@ -60,6 +67,7 @@ Widget linkPublicWidget(
               link.name,
               style: const TextStyle().copyWith(
                 fontWeight: FontWeight.bold,
+                fontSize: Responsive.isDesktop(context) ? 20 : 14,
               ),
             ),
           )

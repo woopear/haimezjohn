@@ -7,6 +7,10 @@ final profilChange = ChangeNotifierProvider<ProfilState>(
   (ref) => ProfilState(),
 );
 
+final profilFuture = FutureProvider((ref) {
+  return ref.watch(profilChange).getProfil();
+});
+
 /// stream de tous les profils
 final profilsStream = StreamProvider((ref) {
   return ref.watch(profilChange).streamProfils();
