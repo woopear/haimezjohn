@@ -20,7 +20,7 @@ class ProfilState extends ChangeNotifier {
   /// read profil directus
   Future<ProfilSchema> getProfil() async {
     final res = await http.get(
-      Uri.parse('https://2v5q6w6a.directus.app/items/profil'),
+      Uri.parse('https://8oj0p722.directus.app/items/profil'),
     );
 
     final resJson = jsonDecode(res.body)['data'] as Map<String, dynamic>;

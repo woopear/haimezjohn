@@ -8,7 +8,6 @@ import 'package:url_launcher/url_launcher.dart';
 Widget linkPublicWidget(
   LinkSchema link, {
   required void Function()? onPressed,
-  required bool finishTab,
   required BuildContext context,
 }) {
   Widget? icon;
@@ -49,11 +48,10 @@ Widget linkPublicWidget(
       color: ColorCustom().greyPerso,
       borderRadius: const BorderRadius.all(Radius.circular(10))
     ),
-    margin: finishTab
-        ? const EdgeInsets.only(right: 0.0)
-        : Responsive.isDesktop(context) ? const EdgeInsets.only(right: 70.0) : const EdgeInsets.only(right: 20.0),
+    margin: Responsive.isDesktop(context) 
+          ? const EdgeInsets.only(right: 50.0, left: 50.0) 
+          : const EdgeInsets.only(right: 20.0, left: 20.0),
     child: InkWell(
-      splashColor: ColorCustom().greenLight,
       onTap: () {
         launchUrl(Uri.parse(link.link));
       },
