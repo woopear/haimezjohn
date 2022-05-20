@@ -43,7 +43,9 @@ class _TechnoPublicListState extends ConsumerState<TechnoPublicList> {
           children: [
             /// hard
             Container(
-              margin: const EdgeInsets.only(top: 70, bottom: 20),
+              margin: Responsive.isDesktop(context) 
+                    ? const EdgeInsets.only(top: 70, bottom: 20)
+                    : const EdgeInsets.only(right: 30, left: 30, top: 70, bottom: 20),
               alignment: Alignment.centerLeft,
               child: Text(
                 'Hard skills',
@@ -56,7 +58,11 @@ class _TechnoPublicListState extends ConsumerState<TechnoPublicList> {
             ),
             GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: Responsive.isDesktop(context) ? 3 : 1,
+                crossAxisCount: Responsive.isDesktop(context) 
+                ? 3 
+                : Responsive.isTablet(context)
+                  ? 2 
+                  : 1,
                 mainAxisExtent: 500,
                 mainAxisSpacing: 20,
                 crossAxisSpacing: 40,
@@ -75,7 +81,9 @@ class _TechnoPublicListState extends ConsumerState<TechnoPublicList> {
 
             /// soft
             Container(
-              margin: const EdgeInsets.only(top: 70, bottom: 20),
+              margin: Responsive.isDesktop(context) 
+                    ? const EdgeInsets.only(top: 70, bottom: 20)
+                    : const EdgeInsets.only(right: 30, left: 30, top: 70, bottom: 20),
               alignment: Alignment.centerLeft,
               child: Text(
                 'Soft skills',
@@ -88,7 +96,11 @@ class _TechnoPublicListState extends ConsumerState<TechnoPublicList> {
             ),
             GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: Responsive.isDesktop(context) ? 3 : 1,
+                crossAxisCount: Responsive.isDesktop(context) 
+                ? 3 
+                : Responsive.isTablet(context)
+                  ? 2 
+                  : 1,
                 mainAxisExtent: 500,
                 mainAxisSpacing: 20,
                 crossAxisSpacing: 40,

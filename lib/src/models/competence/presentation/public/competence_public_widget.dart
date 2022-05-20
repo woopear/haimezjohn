@@ -33,6 +33,9 @@ class _CompetencePublicWidgetState
                 children: [
                   /// title
                   Container(
+                    margin: Responsive.isDesktop(context) 
+                    ? null 
+                    : const EdgeInsets.symmetric(horizontal: 30),
                     child: Text(
                       competence.title,
                       style: GoogleFonts.openSans(
@@ -44,7 +47,10 @@ class _CompetencePublicWidgetState
 
                   /// title + sub
                   /// text
-                  SizedBox(
+                  Container(
+                     margin: Responsive.isDesktop(context) 
+                    ? null 
+                    : const EdgeInsets.symmetric(horizontal: 30),
                     width: 600,
                     child: Html(
                       data: competence.subTitle,
