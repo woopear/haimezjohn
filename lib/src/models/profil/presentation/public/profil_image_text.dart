@@ -28,7 +28,8 @@ Widget profilImageText({
 
               /// title
               Container(
-                margin: EdgeInsets.only(bottom: Responsive.isDesktop(context) ? 90.0 : 50),
+                margin: EdgeInsets.only(
+                    bottom: Responsive.isDesktop(context) ? 90.0 : 50),
                 child: Text(
                   profil.title,
                   style: GoogleFonts.openSans(
@@ -55,9 +56,10 @@ Widget profilImageText({
 
         /// text
         SizedBox(
-          width: 600,
+          width: 650,
           child: Html(
             data: profil.text,
+            style: {'*': Style(fontSize: Responsive.isDesktop(context) ? FontSize.xxLarge : FontSize.xLarge)},
           ),
         ),
       ],

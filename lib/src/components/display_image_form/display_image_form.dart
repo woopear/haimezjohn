@@ -33,30 +33,18 @@ Widget displayImage({
                         urlE,
                       ),
                     )
-                  : Container(
+                  : SizedBox(
                       height: height,
                       width: width,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: ColorCustom().greyText,
-                          width: 1,
-                        ),
-                      ),
                       child: Image.network(
                         urlE,
                         height: height,
                         width: width,
                       ),
                     )
-              : Container(
+              : SizedBox(
                   height: height,
                   width: width,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: ColorCustom().greyText,
-                      width: 1,
-                    ),
-                  ),
                   child: Image.network(
                     Globals.urlAucuneImage,
                     height: height,

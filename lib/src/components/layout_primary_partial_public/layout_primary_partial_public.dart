@@ -13,7 +13,7 @@ Widget layoutPrimaryPartialPublic({
           ? const EdgeInsets.symmetric(vertical: 70.0, horizontal: 30.0)
           : const EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
       child: SizedBox(
-        width: Responsive.isDesktop(context) ? 800 : double.infinity,
+        width: Responsive.isDesktop(context) ? 1050 : double.infinity,
         child: child,
       ),
     );

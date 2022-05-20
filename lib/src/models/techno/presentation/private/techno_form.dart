@@ -118,7 +118,7 @@ class _TechnoFormState extends ConsumerState<TechnoForm> {
           .deleteImage('${Globals.adresseStorageImageTechno}${techno.id}');
 
       final newTechno = techno;
-      newTechno.image = "";
+      newTechno.images = [];
 
       /// update techno
       await ref.watch(technoChange).updateTechno(
@@ -137,9 +137,10 @@ class _TechnoFormState extends ConsumerState<TechnoForm> {
       try {
         /// creation techno
         final newTechno = TechnoSchema(
-          image: oldTechno.image,
+          images: oldTechno.images,
           text: _text.text.trim(),
           title: _title.text.trim(),
+          type: ''
         );
 
         /// si image picker renseigné
@@ -149,7 +150,7 @@ class _TechnoFormState extends ConsumerState<TechnoForm> {
 
         /// si url est different de nul on affecte
         if (_url != null) {
-          newTechno.image = _url!;
+          //newTechno.images = [_url!];
         }
 
         /// update techno bdd
@@ -246,7 +247,7 @@ class _TechnoFormState extends ConsumerState<TechnoForm> {
                           _resetValueImage();
 
                           /// delete dans bdd
-                          if (techno.image != '') {
+                          if (techno.images.isNotEmpty) {
                             await _deleteImageTechno(techno);
                           }
                         },
@@ -257,7 +258,7 @@ class _TechnoFormState extends ConsumerState<TechnoForm> {
 
                   /// display image ou picker
                   displayImage(
-                    urlE: techno.image != '' ? techno.image : '',
+                    urlE: techno.images.isNotEmpty ? techno.images[0]!.directusFilesId! : '',
                     picker: _picker,
                   ),
                 ],

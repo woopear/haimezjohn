@@ -9,5 +9,8 @@ Widget layoutPartialPublic({
       margin: Responsive.isDesktop(context)
           ? const EdgeInsets.symmetric(vertical: 70.0)
           : const EdgeInsets.symmetric(vertical: 30.0),
-      child: child,
+      child: SizedBox(
+        width: Responsive.isDesktop(context) ? 1050 : double.infinity,
+        child: child,
+      ),
     );
