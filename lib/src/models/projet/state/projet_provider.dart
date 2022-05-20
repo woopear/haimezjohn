@@ -7,6 +7,10 @@ final projetChange = ChangeNotifierProvider<ProjetState>(
   (ref) => ProjetState(),
 );
 
+final projetAllFuture = FutureProvider((ref) {
+  return ref.watch(projetChange).getAllProjet();
+});
+
 /// stream de tous les projet du portfolio
 final projetsOfProfilStream = StreamProvider<List<ProjetSchema>>((ref) {
   Stream<List<ProjetSchema>?>? refStream;

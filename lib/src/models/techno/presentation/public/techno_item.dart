@@ -10,7 +10,11 @@ Widget technoItem({
   required BuildContext context,
 }) =>
     Container(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 40,),
+      padding: const EdgeInsets.only(
+        left: 20,
+        right: 20,
+        top: 40,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(
@@ -34,30 +38,30 @@ Widget technoItem({
                       'https://8oj0p722.directus.app/assets/${e!.directusFilesId}',
                 );
               }).toList(),
-            ),            
+            ),
 
             /// title
             Flexible(
               flex: 1,
               child: Container(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                techno.title,
-                style: GoogleFonts.openSans(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  techno.title,
+                  style: GoogleFonts.openSans(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),),
-            
+            ),
 
             /// text
             Flexible(
               flex: 2,
               child: Html(
-              data: techno.text,
-            ),),
-            
+                data: techno.text,
+              ),
+            ),
           ],
         ),
       ),

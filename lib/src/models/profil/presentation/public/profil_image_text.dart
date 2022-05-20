@@ -59,7 +59,13 @@ Widget profilImageText({
           width: 650,
           child: Html(
             data: profil.text,
-            style: {'*': Style(fontSize: Responsive.isDesktop(context) ? FontSize.xxLarge : FontSize.xLarge)},
+            style: {
+              '*': Style(
+                fontSize: Responsive.isDesktop(context)
+                    ? FontSize.xxLarge
+                    : FontSize.xLarge,
+              ),
+            },
           ),
         ),
       ],
