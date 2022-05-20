@@ -6,6 +6,10 @@ import 'package:haimezjohn/src/models/portfolio/state/portfolio_state.dart';
 final portfolioChange =
     ChangeNotifierProvider<PortfolioState>((ref) => PortfolioState());
 
+final portfolioFuture = FutureProvider((ref) {
+  return ref.watch(portfolioChange).getPortfolio();
+});
+
 /// stream tous les portfolios
 final portfoliosStream = StreamProvider((ref) {
   return ref.watch(portfolioChange).streamPortfolios();

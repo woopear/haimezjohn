@@ -45,7 +45,6 @@ class _CompetencePublicWidgetState
                     ),
                   ),
 
-                  /// title + sub
                   /// text
                   Container(
                      margin: Responsive.isDesktop(context) 
