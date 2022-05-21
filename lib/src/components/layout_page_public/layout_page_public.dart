@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:haimezjohn/src/utils/config/theme/colors.dart';
 
 Widget layoutPagePublic({
   required BuildContext context,
@@ -10,12 +11,9 @@ Widget layoutPagePublic({
       appBar: seeAppBar ? AppBar(
       ) : null,
       body: SingleChildScrollView(
-        child: Center(
-          child: Container(
-            padding: const EdgeInsets.only(top: 30.0),
-            margin: const EdgeInsets.only(bottom: 0.0),
+        child:  Container(
+          color: ColorCustom().greyPerso,
             child: child,
-          ),
         ),
       ),
     ),

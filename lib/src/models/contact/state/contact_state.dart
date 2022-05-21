@@ -21,7 +21,10 @@ class ContactState extends ChangeNotifier {
       TextEditingController userMessage) async {
     await http.post(
       _url,
-      headers: {'origin': 'http://localhost','Content-Type': 'application/json'},
+      headers: {
+        'origin': 'http://localhost',
+        'Content-Type': 'application/json'
+      },
       body: json.encode({
         'service_id': _serviceId,
         'template_id': _templateId,
@@ -49,6 +52,20 @@ class ContactState extends ChangeNotifier {
       }
       return null;
     });
+  }
+
+  /// recupere la partie contact directus
+  Future<ContactSchema> getContact() async {
+    final res = await http.get(
+      Uri.parse(
+        'https://8oj0p722.directus.app/items/contact',
+      ),
+    );
+
+    final resJson = jsonDecode(res.body)['data'] as Map<String, dynamic>;
+    final contact = ContactSchema.fromMap(resJson, resJson['id'].toString());
+
+    return contact;
   }
 
   /// add

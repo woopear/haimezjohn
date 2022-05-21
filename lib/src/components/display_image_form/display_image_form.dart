@@ -1,6 +1,5 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:haimezjohn/src/utils/config/theme/colors.dart';
 import 'package:haimezjohn/src/utils/const/globals.dart';
 
 /// si il y a le picker de remplie on affiche le picker
@@ -27,36 +26,28 @@ Widget displayImage({
           : urlE != ''
               ? circle!
                   ? CircleAvatar(
+                    backgroundColor: Colors.grey,
+                    radius: height! / 2 ,
+                    child: CircleAvatar(
                       backgroundColor: Colors.transparent,
-                      radius: height! / 2,
+                      radius: height / 2 - 1,
                       backgroundImage: NetworkImage(
                         urlE,
                       ),
-                    )
-                  : Container(
+                    ),
+                  ) 
+                  : SizedBox(
                       height: height,
                       width: width,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: ColorCustom().greyText,
-                          width: 1,
-                        ),
-                      ),
                       child: Image.network(
                         urlE,
                         height: height,
                         width: width,
                       ),
                     )
-              : Container(
+              : SizedBox(
                   height: height,
                   width: width,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: ColorCustom().greyText,
-                      width: 1,
-                    ),
-                  ),
                   child: Image.network(
                     Globals.urlAucuneImage,
                     height: height,

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:haimezjohn/src/components/btn_text/btn_text.dart';
-import 'package:haimezjohn/src/components/display_image_form/display_image_form.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:haimezjohn/src/components/waiting_error/waiting_error.dart';
 import 'package:haimezjohn/src/components/waiting_load/waiting_load.dart';
 import 'package:haimezjohn/src/models/projet/state/projet_provider.dart';
-import 'package:haimezjohn/src/utils/config/theme/colors.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:haimezjohn/src/utils/config/theme/responsive.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ProjetPublicList extends ConsumerStatefulWidget {
   const ProjetPublicList({Key? key}) : super(key: key);
@@ -19,86 +20,126 @@ class ProjetPublicList extends ConsumerStatefulWidget {
 class _ProjetPublicListState extends ConsumerState<ProjetPublicList> {
   @override
   Widget build(BuildContext context) {
-    final projets = ref.watch(projetsOfProfilStream);
-
     return Container(
-      child: projets.when(
-        data: (projets) {
-          return Wrap(
-            spacing: 150.0,
-            children: projets.map((projet) {
-              return Container(
-                margin: const EdgeInsets.only(top: 50.0),
-                width: 300,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    /// image
-                    displayImage(urlE: projet.image, height: 150),
-
-                    /// title
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 40.0),
-                      child: Text(
-                        projet.title,
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: ColorCustom().greenLight,
-                        ),
+      child: ref.watch(projetAllFuture).when(
+            data: (projets) {
+              return Column(
+                children: [
+                  /// list des projets
+                  GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: Responsive.isDesktop(context)
+                            ? 2
+                            : Responsive.isTablet(context)
+                                ? 2
+                                : 1,
+                        childAspectRatio: Responsive.isMobile(context)
+                            ? 1 / 1.5
+                            : Responsive.isTablet(context)
+                                ? 1 / 1.2
+                                : 1,
+                        mainAxisSpacing: 20,
+                        crossAxisSpacing: 40,
                       ),
-                    ),
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemCount: projets.length,
+                      itemBuilder: (context, index) {
+                        final projet = projets[index];
+                        return Container(
+                          margin: const EdgeInsets.only(top: 70),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                  Responsive.isDesktop(context) ? 20 : 0),
+                            ),
+                          ),
+                          child: GridTile(
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                  left: 20, right: 20, top: 30, bottom: 30),
+                              child: Column(
+                                children: [
+                                  /// title
+                                  Container(
+                                    height: 50,
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      projet.title,
+                                      style: GoogleFonts.openSans(
+                                        fontSize: 28,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                  ),
 
-                    /// text
-                    Text(
-                      projet.descriptif,
-                      textAlign: TextAlign.justify,
-                    ),
+                                  /// text
+                                  Expanded(
+                                    child: Html(data: projet.descriptif),
+                                  ),
 
-                    /// list techno projet
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Technos utilisées :',
-                              textAlign: TextAlign.left,
-                              style: const TextStyle().copyWith(
-                                fontWeight: FontWeight.bold,
+                                  /// btn links
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 20),
+                                    child: Row(
+                                      children: [
+                                        /// link
+                                        ElevatedButton.icon(
+                                          onPressed: () {
+                                            launchUrlString(projet.lien);
+                                          },
+                                          icon: const FaIcon(
+                                            FontAwesomeIcons.link,
+                                            size: 14,
+                                          ),
+                                          label: Text(
+                                            'Voir le site',
+                                            style: GoogleFonts.openSans(
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+
+                                        /// link github
+                                        projet.lienGithub != ''
+                                        ? Container(
+                                          margin: const EdgeInsets.only(left: 20.0),
+                                          child: ElevatedButton.icon(
+                                            onPressed: () {
+                                              launchUrlString(projet.lienGithub);
+                                            },
+                                            icon: const FaIcon(
+                                              FontAwesomeIcons.link,
+                                              size: 14,
+                                            ),
+                                            label: Text(
+                                              'GitHub',
+                                              style: GoogleFonts.openSans(
+                                                fontSize: 12,
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                        : Container(),
+                                      ],
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
-                            Text(
-                              projet.techno,
-                              textAlign: TextAlign.left,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-
-                    /// lien du site
-                    BtnText(
-                      text: projet.title,
-                      message: 'Visiter le site',
-                      onPressed: () {
-                        launchUrl(Uri.parse(projet.lien));
-                      },
-                      icon: Icons.launch_rounded,
-                    ),
-                  ],
-                ),
+                          ),
+                        );
+                      }),
+                ],
               );
-            }).toList(),
-          );
-        },
-        error: (error, stack) => WaitingError(
-          messageError: 'Impossible de recuperer les projets',
-        ),
-        loading: () => WaitingLoad(),
-      ),
+            },
+            error: (error, stack) => WaitingError(
+              messageError: 'Impossible de recuperer les projets',
+            ),
+            loading: () => WaitingLoad(),
+          ),
     );
   }
 }

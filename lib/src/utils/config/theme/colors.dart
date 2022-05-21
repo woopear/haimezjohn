@@ -8,6 +8,7 @@ class ColorCustom {
   final Color _blueMedium = const Color(0XFF1F87FF);
   final Color _blueLight = const Color(0XFF70B3FF);
   final Color _greyText = const Color(0xFFDBDBDB);
+  final Color _greyPerso = const Color(0xFFEBEBEB);
   final Color _greyTextDark = const Color(0xFF535353);
   final Color _inputClaire = const Color(0xFFF4F4F4);
   final Color _inputDark = const Color(0XFF313131);
@@ -15,6 +16,7 @@ class ColorCustom {
   final Color _fondDark = const Color(0XFF000000);
 
   Color get green => _green;
+  Color get greyPerso => _greyPerso;
   Color get greenMedium => _greenMedium;
   Color get greenLight => _greenLight;
   Color get blue => _blue;

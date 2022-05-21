@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 final elevatedButtonDark = ElevatedButtonThemeData(
   style: ButtonStyle(
     elevation: MaterialStateProperty.all<double?>(0.0),
-    foregroundColor: MaterialStateProperty.all<Color?>(Colors.black),
+    foregroundColor: MaterialStateProperty.all<Color?>(Colors.white),
     textStyle: MaterialStateProperty.all<TextStyle?>(
       GoogleFonts.openSans(
         fontSize: 20.0,
@@ -32,7 +32,7 @@ final elevatedButtonDark = ElevatedButtonThemeData(
 final elevatedButtonClaire = ElevatedButtonThemeData(
   style: ButtonStyle(
     elevation: MaterialStateProperty.all<double?>(0.0),
-    foregroundColor: MaterialStateProperty.all<Color?>(Colors.black),
+    foregroundColor: MaterialStateProperty.all<Color?>(Colors.white),
     textStyle: MaterialStateProperty.all<TextStyle?>(
       GoogleFonts.openSans(
         fontSize: 20.0,

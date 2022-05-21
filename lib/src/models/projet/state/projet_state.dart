@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:haimezjohn/src/models/projet/schema/projet_schema.dart';
 import 'package:haimezjohn/src/utils/fire/firestorepath.dart';
 import 'package:woo_firestore_crud/woo_firestore_crud.dart';
+import 'package:http/http.dart' as http;
 
 class ProjetState extends ChangeNotifier {
   final _firestore = WooFirestore.instance;
@@ -34,6 +37,22 @@ class ProjetState extends ChangeNotifier {
     );
     notifyListeners();
     return null;
+  }
+
+  /// get tous les projets depuis directus
+  Future<List<ProjetSchema>> getAllProjet() async {
+    final res = await http.get(
+      Uri.parse('https://8oj0p722.directus.app/items/projet'),
+    );
+
+    final resJson = jsonDecode(res.body)['data'] as List;
+    List<ProjetSchema> projets = [];
+    for (var element in resJson) {
+      final projet = ProjetSchema.fromMap(element, element['id'].toString());
+      projets.add(projet);
+    }
+
+    return projets;
   }
 
   /// add
@@ -95,8 +114,9 @@ class ProjetState extends ChangeNotifier {
     });
   }
 
-   /// upload image projet
-  Future<String> uploadImageProjet(data, String idProjet, {String extension = ''}) async {
+  /// upload image projet
+  Future<String> uploadImageProjet(data, String idProjet,
+      {String extension = ''}) async {
     UploadTask? file;
 
     /// on creer la reference de l'image (nom)

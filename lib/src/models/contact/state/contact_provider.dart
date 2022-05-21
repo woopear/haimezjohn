@@ -5,6 +5,10 @@ final contactChange = ChangeNotifierProvider<ContactState>(
   (ref) => ContactState(),
 );
 
+final contactFuture = FutureProvider((ref) {
+  return ref.watch(contactChange).getContact();
+});
+
 final contactStream = StreamProvider((ref) {
   return ref.watch(contactChange).streamOneContact();
 });

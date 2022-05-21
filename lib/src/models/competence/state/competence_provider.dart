@@ -6,6 +6,10 @@ import 'package:haimezjohn/src/models/competence/state/competence_state.dart';
 final competenceChange =
     ChangeNotifierProvider<CompetenceState>((ref) => CompetenceState());
 
+final competenceFuture = FutureProvider((ref) {
+  return ref.watch(competenceChange).getCompetence();
+});
+
 /// stream de toute les competences
 final competencesStream = StreamProvider((ref) {
   return ref.watch(competenceChange).streamCompetences();

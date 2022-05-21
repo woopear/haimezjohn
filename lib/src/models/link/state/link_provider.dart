@@ -5,6 +5,10 @@ final linkChange = ChangeNotifierProvider<LinkState>(
   (ref) => LinkState(),
 );
 
+final linkAllFuture = FutureProvider((ref) {
+  return ref.watch(linkChange).getAllLink();
+});
+
 final linkAllStream = StreamProvider((ref) {
   return ref.watch(linkChange).streamAllLink();
 });

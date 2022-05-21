@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 /// mode claire
 final themeClaire = WooTheme.modeClair(
   scaffolBackground: ColorCustom().fondClaire,
-  primary: ColorCustom().green,
+  primary: Colors.orange,
   secondary: ColorCustom().blueMedium,
   tbodyPrincipal: GoogleFonts.openSans(fontSize: 20.0),
   tbodySecondaire: GoogleFonts.openSans(fontSize: 16.0),
@@ -29,7 +29,7 @@ final themeClaire = WooTheme.modeClair(
 /// mode dark
 final themeDark = WooTheme.modeDark(
   scaffolBackground: ColorCustom().fondDark,
-  primary: ColorCustom().greenMedium,
+  primary: Colors.orange,
   secondary: ColorCustom().blueMedium,
   tbodyPrincipal: GoogleFonts.openSans(fontSize: 20.0),
   tbodySecondaire: GoogleFonts.openSans(fontSize: 16.0),

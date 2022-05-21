@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:haimezjohn/src/utils/config/theme/colors.dart';
 
 class WaitingLoad extends ConsumerWidget {
   double size;
@@ -21,7 +20,7 @@ class WaitingLoad extends ConsumerWidget {
         width: _width,
         height: _height,
         child: SpinKitSpinningLines(
-          color: ColorCustom().greenMedium,
+          color: Colors.orange,
           size: size,
         ),
       ),

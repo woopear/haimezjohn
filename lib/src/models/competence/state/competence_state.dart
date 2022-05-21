@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:haimezjohn/src/models/competence/schema/competence_schema.dart';
 import 'package:haimezjohn/src/utils/fire/firestorepath.dart';
 import 'package:woo_firestore_crud/woo_firestore_crud.dart';
+import 'package:http/http.dart' as http;
 
 class CompetenceState extends ChangeNotifier {
   final _firestore = WooFirestore.instance;
@@ -20,6 +23,18 @@ class CompetenceState extends ChangeNotifier {
       path: FirestorePath.competences(),
       builder: (data, documentId) => CompetenceSchema.fromMap(data, documentId),
     );
+  }
+
+  Future<CompetenceSchema> getCompetence() async {
+    final res = await http.get(
+      Uri.parse('https://8oj0p722.directus.app/items/competence'),
+    );
+
+    final resJson = jsonDecode(res.body)['data'] as Map<String, dynamic>;
+    final competence =
+        CompetenceSchema.fromMap(resJson, resJson['id'].toString());
+
+    return competence;
   }
 
   /// add

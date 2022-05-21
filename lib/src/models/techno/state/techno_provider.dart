@@ -7,6 +7,10 @@ import 'package:haimezjohn/src/models/techno/state/techno_state.dart';
 final technoChange =
     ChangeNotifierProvider<TechnoState>((ref) => TechnoState());
 
+final technoAllFuture = FutureProvider((ref) {
+  return ref.watch(technoChange).getAllTechno();
+});
+
 /// toute les techno avec l'id competence en params
 final technosStreamIdCompetence =
     StreamProvider.family((ref, String idCompetence) {

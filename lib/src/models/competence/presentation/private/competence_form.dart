@@ -249,7 +249,7 @@ class _CompetenceFormState extends ConsumerState<CompetenceForm> {
   /// creation d'une techno
   Future<void> createNewTecho(CompetenceSchema competence) async {
     final newTechno =
-        TechnoSchema(image: "", text: "", title: "Pas encore de titre");
+        TechnoSchema(images: [], text: "", title: "Pas encore de titre", type: '');
     await ref.watch(technoChange).addTechno(competence.id!, newTechno);
   }
 

@@ -25,6 +25,7 @@ class _ProjetListState extends ConsumerState<ProjetList> {
       descriptif: '',
       image: '',
       lien: '',
+      lienGithub: '',
       techno: '',
       title: 'Aucun titre',
     );

@@ -44,6 +44,7 @@ class _ProjetFormState extends ConsumerState<ProjetForm> {
         descriptif: _descriptif.text.trim(),
         image: oldProjet.image,
         lien: _lien.text.trim(),
+        lienGithub: '',
         techno: _techno.text.trim(),
         title: _title.text.trim(),
       );
