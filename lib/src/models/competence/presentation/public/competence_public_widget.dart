@@ -75,7 +75,7 @@ class _CompetencePublicWidgetState
                           alignment: Alignment.center,
                           margin: const EdgeInsets.only(top: 90),
                           onPressed: () {
-                            launchUrlString(competence.cvPdf);
+                            launchUrlString('https://8oj0p722.directus.app/assets/${competence.cvPdf}');
                           },
                           text: 'Télécharger mon cv',
                         ),
