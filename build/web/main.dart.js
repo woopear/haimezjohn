@@ -93423,7 +93423,7 @@ p=t.p
 return A.bi(A.a([o,n,B.aOj,A.Q(r,A.bi(A.a([s,A.RA(!1,q,B.hT,r,"https://8oj0p722.directus.app/assets/"+a.d)],p),B.r,B.v,B.t,B.C),B.f,r,r,r,r,r,r,r,r,r,r,r)],p),B.bE,B.v,B.t,B.C)},
 $S:633}
 A.aCz.prototype={
-$0(){A.xV(this.a.e,B.fG,null,B.hp)},
+$0(){A.xV("https://8oj0p722.directus.app/assets/"+this.a.e,B.fG,null,B.hp)},
 $S:0}
 A.aCB.prototype={
 $2(a,b){return new A.dG("Impossible de r\xe9cuperer la partie comp\xe9tence",null)},
