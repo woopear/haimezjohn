@@ -26,14 +26,15 @@ final inputDecorationDark = InputDecorationTheme(
   ),
 );
 
-final inputDecorationClaire = InputDecorationTheme(
+const inputDecorationClaire = InputDecorationTheme(
   isDense: true,
   contentPadding:
-      const EdgeInsets.only(top: 20.0, bottom: 15.0, left: 30.0, right: 20.0),
+      EdgeInsets.only(top: 20.0, bottom: 15.0, left: 30.0, right: 20.0),
   isCollapsed: true,
   filled: true,
-  fillColor: ColorCustom().inputClaire,
-  enabledBorder: const OutlineInputBorder(
+  hoverColor: Color.fromARGB(255, 255, 242, 218),
+  fillColor: Colors.white,
+  enabledBorder: OutlineInputBorder(
     borderSide: BorderSide(
       color: Colors.transparent,
     ),
@@ -41,7 +42,7 @@ final inputDecorationClaire = InputDecorationTheme(
       Radius.circular(10.0),
     ),
   ),
-  border: const OutlineInputBorder(
+  border: OutlineInputBorder(
     borderSide: BorderSide(
       color: Colors.transparent,
     ),

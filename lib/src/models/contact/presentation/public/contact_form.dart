@@ -72,8 +72,9 @@ class _ContactFormState extends ConsumerState<ContactForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 50.0),
-      width: Responsive.isDesktop(context) ? 600 : double.infinity,
+      padding: EdgeInsets.symmetric(horizontal: Responsive.isMobile(context) ? 30 : 0),
+      margin: const EdgeInsets.only(top: 50),
+      width: Responsive.isDesktop(context) || Responsive.isTablet(context) ? 600 : double.infinity,
       child: Column(
         children: [
           Form(

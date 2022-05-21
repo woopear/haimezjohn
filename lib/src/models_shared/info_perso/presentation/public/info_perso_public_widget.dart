@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:haimezjohn/src/components/btn_text/btn_text.dart';
-import 'package:haimezjohn/src/components/layout_partial_public/layout_partial_public.dart';
 import 'package:haimezjohn/src/components/waiting_error/waiting_error.dart';
 import 'package:haimezjohn/src/components/waiting_load/waiting_load.dart';
 import 'package:haimezjohn/src/models_shared/info_perso/state/info_perso_provider.dart';
@@ -20,8 +19,8 @@ class InfoPersoPublicWidget extends ConsumerStatefulWidget {
 class _InfoPersoPublicWidgetState extends ConsumerState<InfoPersoPublicWidget> {
   @override
   Widget build(BuildContext context) {
-    return layoutPartialPublic(
-      context: context,
+    return Container(
+      margin: EdgeInsets.only(left: Responsive.isMobile(context) || Responsive.isTablet(context) ? 30 : 0),
       child: ref.watch(infoPersoOneStream).when(
             data: (infoPerso) {
               String? adresse;
@@ -30,46 +29,13 @@ class _InfoPersoPublicWidgetState extends ConsumerState<InfoPersoPublicWidget> {
                     '${infoPerso.address}, ${infoPerso.codePost} ${infoPerso.city}';
               }
               return Container(
-                child: Responsive.isDesktop(context)
-                    ? Row(
-                        children: [
-                          /// address
-                          Expanded(
-                            flex: 1,
-                            child: BtnText(
-                              text: 'Voir mon adresse',
-                              message: 'Voir mon adresse',
-                              icon: Icons.launch_rounded,
-                              onPressed: () {
-                                MapsLauncher.launchQuery(adresse!);
-                              },
-                            ),
-                          ),
-
-                          /// espace séparation
-                          const SizedBox(
-                            width: 150,
-                          ),
-
-                          /// phone
-                          Expanded(
-                            flex: 1,
-                            child: BtnText(
-                              text: 'Appellez moi directement',
-                              message: 'Appeller John Haimez',
-                              icon: Icons.launch_rounded,
-                              onPressed: () {
-                                launchUrlString('tel://${infoPerso!.phone}');
-                              },
-                            ),
-                          ),
-                        ],
-                      )
-                    : Column(
+                child: Column(
                         children: [
                           /// adresse
                           BtnText(
-                            text: 'Voir mon adresse',
+                            margin: const EdgeInsets.all(0),
+                            alignment: Alignment.topLeft,
+                            text: '25310 Hérimoncourt',
                             message: 'Voir mon adresse',
                             icon: Icons.launch_rounded,
                             onPressed: () {
@@ -79,6 +45,7 @@ class _InfoPersoPublicWidgetState extends ConsumerState<InfoPersoPublicWidget> {
 
                           /// phone
                           BtnText(
+                            alignment: Alignment.topLeft,
                             text: 'Appellez moi directement',
                             message: 'Appeller John Haimez',
                             icon: Icons.launch_rounded,
