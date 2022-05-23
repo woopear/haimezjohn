@@ -6,7 +6,6 @@ import 'package:haimezjohn/src/utils/config/theme/theme.dart';
 import 'package:haimezjohn/src/utils/const/globals.dart';
 import 'package:haimezjohn/src/utils/fire/firebase_options.dart';
 import 'package:url_strategy/url_strategy.dart';
-import 'package:woo_theme_mode/woo_theme_mode.dart';
 
 GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey=GlobalKey<ScaffoldMessengerState>();
 
@@ -38,7 +37,7 @@ class _MyAppState extends ConsumerState<MyApp> {
       scaffoldMessengerKey: scaffoldMessengerKey,
       debugShowCheckedModeBanner: false,
       title: Globals.titleApp,
-      themeMode: ref.watch(wooThemeChange).themeMode,
+      themeMode: ThemeMode.light,
       theme: themeClaire,
       darkTheme: themeDark,
       initialRoute: Routes().home,

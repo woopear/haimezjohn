@@ -22,7 +22,7 @@ class ProjetSchema {
     String descriptif = data['descriptif'];
     String lien = data['lien'];
     String lienGithub = data['lienGithub'] ?? '';
-    String image = data['image'];
+    String image = data['image'] ?? "";
     String techno = data['techno'] ?? '';
 
     return ProjetSchema(

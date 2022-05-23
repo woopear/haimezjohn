@@ -41,8 +41,6 @@ class TechnoState extends ChangeNotifier {
       ),
     );
 
-    print(res.body);
-
     final resJson = jsonDecode(res.body)['data'] as List;
 
     List<TechnoSchema?> technos = [];
