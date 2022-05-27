@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  adonis_app: #modifier
+    container_name: adonis_app #modifier
+    restart: always
+    build:
+      context: .
+      target: dependencies #dev à modifier pour prod voir les as dans dockerfile
+    ports:
+      - ${PORT}:${PORT}
+      - 9229:9229
+      - 8080:8080
+    expose:
+      - ${PORT}
+      - 8080
+    env_file:
+      - .env
+    volumes:
+      - ./:/home/node/app
+    environment:
+      - CHOKIDAR_USEPOLLING=1 # sur serveur prod peut etre supprimé
+    command: dumb-init node ace serve --watch --encore-args="--host ${HOST} --port 8080" #dev à commenter pour prod
