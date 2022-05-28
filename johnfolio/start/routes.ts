@@ -15,9 +15,10 @@ Route.group(() => {
   // route admin
   Route.group(() => {
     // profil // TODO faire un groupe de profil pour inclure toute les routes
-    Route.get('/profil', async ({view}) => {
-      return view.render('private/pages/profil', {title: 'Admin Profil John Haimez'})
-    })
+    Route.group(() => {
+      Route.get('/', 'ProfilsController.getProfilForPrivate')
+      Route.post('/create', 'ProfilsController.createProfil')
+    }).prefix('/profil')
 
     // competences // TODO faire un groupe de competences pour inclure toute les routes
     Route.get('/competences', async ({view}) => {

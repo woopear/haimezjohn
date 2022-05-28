@@ -4,8 +4,33 @@
 @section('main-private')
 <section id="adminProfil">
     <!-- titre de la page -->
+    @!component('components/title_page_admin')
+    <!-- cadre si profil existe -->
+    @if(profil != null)
+    <section class="flex justify-center">
+        @component('components/box_form', {width: 'w-1/2'})
+        @!component('components/title_box_form', {title: 'Modifier mon profil'})
+        @!component('components/profil/profil_form', {
+        profil: profil,
+        pathRoute: route('/private/admin/profil/create'),
+        textBtn: 'Modifier mon profil',
+        })
+        @end
+    </section>
     <!-- cadre formulaire profil -->
     <!-- cadre des formulaires des liens -->
-    <p>profil</p>
+    @else
+    <!-- cadre si profil n'existe pas -->
+    <section class="flex justify-center">
+        @component('components/box_form', {width: 'w-1/2'})
+        @!component('components/title_box_form', {title: 'Créer mon profil'})
+        @!component('components/profil/profil_form', {
+        profil: profil,
+        pathRoute: route('/private/admin/profil/create'),
+        textBtn: 'Créer mon profil',
+        })
+        @end
+    </section>
+    @end
 </section>
 @end

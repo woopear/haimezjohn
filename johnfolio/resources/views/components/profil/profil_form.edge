@@ -1,0 +1,92 @@
+<form class="mt-10" action="{{pathRoute}}" method="POST">
+
+    @!component('components/input', {
+    type: 'text',
+    placeholder: 'Prénom*',
+    name: 'firstname',
+    value: profil ? profil.firstname : '',
+    })
+
+    @!component('components/input', {
+    type: 'text',
+    placeholder: 'Nom*',
+    name: 'lastname',
+    value: profil ? profil.lastname : ''
+    })
+
+    @!component('components/input', {
+    type: 'text',
+    placeholder: 'Email*',
+    name: 'email',
+    value: profil ? profil.email : ''
+    })
+
+    @!component('components/input', {
+    type: 'text',
+    placeholder: 'Addresse*',
+    name: 'address',
+    value: profil ? profil.address : ''
+    })
+
+    @!component('components/input', {
+    type: 'text',
+    placeholder: 'Code postale*',
+    name: 'codePost',
+    value: profil ? profil.codePost : ''
+    })
+
+    @!component('components/input', {
+    type: 'text',
+    placeholder: 'Ville*',
+    name: 'city',
+    value: profil ? profil.city : ''
+    })
+
+    @!component('components/input', {
+    type: 'text',
+    placeholder: 'Avatar',
+    name: 'avatar',
+    value: profil ? profil.avatar : ''
+    })
+
+    @!component('components/input', {
+    type: 'text',
+    placeholder: 'Image divers',
+    name: 'image',
+    value: profil ? profil.image : ''
+    })
+
+    @!component('components/input', {
+    type: 'text',
+    placeholder: 'Téléphone*',
+    name: 'tel',
+    value: profil ? profil.tel : ''
+    })
+
+    @!component('components/input', {
+    type: 'text',
+    placeholder: 'Copyright*',
+    name: 'copyright',
+    value: profil ? profil.copyright : ''
+    })
+
+    @!component('components/input', {
+    type: 'text',
+    placeholder: 'Titre du profil',
+    name: 'title',
+    value: profil ? profil.title : ''
+    })
+
+    @!component('components/textarea_form', {
+    label: 'Description du profil :',
+    placeholder: 'Entrer votre texte..',
+    name: 'description',
+    value: profil ? profil.description : ''
+    })
+
+    <div class="flex justify-end mt-10">
+        @!component('components/btn_form', {
+        text: textBtn,
+        })
+    </div>
+</form>

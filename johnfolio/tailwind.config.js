@@ -13,7 +13,8 @@ module.exports = {
         "violet-fonce": "#1A0029",
         "violet-moyen": "#27003D",
         "violet-claire": "#410066",
-        "violet-action": "#D285FF",
+        "violet-action": "#AD1FFF",
+        "violet-action-fonce": "#8100CC",
         "blue-action": "#4A7AFF",
       },
       fontFamily: {
