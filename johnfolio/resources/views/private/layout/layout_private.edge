@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/app.css') }}">
+    <title>{{ title }}</title>
+    @entryPointScripts('app')
+    @entryPointStyles('app')
+</head>
+
+<body>
+    <!-- main -->
+    <main class="flex flex-row">
+        <!-- side left menu -->
+        @include('private/partials/side_left_menu')
+        <div class="flex-grow bg-violet-fonce p-5">
+            @!section('main-private')
+        </div>
+    </main>
+</body>
+
+</html>

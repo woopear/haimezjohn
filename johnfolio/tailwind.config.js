@@ -6,9 +6,20 @@ module.exports = {
     "./resources/assets/js/**/*.js",
   ],
   darkMode: "class", // or 'media' or 'class'
-  content: [],
+  content: ["./resources/views/**/*.edge"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "violet-fonce": "#1A0029",
+        "violet-moyen": "#27003D",
+        "violet-claire": "#410066",
+        "violet-action": "#D285FF",
+        "blue-action": "#4A7AFF",
+      },
+      fontFamily: {
+        body: ["Prompt", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };

@@ -1,0 +1,51 @@
+<!-- url pages -->
+@set('urlAccueil', '/private/admin')
+@set('urlProfil', '/private/admin/profil')
+@set('urlCompetences', '/private/admin/competences')
+@set('urlPortfolio', '/private/admin/portfolio')
+@set('urlConditiongenes', '/private/admin/conditions-generales')
+@set('urlMentionLegals', '/private/admin/mentions-legales')
+
+<!-- regarde l'url si elle correspond au menu on change le bg -->
+@set('activeAccueil', request.url() == urlAccueil ? 'bg-violet-fonce' : 'bg-transparent')
+@set('activeProfil', request.url() == urlProfil ? 'bg-violet-fonce' : 'bg-transparent')
+@set('activeCompetences', request.url() == urlCompetences ? 'bg-violet-fonce' : 'bg-transparent')
+@set('activePortfolio', request.url() == urlPortfolio ? 'bg-violet-fonce' : 'bg-transparent')
+@set('activeConditiongenes', request.url() == urlConditiongenes ? 'bg-violet-fonce' :
+'bg-transparent')
+@set('activeMentionLegals', request.url() == urlMentionLegals ? 'bg-violet-fonce' : 'bg-transparent')
+
+<section class="w-60 h-screen overflow-y-auto bg-violet-moyen">
+
+    <nav class="h-full w-full">
+        <ul>
+            <li class="w-full px-5 py-3 cursor-pointer bg-transparent hover:bg-violet-fonce">
+                <a href="{{route('/')}}">Retour site</a>
+            </li>
+            <li class="{{activeAccueil}} hover:bg-violet-fonce">
+                <a class="block px-5 py-3 cursor-pointer w-full" href="{{route('/private/admin')}}"
+                    up-target="#admin">Accueil</a>
+            </li>
+            <li class="{{activeProfil}} hover:bg-violet-fonce">
+                <a class="block px-5 py-3 cursor-pointer w-full" href="{{route('/private/admin/profil')}}"
+                    up-target="#adminProfil">Profil</a>
+            </li>
+            <li class="{{activeCompetences}} hover:bg-violet-fonce">
+                <a class="block px-5 py-3 cursor-pointer w-full" href="{{route('/private/admin/competences')}}"
+                    up-target="#adminCompetences">Competences</a>
+            </li>
+            <li class="{{activePortfolio}} hover:bg-violet-fonce">
+                <a class="block px-5 py-3 cursor-pointer w-full" href="{{route('/private/admin/portfolio')}}"
+                    up-target="#adminPortfolio">Portfolio</a>
+            </li>
+            <li class="{{activeConditiongenes}} hover:bg-violet-fonce">
+                <a class="block px-5 py-3 cursor-pointer w-full" href="{{route('/private/admin/conditions_generales')}}"
+                    up-target="#adminConditionsGenerales">Conditions générales</a>
+            </li>
+            <li class="{{activeMentionLegals}} hover:bg-violet-fonce">
+                <a class="block px-5 py-3 cursor-pointer w-full" href="{{route('/private/admin/mentions_legales')}}"
+                    up-target="#adminMentionsLegales">Mentions légales</a>
+            </li>
+        </ul>
+    </nav>
+</section>
