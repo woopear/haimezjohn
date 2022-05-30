@@ -1,6 +1,12 @@
 @set('value', flashMessages.get($context.name) || value)
 
 <div class="mb-4">
+    @if(label)
+    <div>
+        <label class="text-lg mb-2 mt-8 block">{{label}}</label>
+    </div>
+    @end
     <input class="bg-violet-fonce px-3 py-4 w-full text-lg" type="{{type}}" name="{{name}}"
-        placeholder="{{placeholder}}" @if(value) value="{{ value }}" @endif {{ required ? 'required' : null }} />
+        placeholder="{{placeholder}}" @if(value) value="{{ value }}" @endif {{ required ? 'required' : null }} {{
+        multiple ? 'multiple' : null }} />
 </div>

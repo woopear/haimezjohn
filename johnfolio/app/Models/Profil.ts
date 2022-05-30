@@ -1,59 +1,59 @@
-import { DateTime } from 'luxon'
-import { BaseModel, beforeSave, column } from '@ioc:Adonis/Lucid/Orm'
+import { DateTime } from "luxon";
+import { BaseModel, beforeSave, column } from "@ioc:Adonis/Lucid/Orm";
 
 export default class Profil extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  public id: number;
 
   @column()
-  public firstname: string
+  public firstname: String;
 
   @column()
-  public lastname: string
+  public lastname: String;
 
   @column()
-  public email: string
+  public email: String;
 
   @column()
-  public username: string
+  public username: String;
 
   @column()
-  public address: string
+  public address: String;
 
   @column()
-  public codePost: string
+  public codePost: String;
 
   @column()
-  public city: string
+  public city: String;
 
   @column()
-  public avatar: string
+  public avatar: String | null;
 
   @column()
-  public image: string
+  public image: String | null;
 
   @column()
-  public tel: string
+  public tel: String;
 
   @column()
-  public copyright: string
+  public copyright: String;
 
   @column()
-  public title: string
+  public title: String;
 
   @column()
-  public description: string
+  public description: String;
 
   @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  public createdAt: DateTime;
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
+  public updatedAt: DateTime;
 
   @beforeSave()
   public static createUsername(profil: Profil) {
-    if(profil.$dirty.firstname && profil.$dirty.lastname){
-      profil.username = `${profil.firstname} ${profil.lastname}`
+    if (profil.$dirty.firstname && profil.$dirty.lastname) {
+      profil.username = `${profil.firstname} ${profil.lastname}`;
     }
   }
 }

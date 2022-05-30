@@ -1,9 +1,10 @@
-<form class="mt-10" action="{{pathRoute}}" method="POST">
+<form class="mt-10" action="{{pathRoute}}" method="{{method}}" enctype="multipart/form-data">
 
     @!component('components/input', {
     type: 'text',
     placeholder: 'Prénom*',
     name: 'firstname',
+    label: 'Prénom* :',
     value: profil ? profil.firstname : '',
     })
 
@@ -11,6 +12,7 @@
     type: 'text',
     placeholder: 'Nom*',
     name: 'lastname',
+    label: 'Nom* :',
     value: profil ? profil.lastname : ''
     })
 
@@ -18,6 +20,7 @@
     type: 'text',
     placeholder: 'Email*',
     name: 'email',
+    label: 'Email* :',
     value: profil ? profil.email : ''
     })
 
@@ -25,6 +28,7 @@
     type: 'text',
     placeholder: 'Addresse*',
     name: 'address',
+    label: 'Addresse* :',
     value: profil ? profil.address : ''
     })
 
@@ -32,6 +36,7 @@
     type: 'text',
     placeholder: 'Code postale*',
     name: 'codePost',
+    label: 'Code postale* :',
     value: profil ? profil.codePost : ''
     })
 
@@ -39,27 +44,15 @@
     type: 'text',
     placeholder: 'Ville*',
     name: 'city',
+    label: 'Ville* :',
     value: profil ? profil.city : ''
-    })
-
-    @!component('components/input', {
-    type: 'text',
-    placeholder: 'Avatar',
-    name: 'avatar',
-    value: profil ? profil.avatar : ''
-    })
-
-    @!component('components/input', {
-    type: 'text',
-    placeholder: 'Image divers',
-    name: 'image',
-    value: profil ? profil.image : ''
     })
 
     @!component('components/input', {
     type: 'text',
     placeholder: 'Téléphone*',
     name: 'tel',
+    label: 'Téléphone* :',
     value: profil ? profil.tel : ''
     })
 
@@ -67,6 +60,7 @@
     type: 'text',
     placeholder: 'Copyright*',
     name: 'copyright',
+    label: 'Copyright* :',
     value: profil ? profil.copyright : ''
     })
 
@@ -74,15 +68,51 @@
     type: 'text',
     placeholder: 'Titre du profil',
     name: 'title',
-    value: profil ? profil.title : ''
+    label: 'Titre du profil :',
+    value: profil ? profil.title ? profil.title : '' : ''
     })
 
     @!component('components/textarea_form', {
     label: 'Description du profil :',
     placeholder: 'Entrer votre texte..',
     name: 'description',
-    value: profil ? profil.description : ''
+    value: profil ? profil.description ? profil.description : '' : ''
     })
+
+    @!component('components/input', {
+    type: 'file',
+    placeholder: 'Image avatar',
+    name: 'avatarFile',
+    label: 'Image avatar : (1Mo max)'
+    })
+
+    <!-- TODO afficher l'image avatar si elle existe-->
+    @if(profil?.avatar)
+    <div class="flex justify-start items-start">
+        <img width="250" height="250" src={{profil.avatar}} />
+        @!component('components/btn_delete', {action: route('ProfilsController.deleteImageProfilAvatar', {id:
+        profil.id})})
+    </div>
+    @end
+
+    <!-- TODO mettre input ajout image profil -->
+    @!component('components/input', {
+    type: 'file',
+    placeholder: 'Image profil',
+    name: 'profilFile',
+    label: 'Image du profil :'
+    })
+
+    <!-- TODO afficher l'image du profil si elle existe-->
+    @if(profil?.image)
+    <div class="flex justify-start items-start">
+        <img width="250" height="250" src={{profil.image}} />
+        <div class="ml-4">
+            @!component('components/btn_delete', {action: route('ProfilsController.deleteImageProfilImage', {id:
+            profil.id})})
+        </div>
+    </div>
+    @end
 
     <div class="flex justify-end mt-10">
         @!component('components/btn_form', {

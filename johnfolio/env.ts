@@ -12,15 +12,21 @@
 |
 */
 
-import Env from '@ioc:Adonis/Core/Env'
+import Env from "@ioc:Adonis/Core/Env";
 
 export default Env.rules({
-	HOST: Env.schema.string({ format: 'host' }),
-	PORT: Env.schema.number(),
-	APP_KEY: Env.schema.string(),
-	APP_NAME: Env.schema.string(),
-	CACHE_VIEWS: Env.schema.boolean(),
-	SESSION_DRIVER: Env.schema.string(),
-  DRIVE_DISK: Env.schema.enum(['local'] as const),
-	NODE_ENV: Env.schema.enum(['development', 'production', 'test'] as const),
-})
+  HOST: Env.schema.string({ format: "host" }),
+  PORT: Env.schema.number(),
+  APP_KEY: Env.schema.string(),
+  APP_NAME: Env.schema.string(),
+  CACHE_VIEWS: Env.schema.boolean(),
+  SESSION_DRIVER: Env.schema.string(),
+  DRIVE_DISK: Env.schema.enum(["local"] as const),
+  S3_KEY: Env.schema.string(),
+  S3_SECRET: Env.schema.string(),
+  S3_BUCKET: Env.schema.string(),
+  S3_REGION: Env.schema.string(),
+  S3_URL_IMAGE: Env.schema.string(),
+  S3_ENDPOINT: Env.schema.string.optional(),
+  NODE_ENV: Env.schema.enum(["development", "production", "test"] as const),
+});

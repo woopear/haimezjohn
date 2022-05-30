@@ -8,12 +8,17 @@
     <!-- cadre si profil existe -->
     @if(profil != null)
     <section class="flex justify-center">
-        @component('components/box_form', {width: 'w-1/2'})
+        @component('components/box_form', {width: 'w-9/12'})
         @!component('components/title_box_form', {title: 'Modifier mon profil'})
         @!component('components/profil/profil_form', {
         profil: profil,
-        pathRoute: route('/private/admin/profil/create'),
+        pathRoute: route('ProfilsController.updateProfil', { id: profil.id }, {
+        qs: {
+        _method: 'PUT'
+        }
+        }),
         textBtn: 'Modifier mon profil',
+        method: 'POST'
         })
         @end
     </section>
@@ -22,12 +27,13 @@
     @else
     <!-- cadre si profil n'existe pas -->
     <section class="flex justify-center">
-        @component('components/box_form', {width: 'w-1/2'})
+        @component('components/box_form', {width: 'w-9/12'})
         @!component('components/title_box_form', {title: 'Créer mon profil'})
         @!component('components/profil/profil_form', {
         profil: profil,
         pathRoute: route('/private/admin/profil/create'),
         textBtn: 'Créer mon profil',
+        method: 'POST'
         })
         @end
     </section>
