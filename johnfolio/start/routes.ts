@@ -14,7 +14,7 @@ Route.group(() => {
 
   // route admin
   Route.group(() => {
-    // profil // TODO faire un groupe de profil pour inclure toute les routes
+    // profil
     Route.group(() => {
       Route.get("/", "ProfilsController.getProfilForPrivate");
       Route.post("/create", "ProfilsController.createProfil");
