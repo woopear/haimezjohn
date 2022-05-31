@@ -1,0 +1,37 @@
+<div class="w-7/12 mt-14">
+    @!component('components/title_box_form', {title: 'Créer un lien'})
+    <form action="{{route('LinksController.create')}}" method="POST" enctype="multipart/form-data">
+        <!-- libelle -->
+        @!component('components/input',{
+        label: 'Le libelle du lien* : ',
+        required: true,
+        type: 'text',
+        name: 'libelle',
+        placeholder: '',
+        value: '',
+        })
+
+        <!-- href -->
+        @!component('components/input',{
+        label: 'Le lien http* : ',
+        required: true,
+        type: 'text',
+        name: 'href',
+        placeholder: '',
+        value: '',
+        })
+
+        <!-- image -->
+        @!component('components/input',{
+        label: 'Image du lien* : ',
+        required: true,
+        type: 'file',
+        name: 'imageLink',
+        })
+
+        <!-- btn create -->
+        <div class="flex justify-end mt-10">
+            @!component('components/btn_form', {text: 'Créer mon lien'})
+        </div>
+    </form>
+</div>

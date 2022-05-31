@@ -4,17 +4,24 @@ import ProfilService from "App/Services/ProfilService";
 import Drive from "@ioc:Adonis/Core/Drive";
 import ProfilValidator from "App/Validators/ProfilValidator";
 import Env from "@ioc:Adonis/Core/Env";
+import Link from "App/Models/Link";
 
 export default class ProfilsController {
   // recupere tous les profils et retourne le premier dans la page private profil
   public async getProfilForPrivate({ view }: HttpContextContract) {
     try {
-      // recupere tous les profils
+      // recupere le profil
       const profil = await Profil.first();
+
+      // recupere tous les links
+      const links = await Link.all();
+
+      console.log(links);
 
       // on retourne la view private profil avec le profil en data
       return view.render("private/pages/profil", {
         profil,
+        links,
         title: "Profil John Haimez",
       });
     } catch (error) {}

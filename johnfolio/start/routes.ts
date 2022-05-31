@@ -1,4 +1,5 @@
 import Route from "@ioc:Adonis/Core/Route";
+import LinksController from "App/Controllers/Http/LinksController";
 
 // accueil
 Route.get("/", async ({ view }) => {
@@ -24,6 +25,7 @@ Route.group(() => {
         "ProfilsController.deleteImageProfilAvatar"
       );
       Route.get("/deleteimage/:id", "ProfilsController.deleteImageProfilImage");
+      Route.post("/link/create", "LinksController.create");
     }).prefix("/profil");
 
     // competences // TODO faire un groupe de competences pour inclure toute les routes

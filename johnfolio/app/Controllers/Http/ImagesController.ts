@@ -12,6 +12,8 @@ export default class ImagesController {
     nameInput: string
   ): Promise<Image | null> {
     try {
+      console.log("premier");
+
       // validatate input image
       const inputImage = await ctx.request.validate({
         schema: schema.create({
@@ -26,10 +28,13 @@ export default class ImagesController {
       if (inputImage) {
         if (inputImage[nameInput]) {
           // enregistrement s3
-          const s3 = Drive.use("s3");
-          await s3.put(location, ctx.request.input(nameInput), {
-            name: `${nameImageBdd}.${inputImage[nameInput]!.extname}`,
-          });
+          await inputImage[nameInput]?.moveToDisk(
+            location,
+            {
+              name: `${nameImageBdd}.${inputImage[nameInput]!.extname}`,
+            },
+            "s3"
+          );
 
           // enregistrement bdd
           const newImage = await Image.create({

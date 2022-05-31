@@ -36,24 +36,26 @@
         @end
     </section>
     @end
-    <!-- cadre des formulaires des liens -->
+    <!-- si il y a des liens -->
     @if(links != null)
     <section class="flex justify-center mt-14">
         @component('components/box_form', {width: 'w-9/12'})
         <!-- titre des liens -->
         @!component('components/title_box_form', {title: 'Mes liens'})
         <!-- formulaire creer link -->
+        @!component('components/form_create_link')
         <!-- list des links avec formulaire update -->
 
         @end
     </section>
     @else
+    <!-- si il y a pas de liens -->
     <section class="flex justify-center mt-14">
         @component('components/box_form', {width: 'w-9/12'})
         <!-- titre des liens -->
         @!component('components/title_box_form', {title: 'Pas encore de lien'})
         <!-- formulaire creer link -->
-
+        @!component('components/form_create_link')
         @end
     </section>
     @end
