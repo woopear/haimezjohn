@@ -1,21 +1,18 @@
 import { DateTime } from "luxon";
 import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
 
-export default class Link extends BaseModel {
+export default class Image extends BaseModel {
   @column({ isPrimary: true })
   public id: number;
 
   @column()
-  public image: string;
+  public path: string;
 
   @column()
-  public libelle: string;
+  public name: string;
 
   @column()
-  public href: string;
-
-  @column()
-  public imageId: number;
+  public location: string;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;

@@ -22,8 +22,6 @@
         })
         @end
     </section>
-    <!-- cadre formulaire profil -->
-    <!-- cadre des formulaires des liens -->
     @else
     <!-- cadre si profil n'existe pas -->
     <section class="flex justify-center">
@@ -35,6 +33,27 @@
         textBtn: 'Créer mon profil',
         method: 'POST'
         })
+        @end
+    </section>
+    @end
+    <!-- cadre des formulaires des liens -->
+    @if(links != null)
+    <section class="flex justify-center mt-14">
+        @component('components/box_form', {width: 'w-9/12'})
+        <!-- titre des liens -->
+        @!component('components/title_box_form', {title: 'Mes liens'})
+        <!-- formulaire creer link -->
+        <!-- list des links avec formulaire update -->
+
+        @end
+    </section>
+    @else
+    <section class="flex justify-center mt-14">
+        @component('components/box_form', {width: 'w-9/12'})
+        <!-- titre des liens -->
+        @!component('components/title_box_form', {title: 'Pas encore de lien'})
+        <!-- formulaire creer link -->
+
         @end
     </section>
     @end
