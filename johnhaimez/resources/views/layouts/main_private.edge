@@ -9,10 +9,12 @@
     @entryPointScripts('app')
 </head>
 
-<body class="flex flex-col">
+<body class="flex bg-fc dark:bg-fd text-black dark:text-white">
     <!-- side menu -->
+    @include('partials/side_menu')
+
     <!-- main -->
-    <main class="grow">
+    <main class="grow p-7">
         @!section('main-private')
     </main>
 </body>
