@@ -26,6 +26,7 @@ module.exports = {
       },
       fontSize: {
         "size-title-page": "4rem",
+        "size-text-menu-header": "1.125rem",
         "size-title-section": "3rem",
         "size-title-box": "2rem",
         "size-title-form": "1.5rem",
