@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    @entryPointStyles('app')
+    @entryPointScripts('app')
+</head>
+
+<body class="flex flex-col">
+    <!-- header -->
+    @include('partials/header')
+
+    <!-- main -->
+    <main class="grow">
+        @!section('main-public')
+    </main>
+
+    <!-- footer -->
+    @include('partials/footer')
+</body>
+
+</html>
