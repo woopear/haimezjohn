@@ -1,10 +1,11 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Profil from "App/Models/Profil";
 import CreateProfilValidator from "App/Validators/CreateProfilValidator";
+import UpdateProfilValidator from "App/Validators/UpdateProfilValidator";
 
 export default class ProfilsController {
   // page profil private
-  public async displayProfil(ctx: HttpContextContract) {
+  public async displayProfilPrivate(ctx: HttpContextContract) {
     try {
       const { view } = ctx;
 
@@ -21,13 +22,13 @@ export default class ProfilsController {
   public async create(ctx: HttpContextContract) {
     try {
       const { response, request } = ctx;
-      let profil = await request.validate(CreateProfilValidator);
+      let payload = await request.validate(CreateProfilValidator);
 
-      if (profil) {
+      if (payload) {
         // TODO si image creation image
 
         // create profil
-        profil = await Profil.create({ ...profil });
+        await Profil.create({ ...payload });
       }
 
       return response.redirect().back();
@@ -39,9 +40,20 @@ export default class ProfilsController {
   // update profil
   public async update(ctx: HttpContextContract) {
     try {
-      const { response } = ctx;
+      const { response, request, params } = ctx;
+      let updateProfil = await Profil.find(params.id);
+      let payload = await request.validate(UpdateProfilValidator);
 
-      return response.redirect("private/profil");
+      if (payload) {
+        // Todo si image update image
+
+        // update profil
+        if (updateProfil) {
+          await updateProfil.merge({ ...payload }).save();
+        }
+      }
+
+      return response.redirect().back();
     } catch (error) {
       console.log(error);
     }
