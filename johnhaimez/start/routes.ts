@@ -24,5 +24,9 @@ Route.group(() => {
     Route.post("/update/:id", "ProfilsController.update");
   }).prefix("/profil");
 
+  Route.group(() => {
+    Route.get("/", "LinksController.displayLinkPrivate");
+  }).prefix("/links");
+
   // link
 }).prefix("/private");

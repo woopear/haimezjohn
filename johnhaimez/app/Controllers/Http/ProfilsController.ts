@@ -10,7 +10,6 @@ export default class ProfilsController {
       const { view } = ctx;
 
       const profil = await Profil.first();
-      console.log(profil);
 
       return view.render("private/profil", { profil, title: "Mon profil" });
     } catch (error) {

@@ -14,6 +14,13 @@
         uptarget: "up-target=main-private",
         })
 
+        <!-- item link -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Liens',
+        href: route('LinksController.displayLinkPrivate'),
+        uptarget: "up-target=main-private",
+        })
+
         <!-- item retour site -->
         @!component('components/menus/menu_side/item_menu', {
         text: 'Retour site',
