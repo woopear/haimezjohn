@@ -38,4 +38,9 @@ Route.group(() => {
     Route.post("/create", "CompetencesController.create");
     Route.post("/update", "CompetencesController.update");
   }).prefix("/competence");
+
+  // hard skills
+  Route.group(() => {
+    Route.get("/", "HardskillsController.displayHardskillPrivate");
+  }).prefix("/hardskills");
 }).prefix("/private");
