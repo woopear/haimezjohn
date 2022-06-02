@@ -18,8 +18,8 @@ module.exports = {
         fdb: "#1A4982",
         ic: "#ffffff",
         id: "#000000",
-        ac: "#00FFFF",
-        ach: "#9FFFFF",
+        ac: "#0094FF",
+        ach: "#004B82",
         hc: "#006FFF",
       },
       fontFamily: {

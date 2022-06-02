@@ -1,12 +1,6 @@
 @layout('layouts/main_public')
-@set('title', title)
+@set('title', 'mon titre')
 
 @section('main-public')
 <p class="active-mode-dark">home</p>
-@component('components/boxs/box', {width: "w-1/4", style: ""})
-<p>coucou</p>
-@end
-@!component('components/inputs/label', {text: 'Titre* :'})
-@!component('components/inputs/input', {placeholder: 'Titre du projet'})
-@!component('components/btns/btn', {text: 'Connexion'})
 @end

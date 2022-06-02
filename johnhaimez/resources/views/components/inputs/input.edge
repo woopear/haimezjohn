@@ -1,4 +1,12 @@
+@set('oldValue', flashMessages.get($context.name) || oldValue)
+@set('error', flashMessages.get(`errors.${$context.name}`) || '')
+
 <div class="{{stylediv ? stylediv : 'mb-2'}}">
-    <input class="text-lg bg-ic dark:bg-id py-2 pl-4 rounded-lg focus:outline-none" type="{{type}}"
-        placeholder="{{placeholder}}" @if required required />
+    <input class="{{styleinput}} leading-1 text-lg bg-ic dark:bg-id py-2 pl-4 rounded-lg focus:outline-none" {{
+        $props.serialize({ value: oldValue, placeholder: placeholder, type: type, required: required, id: $context.name,
+        name: $context.name }, false) }}>
 </div>
+
+@if(error)
+<span class="text-red-500">{{ error }}</span>
+@end
