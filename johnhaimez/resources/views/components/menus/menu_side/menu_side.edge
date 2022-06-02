@@ -21,6 +21,13 @@
         uptarget: "up-target=main-private",
         })
 
+        <!-- item competence -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Compétence',
+        href: route('CompetencesController.displayCompetencePrivate'),
+        uptarget: "up-target=main-private",
+        })
+
         <!-- item retour site -->
         @!component('components/menus/menu_side/item_menu', {
         text: 'Retour site',

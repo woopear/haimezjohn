@@ -10,7 +10,7 @@ export default class CompetencesController {
       const { view } = ctx;
       const competence = await Competence.first();
 
-      return view.render("private/competences/", {
+      return view.render("private/competence", {
         competence,
         title: "Partie competence",
       });
