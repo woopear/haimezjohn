@@ -1,6 +1,9 @@
-<div class="mt-8">
-    <div>
-        @!titles.titleForm({title: 'Lien n° : ' + link.id})
+<div class="mt-12">
+    <div class="flex items-center justify-start">
+        @!titles.titleForm({title: 'Lien n° : ' + (Number(index) + Number(1))})
+        <a href="{{route('LinksController.deleteOne', {id: link.id})}}">
+            @!btns.btn({text: 'Supprimer le lien', stylediv: "ml-4"})
+        </a>
     </div>
     <form up-submit up-target="[main-private]" action="{{route('LinksController.update', { id: link.id }, {
     qs: {

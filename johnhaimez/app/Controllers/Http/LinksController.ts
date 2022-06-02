@@ -56,4 +56,20 @@ export default class LinksController {
       console.log(error);
     }
   }
+
+  public async deleteOne(ctx: HttpContextContract) {
+    try {
+      const { response, params } = ctx;
+
+      // si id reçus
+      if (params.id) {
+        // Todo gerer la suppression d'image
+        await (await Link.findOrFail(params.id)).delete();
+      }
+
+      return response.redirect().back();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

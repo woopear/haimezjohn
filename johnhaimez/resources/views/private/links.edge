@@ -12,12 +12,12 @@
     @!links.formCreate()
 </div>
 
-<!-- box list update link -->
 @if(links)
+<!-- box list update link -->
 @boxs.box({width: "lg:w-7/12 xl:w-9/12 mx-auto"})
 @!titles.titleBox({title: 'Liste de mes liens'})
-@each(item in links)
-@!links.formUpdate({link: item})
+@each((item, index) in links)
+@!links.formUpdate({link: item, index: index})
 @end
 @end
 @else
