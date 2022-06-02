@@ -18,7 +18,11 @@ Route.group(() => {
   });
 
   // profil
-  Route.get("/profil", "ProfilsController.displayProfilPrivate");
-  Route.post("/profil/create", "ProfilsController.create");
-  Route.post("/profil/update/:id", "ProfilsController.update");
+  Route.group(() => {
+    Route.get("/", "ProfilsController.displayProfilPrivate");
+    Route.post("/create", "ProfilsController.create");
+    Route.post("/update/:id", "ProfilsController.update");
+  }).prefix("/profil");
+
+  // link
 }).prefix("/private");
