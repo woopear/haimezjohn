@@ -1,7 +1,13 @@
 import Route from "@ioc:Adonis/Core/Route";
 
+// home
 Route.get("/", async ({ view }) => {
   return view.render("home");
+});
+
+// connexion user admin
+Route.get("/adonis-admin", () => {
+  return { coucou: "coucou" };
 });
 
 // private route
