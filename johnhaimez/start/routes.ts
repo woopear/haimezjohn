@@ -16,4 +16,9 @@ Route.group(() => {
   Route.get("/", ({ view }) => {
     return view.render("private/dashboard");
   });
+
+  // profil
+  Route.get("/profil", "ProfilsController.displayProfil");
+  Route.post("/profil/create", "ProfilsController.create");
+  Route.post("/profil/update", "ProfilsController.update");
 }).prefix("/private");

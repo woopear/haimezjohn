@@ -1,0 +1,141 @@
+@set('profil', profil)
+
+<div class="lg:w-2/3 xl:w-1/2 mx-auto">
+    @boxs.box()
+    @!titles.titleBox({title: 'Créer mon profil'})
+    <form {{upSubmit}} class="mt-8" action="{{pathRoute}}" method="{{method}}" enctype="multipart/form-data">
+        <!-- sous titre formulaire -->
+        <div class="mb-4 mt-8">
+            @!titles.titleForm({title: 'Partie personnelle'})
+        </div>
+
+        <!-- input email -->
+        @!inputs.groupeInput({
+        text: 'Email* : ',
+        placeholder: "Votre email",
+        type: 'text',
+        required: true,
+        oldValue: profil ? profil.email : '',
+        name: 'email',
+        stylediv: "mb-4"
+        })
+
+        <!-- input firstname -->
+        @!inputs.groupeInput({
+        text: 'Prénom* : ',
+        placeholder: "Votre prénom",
+        type: 'text',
+        required: true,
+        oldValue: profil ? profil.firstname : '',
+        name: 'firstname',
+        stylediv: "mb-4"
+        })
+
+        <!-- input lastname -->
+        @!inputs.groupeInput({
+        text: 'Nom* : ',
+        placeholder: "Votre Nom",
+        type: 'text',
+        required: true,
+        oldValue: profil ? profil.lastname : '',
+        name: 'lastname',
+        stylediv: "mb-4"
+        })
+
+        <!-- input address -->
+        @!inputs.groupeInput({
+        text: 'Addresse* : ',
+        placeholder: "Votre addresse",
+        type: 'text',
+        required: true,
+        oldValue: profil ? profil.address : '',
+        name: 'address',
+        stylediv: "mb-4"
+        })
+
+        <!-- input codePost -->
+        @!inputs.groupeInput({
+        text: 'Code postale* : ',
+        placeholder: "Votre code postale",
+        type: 'text',
+        required: true,
+        oldValue: profil ? profil.codePost : '',
+        name: 'codePost',
+        stylediv: "mb-4"
+        })
+
+        <!-- input city -->
+        @!inputs.groupeInput({
+        text: 'Ville* : ',
+        placeholder: "Votre ville",
+        type: 'text',
+        required: true,
+        oldValue: profil ? profil.city : '',
+        name: 'city',
+        stylediv: "mb-4"
+        })
+
+        <!-- input tel -->
+        @!inputs.groupeInput({
+        text: 'Téléphone* : ',
+        placeholder: "Votre téléphone",
+        type: 'text',
+        required: true,
+        oldValue: profil ? profil.tel : '',
+        name: 'tel',
+        stylediv: "mb-4"
+        })
+
+        <!-- sous titre formulaire -->
+        <div class="mb-4 mt-8">
+            @!titles.titleForm({title: 'Partie data'})
+        </div>
+
+        <!-- input title -->
+        @!inputs.groupeInput({
+        text: 'Titre du profil* : ',
+        placeholder: "Titre du profil",
+        type: 'text',
+        required: true,
+        oldValue: profil ? profil.title : '',
+        name: 'title',
+        stylediv: "mb-4"
+        })
+
+        <!-- input copyright -->
+        @!inputs.groupeInput({
+        text: 'Copyright* : ',
+        placeholder: "Copyright du site",
+        type: 'text',
+        required: true,
+        oldValue: profil ? profil.copyright : '',
+        name: 'copyright',
+        stylediv: "mb-4"
+        })
+
+        <!-- input description -->
+        @!inputs.groupeTextarea({
+        text: 'Description* : ',
+        placeholder: "Une petite description de vous",
+        type: 'text',
+        required: true,
+        value: profil ? profil.description : '',
+        name: 'description',
+        stylediv: "mb-4"
+        })
+
+        <!-- input image file select -->
+        @!inputs.groupeInput({
+        text: 'Image du profil* : ',
+        placeholder: "Image du profil",
+        type: 'file',
+        required: false,
+        name: 'profilImage',
+        stylediv: "mb-4"
+        })
+
+        <!-- btn submit -->
+        @!btns.btn({text: textBtn, stylediv: "flex justify-end mt-12 mb-8", type: "submit"})
+    </form>
+    @end
+</div>

@@ -1,0 +1,23 @@
+@layout('layouts/main_private')
+@set('title', title)
+
+@section('main-private')
+<!-- titre de la page -->
+<div class="text-center mb-8">
+    @!titles.titlePageAdmin({title: 'Mon Profil'})
+</div>
+
+<!-- si profil on update sinon on créer -->
+@if(profil)
+<!-- update -->
+@else
+<!-- create -->
+@!profil.formCreateUpdate({
+profil: profil,
+textBtn: 'Créer mon profil',
+pathRoute: route('ProfilsController.create'),
+method: "POST"
+})
+
+@end
+@end

@@ -1,15 +1,15 @@
 @set('value', flashMessages.get($context.name) || value)
 @set('error', flashMessages.get(`errors.${$context.name}`) || '')
 
-<div class="mb-4">
+<div class="{{stylediv ? stylediv : 'mb-4'}}">
     @if(label)
     <label class="text-lg mb-2 mt-8 block">
         {{label}}
     </label>
     @end
     <textarea rows="7" name="{{name}}"
-        class="{{styletextarea}} text-lg bg-ic dark:bg-id py-2 pl-4 rounded-lg focus:outline-none"
-        placeholder="{{placeholder}}">{{value}}</textarea>
+        class="{{styletextarea}} w-full text-lg bg-ic dark:bg-id py-2 pl-4 rounded-lg focus:outline-none"
+        placeholder="{{placeholder}}" {{required}}>{{value}}</textarea>
 </div>
 
 @if(error)

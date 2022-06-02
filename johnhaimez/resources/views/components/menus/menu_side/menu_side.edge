@@ -1,8 +1,28 @@
 <nav>
     <ul>
-        @!component('components/menus/menu_side/item_menu', {text: 'Profil'})
+        <!-- item dashboard -->
         @!component('components/menus/menu_side/item_menu', {
-        text: 'Déconnexion',
+        text: 'Mon tableau de bord',
+        href: route('/private'),
+        uptarget: "up-target=main-private",
+        })
+
+        <!-- item profil -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Profil',
+        href: route('ProfilsController.displayProfil'),
+        uptarget: "up-target=main-private",
+        })
+
+        <!-- item retour site -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Retour site',
+        href: route('/'),
+        })
+
+        <!-- item retour site -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Deconnexion',
         href: route('/'),
         })
     </ul>
