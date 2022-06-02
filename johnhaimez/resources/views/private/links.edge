@@ -3,7 +3,26 @@
 
 @section('main-private')
 <!-- titre de la page -->
-<div class="text-center active-mode-dark">
+<div class="text-center active-mode-dark mb-12">
     @!titles.titlePageAdmin({title: 'Mes liens'})
 </div>
+
+<!-- box create link -->
+<div class="mb-16">
+    @!links.formCreate()
+</div>
+
+<!-- box list update link -->
+@if(links)
+@boxs.box({width: "lg:w-7/12 xl:w-9/12 mx-auto"})
+@!titles.titleBox({title: 'Liste de mes liens'})
+@each(item in links)
+@!links.formUpdate({link: item})
+@end
+@end
+@else
+@boxs.box()
+@!titles.titleBox({title: 'Aucun lien'})
+@end
+@end
 @end

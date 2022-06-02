@@ -26,6 +26,8 @@ Route.group(() => {
 
   Route.group(() => {
     Route.get("/", "LinksController.displayLinkPrivate");
+    Route.post("/create", "LinksController.create");
+    Route.post("/update/:id", "LinksController.update");
   }).prefix("/links");
 
   // link
