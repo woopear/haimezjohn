@@ -3,7 +3,7 @@
 
 @section('main-private')
 <!-- titre de la page -->
-<div class="text-center mb-12">
+<div class="text-center mb-12 active-mode-dark">
     @!titles.titlePageAdmin({title: 'Mes liens'})
 </div>
 
@@ -13,7 +13,7 @@
     @!links.formCreate()
 </div>
 
-@if(links)
+@if(links.length > 0)
 <!-- box list update link -->
 @boxs.box({width: "lg:w-7/12 xl:w-9/12 mx-auto"})
 @!titles.titleBox({title: 'Liste de mes liens'})
@@ -22,7 +22,7 @@
 @end
 @end
 @else
-@boxs.box()
+@boxs.box({width: "lg:w-7/12 xl:w-9/12 mx-auto"})
 @!titles.titleBox({title: 'Aucun lien'})
 @end
 @end
