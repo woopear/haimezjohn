@@ -19,6 +19,7 @@ module.exports = {
         ic: "#ffffff",
         id: "#000000",
         ac: "#00FFFF",
+        ach: "#9FFFFF",
         hc: "#006FFF",
       },
       fontFamily: {
