@@ -7,14 +7,13 @@ export default class CreateProfilValidator {
   public schema = schema.create({
     firstname: schema.string({ trim: true }),
     lastname: schema.string({ trim: true }),
-    username: schema.string({ trim: true }),
     address: schema.string({ trim: true }),
     codePost: schema.string({ trim: true }),
     city: schema.string({ trim: true }),
     tel: schema.string({ trim: true }),
     email: schema.string({ trim: true }, [rules.email()]),
-    title: schema.string({ trim: true }),
-    description: schema.string({ trim: true }),
+    title: schema.string.nullableAndOptional({ trim: true }),
+    description: schema.string.nullableAndOptional({ trim: true }),
     copyright: schema.string({ trim: true }),
   });
 

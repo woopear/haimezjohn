@@ -1,5 +1,6 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Profil from "App/Models/Profil";
+import CreateProfilValidator from "App/Validators/CreateProfilValidator";
 
 export default class ProfilsController {
   // page profil private
@@ -19,9 +20,17 @@ export default class ProfilsController {
   // create profil
   public async create(ctx: HttpContextContract) {
     try {
-      const { response } = ctx;
+      const { response, request } = ctx;
+      let profil = await request.validate(CreateProfilValidator);
 
-      return response.redirect("private/profil");
+      if (profil) {
+        // TODO si image creation image
+
+        // create profil
+        profil = await Profil.create({ ...profil });
+      }
+
+      return response.redirect().back();
     } catch (error) {
       console.log(error);
     }

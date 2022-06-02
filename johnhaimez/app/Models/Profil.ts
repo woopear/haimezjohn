@@ -30,16 +30,16 @@ export default class Profil extends BaseModel {
   public email: string;
 
   @column()
-  public title: string;
+  public title: string | null;
 
   @column()
-  public description: string;
+  public description: string | null;
 
   @column()
   public copyright: string;
 
   @column()
-  public imageId: number;
+  public imageId: number | null;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;

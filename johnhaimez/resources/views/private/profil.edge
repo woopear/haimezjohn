@@ -10,9 +10,21 @@
 <!-- si profil on update sinon on créer -->
 @if(profil)
 <!-- update -->
+@!profil.formCreateUpdate({
+title: "Modifier mon profil",
+profil: profil,
+textBtn: 'Modifier mon profil',
+pathRoute: route('ProfilsController.update', { id: profil.id }, {
+qs: {
+_method: 'PUT'
+}
+}),
+method: "POST"
+})
 @else
 <!-- create -->
 @!profil.formCreateUpdate({
+title: "Créer mon profil",
 profil: profil,
 textBtn: 'Créer mon profil',
 pathRoute: route('ProfilsController.create'),

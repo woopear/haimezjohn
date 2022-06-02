@@ -2,7 +2,7 @@
 
 <div class="lg:w-2/3 xl:w-1/2 mx-auto">
     @boxs.box()
-    @!titles.titleBox({title: 'Créer mon profil'})
+    @!titles.titleBox({title: title})
     <form {{upSubmit}} class="mt-8" action="{{pathRoute}}" method="{{method}}" enctype="multipart/form-data">
         <!-- sous titre formulaire -->
         <div class="mb-4 mt-8">
@@ -93,11 +93,11 @@
 
         <!-- input title -->
         @!inputs.groupeInput({
-        text: 'Titre du profil* : ',
+        text: 'Titre du profil : ',
         placeholder: "Titre du profil",
         type: 'text',
-        required: true,
-        oldValue: profil ? profil.title : '',
+        required: false,
+        oldValue: profil ? profil.title ? profil.title : '' : '',
         name: 'title',
         stylediv: "mb-4"
         })
@@ -115,11 +115,11 @@
 
         <!-- input description -->
         @!inputs.groupeTextarea({
-        text: 'Description* : ',
+        text: 'Description : ',
         placeholder: "Une petite description de vous",
         type: 'text',
-        required: true,
-        value: profil ? profil.description : '',
+        required: false,
+        value: profil ? profil.description ? profil.description : '' : '',
         name: 'description',
         stylediv: "mb-4"
         })
