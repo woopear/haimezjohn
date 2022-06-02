@@ -24,6 +24,7 @@ Route.group(() => {
     Route.post("/update/:id", "ProfilsController.update");
   }).prefix("/profil");
 
+  // link
   Route.group(() => {
     Route.get("/", "LinksController.displayLinkPrivate");
     Route.post("/create", "LinksController.create");
@@ -31,5 +32,10 @@ Route.group(() => {
     Route.get("/delete/:id", "LinksController.deleteOne");
   }).prefix("/links");
 
-  // link
+  // competence
+  Route.group(() => {
+    Route.get("/", "CompetencesController.displayCompetencePrivate");
+    Route.post("/create", "CompetencesController.create");
+    Route.post("/update", "CompetencesController.update");
+  }).prefix("/competence");
 }).prefix("/private");

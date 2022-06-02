@@ -1,6 +1,7 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Link from "App/Models/Link";
 import CreateLinkValidator from "App/Validators/CreateLinkValidator";
+import UpdateLinkValidator from "App/Validators/UpdateLinkValidator";
 
 export default class LinksController {
   // affiche les liens dans la page link private
@@ -41,7 +42,7 @@ export default class LinksController {
     try {
       const { response, request, params } = ctx;
       let updateLink = await Link.find(params.id);
-      const payload = await request.validate(CreateLinkValidator);
+      const payload = await request.validate(UpdateLinkValidator);
 
       if (payload) {
         // Todo gerer modification image
