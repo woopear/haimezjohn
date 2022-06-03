@@ -49,6 +49,13 @@
         uptarget: "up-target=main-private",
         })
 
+        <!-- item project -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Projets',
+        href: route('ProjectsController.displayProjectPrivate'),
+        uptarget: "up-target=main-private",
+        })
+
         <!-- item retour site -->
         @!component('components/menus/menu_side/item_menu', {
         text: 'Retour site',

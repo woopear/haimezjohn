@@ -1,0 +1,53 @@
+<div x-data="{open: false}">
+    @boxs.box({width: "lg:w-7/12 xl:w-9/12"})
+    <div class="cursor-pointer" @click="open = !open">
+        @!btns.btn({text: 'Créer un projet'})
+    </div>
+    <form x-show="open" class="mt-8" action="{{route('ProjectsController.create')}}" method="POST"
+        enctype="multipart/form-data">
+        <!-- title du projet -->
+        @!inputs.groupeInput({
+        text: 'Titre du projet* : ',
+        placeholder: 'Titre du projet',
+        type: "text",
+        required: true,
+        name: "title",
+        oldValue: '',
+        })
+
+        <!-- description projet-->
+        @!inputs.groupeTextarea({
+        text: 'Description : ',
+        placeholder: "Une petite description du projet",
+        type: 'text',
+        required: true,
+        value: '',
+        name: 'description',
+        stylediv: "mb-4"
+        })
+
+        <!-- path du projet -->
+        @!inputs.groupeInput({
+        text: 'Lien https du projet* : ',
+        placeholder: 'Lien https du projet',
+        type: "text",
+        required: true,
+        name: "path",
+        oldValue: '',
+        })
+
+        <!-- github path du projet -->
+        @!inputs.groupeInput({
+        text: 'Lien https du github du projet* : ',
+        placeholder: 'Lien https du github du projet',
+        type: "text",
+        required: true,
+        name: "githubpath",
+        oldValue: '',
+        })
+
+        <!-- btn submit -->
+        @!btns.btn({text: 'Enregistrer', stylediv: "flex justify-end mt-12 mb-8", type: "submit"})
+    </form>
+    @end
+</div>

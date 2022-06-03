@@ -1,0 +1,22 @@
+@layout('layouts/main_private')
+@set('title', title)
+
+@section('main-private')
+<!-- titre de la page -->
+<div class="text-center mb-12 active-mode-dark">
+    @!titles.titlePageAdmin({title: title})
+</div>
+
+<!-- create projet -->
+@!projects.formCreate()
+
+<!-- si il y a projects list update projet -->
+@if(projects.length > 0)
+@each((item, index) in projects)
+<!-- form update -->
+@end
+@else
+<!-- sinon title aucun projet -->
+@end
+
+@end

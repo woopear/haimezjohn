@@ -11,7 +11,7 @@ export default class ProjectsController {
 
       return ctx.view.render("private/projects", {
         projects,
-        title: "Mes project",
+        title: "Mes projets",
       });
     } catch (error) {
       console.log(error);
