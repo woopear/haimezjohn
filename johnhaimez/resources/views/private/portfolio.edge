@@ -6,4 +6,33 @@
 <div class="text-center active-mode-dark">
     @!titles.titlePageAdmin({title: 'Mon portfolio'})
 </div>
+
+<!-- si portfolio on modifie -->
+@if(portfolio)
+@!portfolio.formCreateUpdate({
+title: 'Modifier la partie portfolio',
+textBtn: 'Modifier le portfolio',
+upSubmit: "up-submit",
+upTarget: "up-target=[main-private]",
+portfolio: portfolio,
+pathRoute: route('PortfoliosController.update', {id: portfolio.id}, {
+qs: {
+_method: 'PUT'
+}
+}),
+method: "POST"
+})
+@else
+<!-- sinon on créer -->
+@!portfolio.formCreateUpdate({
+title: 'Créer la partie portfolio',
+textBtn: 'Créer le portfolio',
+upSubmit: "up-submit",
+upTarget: "up-target=[main-private]",
+pathRoute: route('PortfoliosController.create'),
+method: "POST"
+})
+
+@end
+
 @end

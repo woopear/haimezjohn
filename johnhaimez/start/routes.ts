@@ -57,7 +57,7 @@ Route.group(() => {
 
   Route.group(() => {
     Route.get("/", "PortfoliosController.displayPortfolioPrivate");
-    Route.get("/create", "PortfoliosController.create");
-    Route.get("/update/:id", "PortfoliosController.update");
+    Route.post("/create", "PortfoliosController.create");
+    Route.post("/update/:id", "PortfoliosController.update");
   }).prefix("/portfolio");
 }).prefix("/private");
