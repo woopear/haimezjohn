@@ -1,7 +1,7 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Hardskill from "App/Models/Hardskill";
-import CreateCompetenceValidator from "App/Validators/CreateCompetenceValidator";
-import UpdateCompetenceValidator from "App/Validators/UpdateCompetenceValidator";
+import CreateHardskillValidator from "App/Validators/CreateHardskillValidator";
+import UpdateHardskillValidator from "App/Validators/UpdateHardskillValidator";
 
 export default class HardskillsController {
   // recupere et affiche les hardskill pour la partie private
@@ -25,7 +25,7 @@ export default class HardskillsController {
   public async create(ctx: HttpContextContract) {
     try {
       const { response, request } = ctx;
-      const payload = await request.validate(CreateCompetenceValidator);
+      const payload = await request.validate(CreateHardskillValidator);
 
       // create
       await Hardskill.create({ ...payload });
@@ -41,7 +41,7 @@ export default class HardskillsController {
     try {
       const { response, request, params } = ctx;
       const updateHardskill = await Hardskill.find(params.id);
-      const payload = await request.validate(UpdateCompetenceValidator);
+      const payload = await request.validate(UpdateHardskillValidator);
 
       // update
       await updateHardskill?.merge({ ...payload }).save();

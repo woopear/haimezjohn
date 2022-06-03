@@ -47,5 +47,11 @@ Route.group(() => {
     Route.get("/delete/:id", "HardskillsController.delete");
   }).prefix("/hardskills");
 
-  //
+  // soft skills
+  Route.group(() => {
+    Route.get("/", "SoftskillsController.displaySoftskillPrivate");
+    Route.post("/create", "SoftskillsController.create");
+    Route.post("/update/:id", "SoftskillsController.update");
+    Route.post("/delete/:id", "SoftskillsController.delete");
+  }).prefix("/softskills");
 }).prefix("/private");
