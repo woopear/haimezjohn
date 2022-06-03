@@ -12,10 +12,10 @@ module.exports = {
       colors: {
         fc: "#E7F2FF",
         fc2: "#B8D8FF",
-        fcb: "#9DC9FF",
+        fcb: "#ffffff",
         fd: "#001A39",
         fd2: "#002F69",
-        fdb: "#1A4982",
+        fdb: "#001329",
         ic: "#ffffff",
         id: "#000000",
         ac: "#0094FF",
