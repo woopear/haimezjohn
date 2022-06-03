@@ -1,0 +1,64 @@
+<!-- title du projet + btn supprimer -->
+<div class="flex items-center justify-start">
+    <!-- title -->
+    @!titles.titleForm({title: 'Projet : ' + item.title})
+
+    <!-- btn sup -->
+    @!btns.btnLien({
+    stylediv: "ml-4",
+    text: 'Supprimer',
+    href: route('ProjectsController.delete', {id: item.id}),
+    'up-target': "main-private",
+    })
+</div>
+
+<form class="mt-8" action="{{route('ProjectsController.update', { id: item.id }, {
+    qs: {
+    _method: 'PUT'
+    }
+    })}}" method="POST" enctype="multipart/form-data">
+
+    <!-- titre du projet -->
+    @!inputs.groupeInput({
+    text: 'Titre* : ',
+    placeholder: 'Titre du projet',
+    type: "text",
+    required: true,
+    name: "title",
+    oldValue: item ? item.title : '',
+    })
+
+    <!-- description projet-->
+    @!inputs.groupeTextarea({
+    text: 'Description : ',
+    placeholder: "Une petite description du projet",
+    type: 'text',
+    required: true,
+    value: item ? item.description : '',
+    name: 'description',
+    stylediv: "mb-4"
+    })
+
+    <!-- lien du projet -->
+    @!inputs.groupeInput({
+    text: 'Lien https du projet* : ',
+    placeholder: 'Lien https du projet',
+    type: "text",
+    required: true,
+    name: "path",
+    oldValue: item ? item.path : '',
+    })
+
+    <!-- lien du github du projet -->
+    @!inputs.groupeInput({
+    text: 'Lien https github* : ',
+    placeholder: 'Lien https github',
+    type: "text",
+    required: true,
+    name: "githubpath",
+    oldValue: item ? item.githubpath : '',
+    })
+
+    <!-- btn submit -->
+    @!btns.btn({text: 'Modifier', stylediv: "flex justify-end mt-12 mb-8", type: "submit"})
+</form>

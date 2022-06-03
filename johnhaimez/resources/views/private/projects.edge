@@ -12,11 +12,23 @@
 
 <!-- si il y a projects list update projet -->
 @if(projects.length > 0)
+
 @each((item, index) in projects)
 <!-- form update -->
+@boxs.box({width: "lg:w-7/12 xl:w-9/12 mx-auto mt-12"})
+@!projects.formUpdate({item: item})
 @end
+
+@end
+
 @else
 <!-- sinon title aucun projet -->
+<!-- box -->
+@boxs.box({width: "lg:w-7/12 xl:w-9/12 mx-auto mt-12"})
+<!-- title -->
+@!titles.titleBox({title: 'Aucun projet'})
+@end
+
 @end
 
 @end
