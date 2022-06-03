@@ -71,6 +71,11 @@ Route.group(() => {
   }).prefix("/projects");
 
   // contact
+  Route.group(() => {
+    Route.get("/", "ContactsController.displayContactPrivate");
+    Route.post("/create", "ContactsController.create");
+    Route.post("/update", "ContactsController.update");
+  }).prefix("/contact");
 
   // conditions generales
   // mentions-legale
