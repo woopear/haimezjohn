@@ -1,6 +1,7 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Portfolio from "App/Models/Portfolio";
 import CreatePortfolioValidator from "App/Validators/CreatePortfolioValidator";
+import UpdatePortfolioValidator from "App/Validators/UpdatePortfolioValidator";
 
 export default class PortfoliosController {
   // recupere le portfolio pour la page private
@@ -36,7 +37,7 @@ export default class PortfoliosController {
     try {
       const { response, request } = ctx;
       const updatePortfolio = await Portfolio.first();
-      const payload = await request.validate(CreatePortfolioValidator);
+      const payload = await request.validate(UpdatePortfolioValidator);
 
       await updatePortfolio?.merge({ ...payload }).save();
 

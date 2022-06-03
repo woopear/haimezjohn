@@ -55,9 +55,23 @@ Route.group(() => {
     Route.get("/delete/:id", "SoftskillsController.delete");
   }).prefix("/softskills");
 
+  // portfolio
   Route.group(() => {
     Route.get("/", "PortfoliosController.displayPortfolioPrivate");
     Route.post("/create", "PortfoliosController.create");
     Route.post("/update/:id", "PortfoliosController.update");
   }).prefix("/portfolio");
+
+  // project
+  Route.group(() => {
+    Route.get("/", "ProjectsController.displayProjectPrivate");
+    Route.post("/create", "ProjectsController.create");
+    Route.post("/update/:id", "ProjectsController.update");
+    Route.get("/delete/:id", "ProjectsController.delete");
+  }).prefix("/projects");
+
+  // contact
+
+  // conditions generales
+  // mentions-legale
 }).prefix("/private");
