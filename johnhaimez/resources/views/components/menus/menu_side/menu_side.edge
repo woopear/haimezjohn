@@ -42,6 +42,13 @@
         uptarget: "up-target=main-private",
         })
 
+        <!-- item portfolio -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Portfolio',
+        href: route('PortfoliosController.displayPortfolioPrivate'),
+        uptarget: "up-target=main-private",
+        })
+
         <!-- item retour site -->
         @!component('components/menus/menu_side/item_menu', {
         text: 'Retour site',

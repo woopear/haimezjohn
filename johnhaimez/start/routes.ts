@@ -54,4 +54,10 @@ Route.group(() => {
     Route.post("/update/:id", "SoftskillsController.update");
     Route.get("/delete/:id", "SoftskillsController.delete");
   }).prefix("/softskills");
+
+  Route.group(() => {
+    Route.get("/", "PortfoliosController.displayPortfolioPrivate");
+    Route.get("/create", "PortfoliosController.create");
+    Route.get("/update/:id", "PortfoliosController.update");
+  }).prefix("/portfolio");
 }).prefix("/private");
