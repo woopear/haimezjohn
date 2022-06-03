@@ -3,11 +3,40 @@
 
 @section('main-private')
 <!-- titre de la page -->
-<div class="text-center active-mode-dark">
+<div class="text-center mb-12 active-mode-dark">
     @!titles.titlePageAdmin({title: 'Mes hard skills'})
 </div>
 
 <!-- create hard skill -->
+@!hardskills.formCreate()
 
 <!-- list update hard skill -->
+<div>
+    @if(hardskills.length > 0)
+    <!-- title de la list hard skills -->
+    @!titles.titleSectionPublic({title: 'Liste de mes hardskills', color: "mt-16 mb-12"})
+    <!-- boucle sur la list hard skills -->
+    @each((item, index) in hardskills)
+    @boxs.box({width: "lg:w-7/12 xl:w-9/12 mx-auto mb-12"})
+    <!-- title du hard skill + btn supprimer -->
+    <div class="flex items-center justify-start">
+        <!-- title -->
+        @!titles.titleForm({title: 'Hardskill : ' + item.title})
+        <!-- btn sup -->
+        @!btns.btnLien({
+        stylediv: "ml-4",
+        text: 'Supprimer',
+        href: route('HardskillsController.delete', {id: item.id}),
+        'up-target': "main-private",
+        })
+    </div>
+    @end
+    @end
+    @else
+    @boxs.box({width: "lg:w-7/12 xl:w-9/12 mx-auto mt-12"})
+    @!titles.titleBox({title: 'Aucun hardskill'})
+    @end
+    @end
+
+</div>
 @end

@@ -4,8 +4,7 @@
         @!btns.btn({text: 'Creation lien'})
     </div>
     <div x-show="open">
-        <form up-submit up-target="[main-private]" class="mt-8" action="{{route('LinksController.create')}}"
-            method="POST" enctype="multipart/form-data">
+        <form class="mt-8" action="{{route('LinksController.create')}}" method="POST" enctype="multipart/form-data">
             <!-- libelle du lien -->
             @!inputs.groupeInput({
             text: 'Libelle* : ',
@@ -37,7 +36,7 @@
             })
 
             <div class="flex justify-end mt-8">
-                @!btns.btn({text: 'Enregister'})
+                @!btns.btn({text: 'Enregister', type: "submit"})
             </div>
         </form>
         @end

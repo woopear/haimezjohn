@@ -42,5 +42,16 @@ Route.group(() => {
   // hard skills
   Route.group(() => {
     Route.get("/", "HardskillsController.displayHardskillPrivate");
+    Route.post("/create", "HardskillsController.create");
+    Route.get("/delete/:id", "HardskillsController.delete");
+    Route.post("/add-image/:idHardskill", "HardskillsController.addImage");
+    Route.post(
+      "/update-image/:idHardskill/:idImage",
+      "HardskillsController.updateImage"
+    );
+    Route.post(
+      "/delete-image/:idHardskill/:idImage",
+      "HardskillsController.deleteImage"
+    );
   }).prefix("/hardskills");
 }).prefix("/private");

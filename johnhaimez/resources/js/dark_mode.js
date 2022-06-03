@@ -13,7 +13,7 @@ if (
 function switchModeDark() {
   const btnSwitch = document.querySelector(".active-mode-dark");
 
-  btnSwitch.addEventListener("click", () => {
+  btnSwitch?.addEventListener("click", () => {
     document.documentElement.classList.toggle("dark");
   });
 }
