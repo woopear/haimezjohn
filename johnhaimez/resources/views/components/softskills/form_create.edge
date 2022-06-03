@@ -2,11 +2,11 @@
     @boxs.box({width: "lg:w-7/12 xl:w-9/12"})
     <!-- btn affiche create hardskill -->
     <div @click="open = !open">
-        @!btns.btn({text: 'Création hard skill'})
+        @!btns.btn({text: 'Création soft skill'})
     </div>
     <div x-show="open">
         <form id="#createhardskill" up-submit up-target="[main-private]" class="mt-8"
-            action="{{route('HardskillsController.create')}}" method="POST" enctype="multipart/form-data">
+            action="{{route('SoftskillsController.create')}}" method="POST" enctype="multipart/form-data">
             <!-- title  -->
             @!inputs.groupeInput({
             text: 'Titre* : ',
@@ -20,7 +20,7 @@
             <!-- description hardskill-->
             @!inputs.groupeTextarea({
             text: 'Description* : ',
-            placeholder: "Une petite description du hardskill",
+            placeholder: "Une petite description du softskill",
             type: 'text',
             required: true,
             value: '',
@@ -29,7 +29,7 @@
             })
 
             <div class="flex justify-end mt-8">
-                @!btns.btn({text: 'Enregister', type: "submit", formtarget: "createhardskill"})
+                @!btns.btn({text: 'Enregister', type: "submit"})
             </div>
 
         </form>

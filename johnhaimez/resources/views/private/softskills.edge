@@ -1,0 +1,50 @@
+@layout('layouts/main_private')
+@set('title', title)
+
+@section('main-private')
+<!-- titre de la page -->
+<div class="text-center mb-12 active-mode-dark">
+    @!titles.titlePageAdmin({title: 'Mes soft skills'})
+</div>
+
+<!-- create soft skill -->
+@!softskills.formCreate()
+
+<!-- list avec update soft skill -->
+@if(softskills.length > 0)
+<!-- title de la list soft skills -->
+@!titles.titleSectionPublic({title: 'Liste de mes softskills', color: "mt-16 mb-12"})
+
+<!-- boucle sur la list soft skills -->
+@each((item, index) in softskills)
+<!-- box softskill -->
+@boxs.box({width: "lg:w-7/12 xl:w-9/12 mx-auto mb-12"})
+<!-- title du soft skill + btn supprimer -->
+<div class="flex items-center justify-start">
+    <!-- title -->
+    @!titles.titleForm({title: 'Softskill : ' + item.title})
+
+    <!-- btn sup -->
+    @!btns.btnLien({
+    stylediv: "ml-4",
+    text: 'Supprimer',
+    href: route('SoftskillsController.delete', {id: item.id}),
+    'up-target': "main-private",
+    })
+</div>
+
+<!-- form update softskill -->
+@!softskills.formUpdate({item: item})
+
+@end
+@end
+@else
+<!-- box + title si il y a pas de softskill -->
+@boxs.box({width: "lg:w-7/12 xl:w-9/12 mx-auto mt-12"})
+<!-- title -->
+@!titles.titleBox({title: 'Aucun softskills'})
+@end
+
+@end
+<!-- si pas de list soft skill -->
+@end
