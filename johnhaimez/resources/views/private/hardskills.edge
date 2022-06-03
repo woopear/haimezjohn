@@ -15,13 +15,17 @@
     @if(hardskills.length > 0)
     <!-- title de la list hard skills -->
     @!titles.titleSectionPublic({title: 'Liste de mes hardskills', color: "mt-16 mb-12"})
+
     <!-- boucle sur la list hard skills -->
     @each((item, index) in hardskills)
+    <!-- box hardskill -->
     @boxs.box({width: "lg:w-7/12 xl:w-9/12 mx-auto mb-12"})
+
     <!-- title du hard skill + btn supprimer -->
     <div class="flex items-center justify-start">
         <!-- title -->
         @!titles.titleForm({title: 'Hardskill : ' + item.title})
+
         <!-- btn sup -->
         @!btns.btnLien({
         stylediv: "ml-4",
@@ -30,11 +34,18 @@
         'up-target': "main-private",
         })
     </div>
+
+    <!-- form update hardskill -->
+    @!hardskills.formUpdate({item: item})
+
     @end
     @end
     @else
+    <!-- box + title si il y a pas de hardskill -->
     @boxs.box({width: "lg:w-7/12 xl:w-9/12 mx-auto mt-12"})
+    <!-- title -->
     @!titles.titleBox({title: 'Aucun hardskill'})
+
     @end
     @end
 

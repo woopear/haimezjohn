@@ -1,0 +1,30 @@
+<form class="mt-8" action="{{route('HardskillsController.update', { id: item.id }, {
+    qs: {
+    _method: 'PUT'
+    }
+    })}}" method="POST" enctype="multipart/form-data">
+
+    <!-- titre du hardskill -->
+    @!inputs.groupeInput({
+    text: 'Titre* : ',
+    placeholder: 'Titre du hardskill',
+    type: "text",
+    required: true,
+    name: "title",
+    oldValue: item ? item.title : '',
+    })
+
+    <!-- description hardskill-->
+    @!inputs.groupeTextarea({
+    text: 'Description : ',
+    placeholder: "Une petite description du hardskill",
+    type: 'text',
+    required: true,
+    value: item ? item.description : '',
+    name: 'description',
+    })
+
+    <div class="flex justify-end mt-8">
+        @!btns.btn({text: 'Enregister', type: "submit"})
+    </div>
+</form>

@@ -43,6 +43,7 @@ Route.group(() => {
   Route.group(() => {
     Route.get("/", "HardskillsController.displayHardskillPrivate");
     Route.post("/create", "HardskillsController.create");
+    Route.post("/update/:id", "HardskillsController.update");
     Route.get("/delete/:id", "HardskillsController.delete");
     Route.post("/add-image/:idHardskill", "HardskillsController.addImage");
     Route.post(
