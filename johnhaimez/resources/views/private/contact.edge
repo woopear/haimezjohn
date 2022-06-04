@@ -6,4 +6,29 @@
 <div class="text-center mb-12 active-mode-dark">
     @!titles.titlePageAdmin({title: title})
 </div>
+
+<!-- si contact update sinon create -->
+@if(contact)
+<!-- update -->
+@!contact.formCreateUpdate({
+    title: 'Modifier la partie contact',
+    contact: contact,
+    upSubmit: "up-submit",
+    upTarget: "up-target=[main-private]",
+    pathRoute: route('ContactsController.update'),
+    method: "POST",
+    textBtn: 'Enregistrer'
+})
+@else
+<!-- create -->
+@!contact.formCreateUpdate({
+    title: 'Créer la partie contact',
+    upSubmit: "up-submit",
+    upTarget: "up-target=[main-private]",
+    pathRoute: route('ContactsController.create'),
+    method: "POST",
+    textBtn: 'Enregistrer'
+})
+@end
+
 @end
