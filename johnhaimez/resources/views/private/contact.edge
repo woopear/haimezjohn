@@ -11,23 +11,23 @@
 @if(contact)
 <!-- update -->
 @!contact.formCreateUpdate({
-    title: 'Modifier la partie contact',
-    contact: contact,
-    upSubmit: "up-submit",
-    upTarget: "up-target=[main-private]",
-    pathRoute: route('ContactsController.update'),
-    method: "POST",
-    textBtn: 'Enregistrer'
+title: 'Modifier la partie contact',
+contact: contact,
+upSubmit: "up-submit",
+upTarget: "up-target=[main-private]",
+pathRoute: route('ContactsController.update'),
+method: "POST",
+textBtn: 'Enregistrer'
 })
 @else
 <!-- create -->
 @!contact.formCreateUpdate({
-    title: 'Créer la partie contact',
-    upSubmit: "up-submit",
-    upTarget: "up-target=[main-private]",
-    pathRoute: route('ContactsController.create'),
-    method: "POST",
-    textBtn: 'Enregistrer'
+title: 'Créer la partie contact',
+upSubmit: "up-submit",
+upTarget: "up-target=[main-private]",
+pathRoute: route('ContactsController.create'),
+method: "POST",
+textBtn: 'Enregistrer'
 })
 @end
 
