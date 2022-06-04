@@ -93,7 +93,7 @@ export default driveConfig({
     |**************************************************************************
     |
     */
-    s3: {
+    /*s3: {
       driver: "s3",
       visibility: "public",
       key: Env.get("S3_KEY"),
@@ -103,7 +103,7 @@ export default driveConfig({
       endpoint: Env.get("S3_ENDPOINT"),
       //  // For minio to work
       //  // forcePathStyle: true,
-    },
+    },*/
 
     /*
     |--------------------------------------------------------------------------

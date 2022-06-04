@@ -24,7 +24,6 @@
     "@adonisjs/view",
     "@adonisjs/shield",
     "@adonisjs/lucid",
-    "@adonisjs/drive-s3"
   ],
   "metaFiles": [
     {
