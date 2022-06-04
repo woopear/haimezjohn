@@ -14,16 +14,13 @@ export default class Image extends BaseModel {
   public path: string;
 
   @column()
-  public hardskillId: number;
+  public hardskillId: number | null;
 
   @column()
-  public softskillId: number;
+  public softskillId: number | null;
 
-  @hasOne(() => Link)
-  public linkId: HasOne<typeof Link>;
-
-  @hasOne(() => Profil)
-  public profilId: HasOne<typeof Profil>;
+  @column()
+  public linkId: number | null;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;

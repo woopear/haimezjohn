@@ -1,17 +1,28 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
+import Image from "App/Models/Image";
 import Profil from "App/Models/Profil";
 import CreateProfilValidator from "App/Validators/CreateProfilValidator";
 import UpdateProfilValidator from "App/Validators/UpdateProfilValidator";
+import ImagesController from "./ImagesController";
 
 export default class ProfilsController {
   // page profil private
   public async displayProfilPrivate(ctx: HttpContextContract) {
     try {
       const { view } = ctx;
+      let imageProfil = {} as Image | null;
+      let profil = await Profil.first();
 
-      const profil = await Profil.first();
+      if (profil) {
+        const t = await profil.load("profilId");
+        console.log(t);
+      }
 
-      return view.render("private/profil", { profil, title: "Mon profil" });
+      return view.render("private/profil", {
+        profil,
+        imageProfil,
+        title: "Mon profil",
+      });
     } catch (error) {
       console.log(error);
     }
@@ -24,10 +35,20 @@ export default class ProfilsController {
       let payload = await request.validate(CreateProfilValidator);
 
       if (payload) {
-        // TODO si image creation image
-
         // create profil
-        await Profil.create({ ...payload });
+        const profil = await Profil.create({ ...payload });
+
+        // si image
+        if (request.file("profilImage")) {
+          const _image = await ImagesController.addImage(
+            ctx,
+            "profilImage",
+            "profil",
+            "profil_image"
+          );
+          // on affecte id image au profil
+          await profil.related("profilId").create(_image);
+        }
       }
 
       return response.redirect().back();

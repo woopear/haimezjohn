@@ -136,6 +136,10 @@
         stylediv: "mb-4"
         })
 
+        <!-- affiche image si profil en à une -->
+        @if(imageProfil)
+        <img width="300" height="300" src="{{imageProfil.path}}" />
+        @end
         <!-- btn submit -->
         @!btns.btn({text: textBtn, stylediv: "flex justify-end mt-12 mb-8", type: "submit"})
     </form>

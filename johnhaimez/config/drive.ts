@@ -66,7 +66,7 @@ export default driveConfig({
       |
       */
       serveFiles: true,
-
+      serveAssets: true,
       /*
       |--------------------------------------------------------------------------
       | Base path - Local driver only

@@ -8,8 +8,9 @@ export default class extends BaseSchema {
       table.increments("id").primary();
       table.string("name");
       table.text("path", "mediumtext");
-      table.integer("hardskills_id");
-      table.integer("softskills_id");
+      table.integer("link_id").unsigned().references("links.id");
+      table.integer("hardskill_id").unsigned().references("hardskills.id");
+      table.integer("softskill_id").unsigned().references("softskills.id");
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

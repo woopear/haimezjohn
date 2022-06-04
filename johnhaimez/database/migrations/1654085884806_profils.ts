@@ -17,7 +17,7 @@ export default class extends BaseSchema {
       table.string("title");
       table.string("copyright");
       table.text("description", "mediumtext");
-      table.integer("image_id");
+      table.integer("image_id").unsigned().references("images.id");
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

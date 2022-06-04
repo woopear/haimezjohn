@@ -13,7 +13,7 @@ export default class Hardskill extends BaseModel {
   public description: string;
 
   @hasMany(() => Image)
-  public imageId: HasMany<typeof Image>;
+  public images: HasMany<typeof Image>;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
