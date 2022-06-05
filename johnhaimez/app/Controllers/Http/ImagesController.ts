@@ -32,6 +32,33 @@ export default class ImagesController {
     return newImage;
   }
 
+  // ajoute plusieurs image en meme temps
+  public static async addManyImage(option: {
+    ctx: HttpContextContract;
+    nameInput: string;
+    location: string;
+  }): Promise<Image[]> {
+    const files = option.ctx.request.files(option.nameInput);
+    let tabImages: Image[] = [];
+
+    for (const file of files) {
+      // enregistre sur le disque dans le dossier public/uploads/"location"
+      await file?.move(Application.publicPath(`uploads/${option.location}`));
+      // recupere l'url
+      const url = await Drive.getUrl(`/${option.location}/${file.fileName}`);
+
+      // creation en bdd
+      const newImage = await Image.create({
+        name: `${file.fileName}`,
+        path: url,
+      });
+
+      tabImages.push(newImage);
+    }
+
+    return tabImages;
+  }
+
   // update image
   public static async updateImage(options: {
     ctx: HttpContextContract;

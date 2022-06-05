@@ -46,6 +46,7 @@ Route.group(() => {
     Route.post("/create", "HardskillsController.create");
     Route.post("/update/:id", "HardskillsController.update");
     Route.get("/delete/:id", "HardskillsController.delete");
+    Route.get("/deleteimage/:id", "HardskillsController.deleteImage");
   }).prefix("/hardskills");
 
   // soft skills

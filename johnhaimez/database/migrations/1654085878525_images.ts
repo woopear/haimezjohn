@@ -9,7 +9,11 @@ export default class extends BaseSchema {
       table.string("name");
       table.text("path", "mediumtext");
       table.integer("link_id").unsigned().references("links.id");
-      table.integer("hardskill_id").unsigned().references("hardskills.id");
+      table
+        .integer("hardskill_id")
+        .unsigned()
+        .references("hardskills.id")
+        .onDelete("cascade");
       table.integer("softskill_id").unsigned().references("softskills.id");
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

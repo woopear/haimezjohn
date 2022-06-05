@@ -1,6 +1,5 @@
 import { DateTime } from "luxon";
 import { BaseModel, column, HasOne, hasOne } from "@ioc:Adonis/Lucid/Orm";
-import Link from "./Link";
 import Profil from "./Profil";
 
 export default class Image extends BaseModel {
