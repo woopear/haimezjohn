@@ -7,7 +7,9 @@ import ImagesController from "./ImagesController";
 import Drive from "@ioc:Adonis/Core/Drive";
 
 export default class ProfilsController {
+  // enregistrement dans dossier profil
   private _location = "profil";
+  // nom de l'image
   private _nameImage = "profil_image";
 
   // page profil private
@@ -112,5 +114,28 @@ export default class ProfilsController {
     }
   }
 
-  // TODO delete image
+  // delete image profil
+  public async deleteImage(ctx: HttpContextContract) {
+    try {
+      const { params, response } = ctx;
+      const image = await Image.find(params.id);
+      const profil = await Profil.first();
+
+      // on supprime l'id sur le profil
+      await profil?.merge({ imageId: null }).save();
+
+      // on supprime l'image sur le disk + dans la bdd
+      if (image) {
+        await ImagesController.deleteImage({
+          image,
+          location: this._location,
+          nameImage: image.name,
+        });
+      }
+
+      return response.redirect().back();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

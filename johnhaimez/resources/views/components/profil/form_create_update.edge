@@ -138,7 +138,16 @@
 
         <!-- affiche image si profil en à une -->
         @if(imageProfil)
-        <img width="300" height="300" src="{{imageProfil.path}}" />
+        <div class="flex justify-start items-start">
+            <img width="300" height="300" src="{{imageProfil.path}}" />
+            @!btns.btnLien({
+            text: 'Supprimer',
+            stylediv: "ml-4",
+            href: route('ProfilsController.deleteImage',
+            {
+            id: imageProfil.id,
+            })})
+        </div>
         @end
         <!-- btn submit -->
         @!btns.btn({text: textBtn, stylediv: "flex justify-end mt-12 mb-8", type: "submit"})

@@ -22,6 +22,7 @@ Route.group(() => {
     Route.get("/", "ProfilsController.displayProfilPrivate");
     Route.post("/create", "ProfilsController.create");
     Route.post("/update/:id", "ProfilsController.update");
+    Route.get("/deleteimage/:id", "ProfilsController.deleteImage");
   }).prefix("/profil");
 
   // link

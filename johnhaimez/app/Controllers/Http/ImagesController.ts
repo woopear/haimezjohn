@@ -62,5 +62,15 @@ export default class ImagesController {
       .save();
   }
 
-  // TODO delete image
+  // delete image
+  public static async deleteImage(options: {
+    location: string;
+    nameImage: string;
+    image: Image;
+  }) {
+    // supprime ancienne image
+    await Drive.delete(`${options.location}/${options.nameImage}`);
+    // supprime image dans bdd
+    await options.image.delete();
+  }
 }
