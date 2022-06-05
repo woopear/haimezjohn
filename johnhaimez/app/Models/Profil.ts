@@ -45,8 +45,8 @@ export default class Profil extends BaseModel {
   @column()
   public copyright: string;
 
-  @hasOne(() => Image)
-  public profilId: HasOne<typeof Image>;
+  @column()
+  public imageId: number | null;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;

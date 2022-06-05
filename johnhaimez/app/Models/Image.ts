@@ -22,6 +22,9 @@ export default class Image extends BaseModel {
   @column()
   public linkId: number | null;
 
+  @hasOne(() => Profil)
+  public profil: HasOne<typeof Profil>;
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
 
