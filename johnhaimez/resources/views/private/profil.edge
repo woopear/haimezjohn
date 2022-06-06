@@ -17,11 +17,8 @@ imageProfil: imageProfil,
 textBtn: 'Modifier mon profil',
 upSubmit: "up-submit",
 upTarget: "up-target=[main-private]",
-pathRoute: route('ProfilsController.update', { id: profil.id }, {
-qs: {
-_method: 'PUT'
-}
-}),
+pathRoute: route('ProfilsController.update', { id: profil.id }),
+newMethod: '?_method=PUT',
 method: "POST"
 })
 @else

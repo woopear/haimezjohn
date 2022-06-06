@@ -1,9 +1,7 @@
 import Route from "@ioc:Adonis/Core/Route";
 
 // page home
-Route.get("/", async ({ view }) => {
-  return view.render("home");
-});
+Route.get("/", "HomeController.showHome");
 
 // page connexion user admin
 Route.get("/adonis-admin", "AuthController.showLogin").middleware([
@@ -30,7 +28,7 @@ Route.group(() => {
   Route.group(() => {
     Route.get("/", "ProfilsController.displayProfilPrivate");
     Route.post("/create", "ProfilsController.create");
-    Route.post("/update/:id", "ProfilsController.update");
+    Route.put("/update/:id", "ProfilsController.update");
     Route.get("/deleteimage/:id", "ProfilsController.deleteImage");
   }).prefix("/profil");
 
@@ -47,7 +45,7 @@ Route.group(() => {
   Route.group(() => {
     Route.get("/", "CompetencesController.displayCompetencePrivate");
     Route.post("/create", "CompetencesController.create");
-    Route.post("/update", "CompetencesController.update");
+    Route.put("/update", "CompetencesController.update");
     Route.get("/deletefile/:id", "CompetencesController.deleteFile");
   }).prefix("/competence");
 

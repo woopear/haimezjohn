@@ -1,6 +1,9 @@
 @layout('layouts/main_public')
-@set('title', 'mon titre')
+@set('title', title)
 
 @section('main-public')
-<p class="active-mode-dark">home</p>
+@!sectionPublic.profil({profil: profil})
+@!sectionPublic.competence({competence: competence, hardskills: hardskills, softskills: softskills})
+@!sectionPublic.portfolio({portfolio: portfolio, projects: projects})
+@!sectionPublic.contact({contact: contact})
 @end

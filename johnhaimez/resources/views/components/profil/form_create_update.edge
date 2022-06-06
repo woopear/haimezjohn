@@ -4,7 +4,7 @@
     @boxs.box()
     <!-- title de la box formulaire -->
     @!titles.titleBox({title: title})
-    <form {{upSubmit}} {{upTarget}} class="mt-8" action="{{pathRoute}}" method="{{method}}"
+    <form {{upSubmit}} {{upTarget}} class="mt-8" action="{{pathRoute}}{{newMethod}}" method="{{method}}"
         enctype="multipart/form-data">
         {{ csrfField() }}
         <!-- sous titre formulaire -->

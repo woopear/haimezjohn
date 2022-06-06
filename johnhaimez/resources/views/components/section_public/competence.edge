@@ -1,0 +1,58 @@
+@if(competence || hardskills || softskills)
+@sections.sectionColor({})
+<!-- title de la partie competence -->
+@!titles.titleSectionPublic({title: competence.title})
+
+<!-- description -->
+<p class="lg:w-6/12 md:mt-4 text-lg md:text-2xl font-thin">{{competence.description ? competence.description : ''}}</p>
+
+<!-- btn telecharger cv -->
+@!btns.btnText({
+text: "Voir mon cv",
+href: competence.images.path,
+target: "_blank",
+stylediv: "mt-4"
+})
+
+<!-- hardskills -->
+@!titles.titleForm({title: "Mes HardSkills", color: "text-red-600 ml-2 mt-8 md:mt-20 mb-2"})
+<div class="flex flex-wrap md:flex-nowrap justify-center mx-auto">
+    @each((item, index) in hardskills)
+    @boxs.box({width: "md:w-1/2 mt-2 md:mt-0 md:mx-2 flex flex-col"})
+    <!-- images -->
+    <div class="mb-8 flex">
+        @each((image, index) in item.images)
+        <img class="mr-4 rounded-full" width="70" height="70" src="{{image.path}}" />
+        @end
+    </div>
+    <!-- title -->
+    @!titles.titleBox({title: item.title})
+    <!-- description -->
+    <p class="mt-4 md:mt-8 text-xl font-light w-11/12 xl:w-8/12 flex-1">{{item.description}}</p>
+    @end
+    @end
+</div>
+
+<!-- softskills -->
+@!titles.titleForm({title: "Mes SoftSkills", color: "text-red-600 ml-2 mt-8 md:mt-20 mb-2"})
+<div class="flex flex-wrap justify-evenly mx-auto w-full">
+    @each((item, index) in softskills)
+    @boxs.box({width: "flex flex-col min-w-[100%] md:min-w-[43%] lg:min-w-[80%] xl:min-w-[43%] max-w-[45%] m-2"})
+    <!-- images -->
+    <div class="w-fit mb-8 flex justify-start">
+        @each((image, index) in item.images)
+        <div class="bg-cover mr-4 rounded-full w-20 h-20" style="background-image: url({{image.path}})"></div>
+        @end
+    </div>
+    <!-- title -->
+    @!titles.titleBox({title: item.title})
+    <!-- description -->
+    <p class="mt-4 md:mt-8 text-xl font-light">{{item.description}}</p>
+    @end
+    @end
+</div>
+
+@end
+@else
+<p>Aucune competence</p>
+@end
