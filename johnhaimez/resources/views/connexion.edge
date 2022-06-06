@@ -1,0 +1,29 @@
+@layout('layouts/main_public')
+@set('title', 'mon titre')
+
+@section('main-public')
+<div class="p-4 md:p-8">
+    @boxs.box({width: "md:w-7/12 lg:w-6/12 xl:w-5/12 m-auto" })
+    <div class="flex flex-col items-center">
+        @!titles.titleBox({title: "Connexion admin"})
+        <form class="mt-12">
+            @!inputs.input({
+            placeholder: 'Email',
+            name: 'email',
+            type: 'text',
+            oldValue: '',
+            })
+
+            @!inputs.input({
+            placeholder: 'Mot de passe',
+            name: 'password',
+            type: 'password',
+            oldValue: '',
+            })
+
+            @!btns.btn({text: "Se connecter", stylediv: "flex justify-end"})
+        </form>
+    </div>
+    @end
+</div>
+@end

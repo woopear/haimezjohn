@@ -6,9 +6,11 @@ Route.get("/", async ({ view }) => {
 });
 
 // connexion user admin
-Route.get("/adonis-admin", () => {
-  return { coucou: "coucou" };
+Route.get("/adonis-admin", ({ view }) => {
+  return view.render("connexion");
 });
+
+Route.get("/connexion", () => {});
 
 // private route
 Route.group(() => {
