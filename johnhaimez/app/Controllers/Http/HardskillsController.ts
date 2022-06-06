@@ -83,9 +83,19 @@ export default class HardskillsController {
     try {
       const { response, params } = ctx;
       const deleteHardskill = await Hardskill.find(params.id);
+      await deleteHardskill?.load("images");
 
-      // TODO delete tous les images si il y en a
-      // TODO voir migration
+      // si images on supprime les images sur le disk
+      // dans la bdd tous est supprimer auto avec option cascade
+      if (deleteHardskill?.images) {
+        for (const image of deleteHardskill.images) {
+          await ImagesController.deleteImage({
+            location: "hardskills",
+            image: image,
+            nameImage: image.name,
+          });
+        }
+      }
 
       await deleteHardskill?.delete();
 
@@ -95,7 +105,7 @@ export default class HardskillsController {
     }
   }
 
-  // ajouter une image
+  // supprimer une image
   public async deleteImage(ctx: HttpContextContract) {
     try {
       const { response, params } = ctx;

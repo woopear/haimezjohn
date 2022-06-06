@@ -8,13 +8,21 @@ export default class extends BaseSchema {
       table.increments("id").primary();
       table.string("name");
       table.text("path", "mediumtext");
-      table.integer("link_id").unsigned().references("links.id");
+      table
+        .integer("link_id")
+        .unsigned()
+        .references("links.id")
+        .onDelete("CASCADE");
       table
         .integer("hardskill_id")
         .unsigned()
         .references("hardskills.id")
-        .onDelete("cascade");
-      table.integer("softskill_id").unsigned().references("softskills.id");
+        .onDelete("CASCADE");
+      table
+        .integer("softskill_id")
+        .unsigned()
+        .references("softskills.id")
+        .onDelete("CASCADE");
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
