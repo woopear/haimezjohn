@@ -21,6 +21,9 @@ export default class Image extends BaseModel {
   @column()
   public linkId: number | null;
 
+  @column()
+  public competenceId: number | null;
+
   @hasOne(() => Profil)
   public profil: HasOne<typeof Profil>;
 

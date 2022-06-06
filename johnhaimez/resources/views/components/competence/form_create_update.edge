@@ -34,9 +34,34 @@
         placeholder: "CV des compétences",
         type: 'file',
         required: false,
-        name: 'competenceCv',
+        name: 'fileInput',
         stylediv: "mb-4"
         })
+
+        <!-- affiche cv si il existe -->
+        @if(competence.images)
+        @!btns.btnLien({
+        text: "Supprimer",
+        href: route('CompetencesController.deleteFile',
+        {id: competence.images.id})
+        })
+        <div>
+            @!btns.btnText({
+            text: "Voir mon cv",
+            href: competence.images.path,
+            target: "_blank",
+            stylediv: "mt-4"
+            })
+            @!btns.btnText({
+            text: "Télécharger mon cv",
+            href: competence.images.path,
+            download: true,
+            stylediv: "mt-4 mb-12"
+            })
+        </div>
+        @else
+        @!titles.titleForm({title: 'aucun cv'})
+        @end
 
         <!-- btn sub -->
         @!btns.btn({text: textBtn, stylediv: "flex justify-end mt-12 mb-8", type: "submit"})

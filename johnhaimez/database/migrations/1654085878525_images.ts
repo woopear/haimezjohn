@@ -23,6 +23,11 @@ export default class extends BaseSchema {
         .unsigned()
         .references("softskills.id")
         .onDelete("CASCADE");
+      table
+        .integer("competence_id")
+        .unsigned()
+        .references("competences.id")
+        .onDelete("CASCADE");
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

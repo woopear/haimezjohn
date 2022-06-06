@@ -39,6 +39,7 @@ Route.group(() => {
     Route.get("/", "CompetencesController.displayCompetencePrivate");
     Route.post("/create", "CompetencesController.create");
     Route.post("/update", "CompetencesController.update");
+    Route.get("/deletefile/:id", "CompetencesController.deleteFile");
   }).prefix("/competence");
 
   // hard skills

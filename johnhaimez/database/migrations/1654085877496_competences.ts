@@ -8,7 +8,6 @@ export default class extends BaseSchema {
       table.increments("id").primary();
       table.string("title");
       table.text("description", "mediumtext");
-      table.integer("file_id");
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
