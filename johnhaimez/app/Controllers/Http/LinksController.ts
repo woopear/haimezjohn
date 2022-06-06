@@ -1,18 +1,23 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
+import Image from "App/Models/Image";
 import Link from "App/Models/Link";
 import CreateLinkValidator from "App/Validators/CreateLinkValidator";
 import UpdateLinkValidator from "App/Validators/UpdateLinkValidator";
+import ImagesController from "./ImagesController";
+import Drive from "@ioc:Adonis/Core/Drive";
 
 export default class LinksController {
+  private _nameInput = "fileInput";
+  private _location = "links";
+  private _nameImage = "link-";
+
   // affiche les liens dans la page link private
   public async displayLinkPrivate(ctx: HttpContextContract) {
     try {
-      const { view } = ctx;
-
       // recupere tous les links
-      const links = await Link.all();
+      const links = await Link.query().preload("images");
 
-      return view.render("private/links", { links, title: "Mes liens" });
+      return ctx.view.render("private/links", { links, title: "Mes liens" });
     } catch (error) {
       console.log(error);
     }
@@ -25,10 +30,21 @@ export default class LinksController {
       const payload = await request.validate(CreateLinkValidator);
 
       if (payload) {
-        // Todo gere l'image creation
-
         // creation link en bdd
-        await Link.create({ ...payload });
+        const link = await Link.create({ ...payload });
+
+        // si image dans input creation image
+        if (request.file(this._nameInput)) {
+          const image = await ImagesController.addImage({
+            ctx,
+            location: this._location,
+            nameInput: this._nameInput,
+            name: `${this._nameImage}${link.id}`,
+          });
+
+          // on relie l'image téléchargé au link créé
+          await link.related("images").create(image);
+        }
       }
 
       return response.redirect().back();
@@ -42,10 +58,37 @@ export default class LinksController {
     try {
       const { response, request, params } = ctx;
       let updateLink = await Link.find(params.id);
+      await updateLink?.load("images");
       const payload = await request.validate(UpdateLinkValidator);
 
       if (payload) {
-        // Todo gerer modification image
+        // si image est deja dans link
+        // sinon on créé image
+        if (updateLink?.images) {
+          // on supprime l'ancien image sur le disk
+          await Drive.delete(`${this._location}/${updateLink.images.name}`);
+          // on modifie image
+          await ImagesController.updateImage({
+            ctx,
+            image: updateLink?.images,
+            location: this._location,
+            nameInput: this._nameInput,
+            name: `${this._nameImage}${updateLink.id}`,
+          });
+        } else {
+          // si image dans input creation image
+          if (request.file(this._nameInput)) {
+            const image = await ImagesController.addImage({
+              ctx,
+              location: this._location,
+              nameInput: this._nameInput,
+              name: `${this._nameImage}${updateLink?.id}`,
+            });
+
+            // on relie l'image téléchargé au link créé
+            await updateLink?.related("images").create(image);
+          }
+        }
 
         // update link
         if (updateLink) {
@@ -58,14 +101,44 @@ export default class LinksController {
     }
   }
 
+  // delete link
   public async deleteOne(ctx: HttpContextContract) {
     try {
       const { response, params } = ctx;
+      const deleteLink = await Link.find(params.id);
+      await deleteLink?.load("images");
 
-      // si id reçus
-      if (params.id) {
-        // Todo gerer la suppression d'image
-        await (await Link.findOrFail(params.id)).delete();
+      // si images on supprime les images sur le disk
+      // dans la bdd tous est supprimer auto avec option cascade
+      if (deleteLink?.images) {
+        await ImagesController.deleteImage({
+          location: this._location,
+          image: deleteLink?.images,
+          nameImage: deleteLink?.images.name,
+        });
+      }
+
+      await deleteLink?.delete();
+
+      return response.redirect().back();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // delete image
+  public async deleteImage(ctx: HttpContextContract) {
+    try {
+      const { response, params } = ctx;
+      const image = await Image.find(params.id);
+
+      // si image existe on delete
+      if (image) {
+        await ImagesController.deleteImage({
+          image: image,
+          location: this._location,
+          nameImage: image?.name,
+        });
       }
 
       return response.redirect().back();

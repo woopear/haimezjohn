@@ -1,5 +1,5 @@
 import { DateTime } from "luxon";
-import { BaseModel, column, HasMany, hasMany } from "@ioc:Adonis/Lucid/Orm";
+import { BaseModel, column, HasOne, hasOne } from "@ioc:Adonis/Lucid/Orm";
 import Image from "./Image";
 
 export default class Link extends BaseModel {
@@ -12,8 +12,8 @@ export default class Link extends BaseModel {
   @column()
   public path: string;
 
-  @hasMany(() => Image)
-  public images: HasMany<typeof Image>;
+  @hasOne(() => Image)
+  public images: HasOne<typeof Image>;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;

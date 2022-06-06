@@ -31,6 +31,7 @@ Route.group(() => {
     Route.post("/create", "LinksController.create");
     Route.post("/update/:id", "LinksController.update");
     Route.get("/delete/:id", "LinksController.deleteOne");
+    Route.get("/deleteimage/:id", "LinksController.deleteImage");
   }).prefix("/links");
 
   // competence

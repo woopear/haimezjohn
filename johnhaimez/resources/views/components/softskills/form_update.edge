@@ -34,7 +34,7 @@
 
     <!-- affiche toute les images + btn delete image -->
     @if(item.images)
-    @!titles.titleForm({title: 'Image du hardskill : '})
+    @!titles.titleForm({title: 'Image du softskill : '})
     <div class="flex mt-8 mb-12 flex-wrap">
         @each((image, index )in item.images)
         <img width="70" height="70" src="{{image.path}}" class="mb-12" />
