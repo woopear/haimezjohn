@@ -28,6 +28,15 @@
             stylediv: "mb-4"
             })
 
+            <!-- input multiple image -->
+            @!inputs.groupeInput({
+            text: 'Télécharger des images :',
+            type: 'file',
+            name: 'fileInput',
+            multiple: true,
+            required: false,
+            })
+
             <div class="flex justify-end mt-8">
                 @!btns.btn({text: 'Enregistrer', type: "submit"})
             </div>

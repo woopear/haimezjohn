@@ -6,6 +6,9 @@ import UpdateHardskillValidator from "App/Validators/UpdateHardskillValidator";
 import ImagesController from "./ImagesController";
 
 export default class HardskillsController {
+  private _nameInput = "fileInput";
+  private _location = "hardskills";
+
   // recupere et affiche les hardskill pour la partie private
   public async displayHardskillPrivate(ctx: HttpContextContract) {
     try {
@@ -34,8 +37,8 @@ export default class HardskillsController {
       if (request.files("fileInput")) {
         const images = await ImagesController.addManyImage({
           ctx,
-          nameInput: "fileInput",
-          location: "hardskills",
+          nameInput: this._nameInput,
+          location: this._location,
         });
 
         for (const image of images) {
@@ -63,8 +66,8 @@ export default class HardskillsController {
       if (request.files("fileInput")) {
         const images = await ImagesController.addManyImage({
           ctx,
-          nameInput: "fileInput",
-          location: "hardskills",
+          nameInput: this._nameInput,
+          location: this._location,
         });
 
         for (const image of images) {
@@ -90,7 +93,7 @@ export default class HardskillsController {
       if (deleteHardskill?.images) {
         for (const image of deleteHardskill.images) {
           await ImagesController.deleteImage({
-            location: "hardskills",
+            location: this._location,
             image: image,
             nameImage: image.name,
           });
@@ -115,7 +118,7 @@ export default class HardskillsController {
       if (image) {
         await ImagesController.deleteImage({
           image: image,
-          location: "hardskills",
+          location: this._location,
           nameImage: image?.name,
         });
       }

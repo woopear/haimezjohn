@@ -55,6 +55,7 @@ Route.group(() => {
     Route.post("/create", "SoftskillsController.create");
     Route.post("/update/:id", "SoftskillsController.update");
     Route.get("/delete/:id", "SoftskillsController.delete");
+    Route.get("/deleteimage/:id", "SoftskillsController.deleteImage");
   }).prefix("/softskills");
 
   // portfolio
