@@ -6,6 +6,7 @@
     @!titles.titleBox({title: title})
     <form {{upSubmit}} {{upTarget}} class="mt-8" action="{{pathRoute}}" method="{{method}}"
         enctype="multipart/form-data">
+        {{ csrfField() }}
         <!-- input title -->
         @!inputs.groupeInput({
         text: 'Titre de la partie compétence* : ',
@@ -39,6 +40,7 @@
         })
 
         <!-- affiche cv si il existe -->
+        @if(competence)
         @if(competence.images)
         @!btns.btnLien({
         text: "Supprimer",
@@ -62,6 +64,8 @@
         @else
         @!titles.titleForm({title: 'aucun cv'})
         @end
+        @end
+
 
         <!-- btn sub -->
         @!btns.btn({text: textBtn, stylediv: "flex justify-end mt-12 mb-8", type: "submit"})

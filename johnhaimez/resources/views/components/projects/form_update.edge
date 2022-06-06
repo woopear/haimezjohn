@@ -18,6 +18,8 @@
     }
     })}}" method="POST" enctype="multipart/form-data">
 
+    {{ csrfField() }}
+
     <!-- titre du projet -->
     @!inputs.groupeInput({
     text: 'Titre* : ',

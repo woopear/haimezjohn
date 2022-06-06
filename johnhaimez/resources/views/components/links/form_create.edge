@@ -5,6 +5,7 @@
     </div>
     <div x-show="open">
         <form class="mt-8" action="{{route('LinksController.create')}}" method="POST" enctype="multipart/form-data">
+            {{ csrfField() }}
             <!-- libelle du lien -->
             @!inputs.groupeInput({
             text: 'Libelle* : ',

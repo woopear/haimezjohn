@@ -7,6 +7,7 @@
     <div x-show="open">
         <form id="#createhardskill" up-submit up-target="[main-private]" class="mt-8"
             action="{{route('HardskillsController.create')}}" method="POST" enctype="multipart/form-data">
+            {{ csrfField() }}
             <!-- title  -->
             @!inputs.groupeInput({
             text: 'Titre* : ',

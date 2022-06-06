@@ -3,7 +3,7 @@
     _method: 'PUT'
     }
     })}}" method="POST" enctype="multipart/form-data">
-
+    {{ csrfField() }}
     <!-- titre du softskill -->
     @!inputs.groupeInput({
     text: 'Titre* : ',

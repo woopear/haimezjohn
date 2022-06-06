@@ -6,6 +6,7 @@
     @!titles.titleBox({title: title})
     <form {{upSubmit}} {{upTarget}} class="mt-8" action="{{pathRoute}}" method="{{method}}"
         enctype="multipart/form-data">
+        {{ csrfField() }}
         <!-- sous titre formulaire -->
         <div class="mb-4 mt-8">
             @!titles.titleForm({title: 'Partie personnelle'})

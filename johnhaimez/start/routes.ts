@@ -1,16 +1,23 @@
 import Route from "@ioc:Adonis/Core/Route";
 
-// home
+// page home
 Route.get("/", async ({ view }) => {
   return view.render("home");
 });
 
-// connexion user admin
-Route.get("/adonis-admin", ({ view }) => {
-  return view.render("connexion");
-});
-
-Route.get("/connexion", () => {});
+// page connexion user admin
+Route.get("/adonis-admin", "AuthController.showLogin").middleware([
+  "silentAuth",
+]);
+// page création user
+// !Attention décommenter pour creer un user
+//Route.on("/adonis-register").render("register");
+// formulaire de connexion
+Route.post("/connexion", "AuthController.login");
+// deconnexion
+Route.delete("/disconnect", "AuthController.logout");
+// register user
+Route.post("/register", "AuthController.register");
 
 // private route
 Route.group(() => {
@@ -86,4 +93,6 @@ Route.group(() => {
 
   // conditions generales
   // mentions-legale
-}).prefix("/private");
+})
+  .prefix("/private")
+  .middleware(["auth"]);

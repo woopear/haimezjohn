@@ -5,6 +5,7 @@
     </div>
     <form x-show="open" class="mt-8" action="{{route('ProjectsController.create')}}" method="POST"
         enctype="multipart/form-data">
+        {{ csrfField() }}
         <!-- title du projet -->
         @!inputs.groupeInput({
         text: 'Titre du projet* : ',

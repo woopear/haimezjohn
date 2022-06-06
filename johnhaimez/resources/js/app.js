@@ -6,4 +6,4 @@ import "./dark_mode";
 window.Alpine = Alpine;
 Alpine.start();
 
-up.form.config.submitSelectors.push(["form"]);
+//up.form.config.submitSelectors.push(["form"]);

@@ -1,6 +1,7 @@
 @boxs.box({width: "lg:w-9/12 xl:w-7/12 mx-auto mt-12"})
 @!titles.titleBox({title: title})
 <form {{upSubmit}} {{upTarget}} class="mt-12" action="{{pathRoute}}" method="{{method}}" enctype="multipart/form-data">
+    {{ csrfField() }}
     <!-- input title -->
     @!inputs.groupeInput({
     text: 'Titre* : ',

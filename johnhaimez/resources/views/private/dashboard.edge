@@ -5,5 +5,8 @@
 <!-- titre de la page -->
 <div class="text-center active-mode-dark">
     @!titles.titlePageAdmin({title: 'Tableau de bord'})
+    @if(auth.user)
+    <p>Vous êtes bien connecté</p>
+    @end
 </div>
 @end
