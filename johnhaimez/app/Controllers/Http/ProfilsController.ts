@@ -53,6 +53,9 @@ export default class ProfilsController {
           const profil = await Profil.create({ ...payload });
           // on affecte id image au profil
           await _image.related("profil").create(profil);
+        } else {
+          // create profil
+          await Profil.create({ ...payload });
         }
       }
 
