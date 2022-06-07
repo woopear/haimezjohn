@@ -3,14 +3,17 @@ import Route from "@ioc:Adonis/Core/Route";
 // page home
 Route.get("/", "HomeController.showHome");
 
+// envoie mail contact
+Route.post("contact-mail", "HomeController.sendMailContact");
+
+/* !Attention décommenter pour creer un user
+Route.on("/adonis-register").render("register");*/
+
 // page connexion user admin
 Route.get("/adonis-admin", "AuthController.showLogin").middleware([
   "silentAuth",
 ]);
-// page création user
-// !Attention décommenter pour creer un user
-//Route.on("/adonis-register").render("register");
-// formulaire de connexion
+// formulaire de demande de connexion
 Route.post("/connexion", "AuthController.login");
 // deconnexion
 Route.delete("/disconnect", "AuthController.logout");

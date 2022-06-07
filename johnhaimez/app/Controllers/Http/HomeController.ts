@@ -1,8 +1,9 @@
+import Mail from "@ioc:Adonis/Addons/Mail";
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Competence from "App/Models/Competence";
 import Contact from "App/Models/Contact";
 import Hardskill from "App/Models/Hardskill";
-
+import Env from "@ioc:Adonis/Core/Env";
 import Image from "App/Models/Image";
 import Link from "App/Models/Link";
 import Portfolio from "App/Models/Portfolio";
@@ -53,5 +54,31 @@ export default class HomeController {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  /**
+   * sendMailContact
+   * envoie d'email de contact à john haimez
+   */
+  public async sendMailContact({ response, request }: HttpContextContract) {
+    const { user, userEmail, userMessage } = request.only([
+      "user",
+      "userEmail",
+      "userMessage",
+    ]);
+
+    await Mail.sendLater((message) => {
+      message
+        .from(Env.get("ADDRESSE_EMAIL_EVOIE_MAIL"))
+        .to(`${userEmail}`)
+        .subject("Contact site john haimez")
+        .htmlView("email/contact", {
+          user: user,
+          userEmail: userEmail,
+          message: userMessage,
+        });
+    });
+
+    return response.redirect().back();
   }
 }

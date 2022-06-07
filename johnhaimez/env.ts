@@ -29,4 +29,11 @@ export default Env.rules({
   PG_PASSWORD: Env.schema.string.optional(),
   PG_DB_NAME: Env.schema.string(),
   URL_PUBLIC_IMAGE: Env.schema.string(),
+  MAILGUN_API_KEY: Env.schema.string(),
+  MAILGUN_DOMAIN: Env.schema.string(),
+  SMTP_HOST: Env.schema.string({ format: "host" }),
+  SMTP_PORT: Env.schema.number(),
+  SMTP_USERNAME: Env.schema.string(),
+  SMTP_PASSWORD: Env.schema.string(),
+  ADDRESSE_EMAIL_EVOIE_MAIL: Env.schema.string(),
 });
