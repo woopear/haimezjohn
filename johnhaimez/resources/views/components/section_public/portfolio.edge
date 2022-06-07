@@ -16,8 +16,8 @@
     <!-- description -->
     <p class="flex-1 md:mt-4 text-lg md:text-2xl font-thin">{{item.description ? item.description : ''}}</p>
 
-    @!btns.btnText({text: 'Voir le site', href: item.path, stylediv: "mt-8 mb-4"})
-    @!btns.btnText({text: 'Repo GitHub', href: item.githubpath})
+    @!btns.btnText({text: 'Voir le site', href: item.path, stylediv: "mt-8 mb-4", target: "_blank"})
+    @!btns.btnText({text: 'Repo GitHub', href: item.githubpath, target: "_blank"})
     @end
     @end
 </div>
