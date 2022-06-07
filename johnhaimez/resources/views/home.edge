@@ -2,7 +2,7 @@
 @set('title', title)
 
 @section('main-public')
-@!sectionPublic.profil({profil: profil})
+@!sectionPublic.profil({profil: profil, links: links})
 @!sectionPublic.competence({competence: competence, hardskills: hardskills, softskills: softskills})
 @!sectionPublic.portfolio({portfolio: portfolio, projects: projects})
 @!sectionPublic.contact({contact: contact, profil: profil,})

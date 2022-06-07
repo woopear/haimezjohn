@@ -15,6 +15,9 @@
     <!-- description -->
     <p class="md:mt-4 text-lg md:text-2xl font-thin">{{profil.description ? profil.description : ''}}
     </p>
+
+    <!-- links -->
+    @!sectionPublic.link({links: links})
 </section>
 @else
 <p>Aucun profil</p>
