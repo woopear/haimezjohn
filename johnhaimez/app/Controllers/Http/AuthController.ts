@@ -1,4 +1,5 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
+import Profil from "App/Models/Profil";
 import User from "App/Models/User";
 
 export default class AuthController {
@@ -7,10 +8,12 @@ export default class AuthController {
    * affiche la page de connexion admin du site
    */
   public async showLogin({ view, auth, response }: HttpContextContract) {
+    const profil = await Profil.first();
+
     if (auth.user) {
       return response.redirect("private");
     }
-    return view.render("connexion", { title: "Connexion admin" });
+    return view.render("connexion", { title: "Connexion admin", profil });
   }
 
   /**
