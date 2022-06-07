@@ -6,8 +6,8 @@ Route.get("/", "HomeController.showHome");
 // envoie mail contact
 Route.post("contact-mail", "HomeController.sendMailContact");
 
-/* !Attention décommenter pour creer un user
-Route.on("/adonis-register").render("register");*/
+// !Attention décommenter pour creer un user
+Route.on("/adonis-register").render("register");
 
 // page connexion user admin
 Route.get("/adonis-admin", "AuthController.showLogin").middleware([
