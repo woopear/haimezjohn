@@ -10,7 +10,7 @@ export default class AuthController {
     if (auth.user) {
       return response.redirect("private");
     }
-    return view.render("connexion");
+    return view.render("connexion", { title: "Connexion admin" });
   }
 
   /**
