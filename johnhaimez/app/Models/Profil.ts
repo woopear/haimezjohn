@@ -1,12 +1,5 @@
 import { DateTime } from "luxon";
-import {
-  BaseModel,
-  beforeSave,
-  column,
-  HasOne,
-  hasOne,
-} from "@ioc:Adonis/Lucid/Orm";
-import Image from "./Image";
+import { BaseModel, beforeSave, column } from "@ioc:Adonis/Lucid/Orm";
 
 export default class Profil extends BaseModel {
   @column({ isPrimary: true })
