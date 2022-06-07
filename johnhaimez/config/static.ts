@@ -5,7 +5,7 @@
  * file.
  */
 
-import { AssetsConfig } from '@ioc:Adonis/Core/Static'
+import { AssetsConfig } from "@ioc:Adonis/Core/Static";
 
 const staticConfig: AssetsConfig = {
   /*
@@ -36,7 +36,7 @@ const staticConfig: AssetsConfig = {
   | - allow: Serve the file contents
   |
   */
-  dotFiles: 'ignore',
+  dotFiles: "ignore",
 
   /*
   |--------------------------------------------------------------------------
@@ -66,7 +66,7 @@ const staticConfig: AssetsConfig = {
   |--------------------------------------------------------------------------
   |
   | Set the value for the max-age directive. Set a higher value in production
-  | if you fingerprint your assets.
+  | if you fingerprint your assets. value prod = '365d'
   |
   | Learn more: https://docs.adonisjs.com/guides/deployment#serving-static-assets
   |
@@ -80,10 +80,10 @@ const staticConfig: AssetsConfig = {
   |
   | Set the immutable directive. Set it to `true` if the assets are generated
   | with a fingerprint. In others words the file name changes when the file
-  | contents change.
+  | contents change. value prod = true
   |
   */
   immutable: false,
-}
+};
 
-export default staticConfig
+export default staticConfig;
