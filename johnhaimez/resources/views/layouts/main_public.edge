@@ -14,6 +14,27 @@
     <!-- header -->
     @include('partials/header')
 
+    <!-- btn float -->
+    <div class="fixed bottom-16 right-10 flex">
+        <!-- btn mode dark -->
+        <div
+            class="cursor-pointer active-mode-dark bg-white hover:bg-fd2 hover:text-white dark:bg-black dark:hover:bg-fdb p-4 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+            </svg>
+        </div>
+        <!-- btn return up -->
+        <div
+            class="cursor-pointer active-mode-dark ml-4 bg-white hover:bg-fd2 hover:text-white dark:bg-black dark:hover:bg-fdb p-4 rounded-full">
+            <a href="#up">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
     <!-- main -->
     <main class="grow" main-public>
         @!section('main-public')
