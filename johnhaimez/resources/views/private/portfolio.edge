@@ -16,7 +16,7 @@ upSubmit: "up-submit",
 upTarget: "up-target=[main-private]",
 portfolio: portfolio,
 pathRoute: route('PortfoliosController.update', {id: portfolio.id}),
-newMethod: ?_method=Put,
+newMethod: '?_method=Put',
 method: "POST"
 })
 @else
@@ -27,6 +27,7 @@ textBtn: 'Créer le portfolio',
 upSubmit: "up-submit",
 upTarget: "up-target=[main-private]",
 pathRoute: route('PortfoliosController.create'),
+newMethod: '?_method=POST',
 method: "POST"
 })
 

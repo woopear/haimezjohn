@@ -7,12 +7,14 @@
 <p class="lg:w-6/12 md:mt-4 text-lg md:text-2xl font-thin">{{competence.description ? competence.description : ''}}</p>
 
 <!-- btn telecharger cv -->
+@if(competence.images)
 @!btns.btnText({
 text: "Voir mon cv",
 href: competence.images.path,
 target: "_blank",
 stylediv: "mt-4"
 })
+@end
 
 <!-- hardskills -->
 @!titles.titleForm({title: "HardSkills", color: "text-red-600 ml-2 mt-8 md:mt-20 mb-2"})
