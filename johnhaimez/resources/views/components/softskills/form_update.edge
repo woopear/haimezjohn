@@ -1,8 +1,5 @@
-<form class="mt-8" action="{{route('SoftskillsController.update', { id: item.id }, {
-    qs: {
-    _method: 'PUT'
-    }
-    })}}" method="POST" enctype="multipart/form-data">
+<form class="mt-8" action="{{route('SoftskillsController.update', { id: item.id })}}?_method=Put" method="POST"
+    enctype="multipart/form-data">
     {{ csrfField() }}
     <!-- titre du softskill -->
     @!inputs.groupeInput({

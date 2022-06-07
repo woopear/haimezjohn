@@ -5,11 +5,8 @@
             @!btns.btn({text: 'Supprimer le lien', stylediv: "ml-4"})
         </a>
     </div>
-    <form up-submit up-target="[main-private]" action="{{route('LinksController.update', { id: link.id }, {
-    qs: {
-    _method: 'PUT'
-    }
-    })}}" method="POST" enctype="multipart/form-data">
+    <form up-submit up-target="[main-private]" action="{{route('LinksController.update', { id: link.id })}}?_method=PUT"
+        method="POST" enctype="multipart/form-data">
 
         {{ csrfField() }}
         <!-- libelle du lien -->

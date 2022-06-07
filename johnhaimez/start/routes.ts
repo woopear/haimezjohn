@@ -36,7 +36,7 @@ Route.group(() => {
   Route.group(() => {
     Route.get("/", "LinksController.displayLinkPrivate");
     Route.post("/create", "LinksController.create");
-    Route.post("/update/:id", "LinksController.update");
+    Route.put("/update/:id", "LinksController.update");
     Route.get("/delete/:id", "LinksController.deleteOne");
     Route.get("/deleteimage/:id", "LinksController.deleteImage");
   }).prefix("/links");
@@ -53,7 +53,7 @@ Route.group(() => {
   Route.group(() => {
     Route.get("/", "HardskillsController.displayHardskillPrivate");
     Route.post("/create", "HardskillsController.create");
-    Route.post("/update/:id", "HardskillsController.update");
+    Route.put("/update/:id", "HardskillsController.update");
     Route.get("/delete/:id", "HardskillsController.delete");
     Route.get("/deleteimage/:id", "HardskillsController.deleteImage");
   }).prefix("/hardskills");
@@ -62,7 +62,7 @@ Route.group(() => {
   Route.group(() => {
     Route.get("/", "SoftskillsController.displaySoftskillPrivate");
     Route.post("/create", "SoftskillsController.create");
-    Route.post("/update/:id", "SoftskillsController.update");
+    Route.put("/update/:id", "SoftskillsController.update");
     Route.get("/delete/:id", "SoftskillsController.delete");
     Route.get("/deleteimage/:id", "SoftskillsController.deleteImage");
   }).prefix("/softskills");
@@ -71,14 +71,14 @@ Route.group(() => {
   Route.group(() => {
     Route.get("/", "PortfoliosController.displayPortfolioPrivate");
     Route.post("/create", "PortfoliosController.create");
-    Route.post("/update/:id", "PortfoliosController.update");
+    Route.put("/update/:id", "PortfoliosController.update");
   }).prefix("/portfolio");
 
   // project
   Route.group(() => {
     Route.get("/", "ProjectsController.displayProjectPrivate");
     Route.post("/create", "ProjectsController.create");
-    Route.post("/update/:id", "ProjectsController.update");
+    Route.put("/update/:id", "ProjectsController.update");
     Route.get("/delete/:id", "ProjectsController.delete");
   }).prefix("/projects");
 

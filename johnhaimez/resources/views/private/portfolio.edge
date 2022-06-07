@@ -15,11 +15,8 @@ textBtn: 'Modifier le portfolio',
 upSubmit: "up-submit",
 upTarget: "up-target=[main-private]",
 portfolio: portfolio,
-pathRoute: route('PortfoliosController.update', {id: portfolio.id}, {
-qs: {
-_method: 'PUT'
-}
-}),
+pathRoute: route('PortfoliosController.update', {id: portfolio.id}),
+newMethod: ?_method=Put,
 method: "POST"
 })
 @else
