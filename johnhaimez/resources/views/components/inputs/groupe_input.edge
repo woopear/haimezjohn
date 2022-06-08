@@ -1,0 +1,24 @@
+<div>
+    @!inputs.label({text: text, name: name})
+    @if(!multiple)
+    @!inputs.input({
+    placeholder: placeholder,
+    type: type,
+    required: required,
+    name: name,
+    oldValue: oldValue,
+    id: id,
+    stylediv: stylediv,
+    })
+    @else
+    @!inputs.inputFileMultiple({
+    placeholder: placeholder,
+    type: type,
+    required: required,
+    name: name,
+    oldValue: oldValue,
+    id: id,
+    stylediv: stylediv,
+    })
+    @end
+</div>

@@ -1,0 +1,46 @@
+<div x-data="{open: false}">
+    @boxs.box({width: "lg:w-9/12 xl:w-7/12"})
+    <div class="cursor-pointer" @click="open = !open">
+        @!btns.btn({text: 'Creation lien'})
+    </div>
+    <div x-show="open">
+        <form class="mt-8" action="{{route('LinksController.create')}}" method="POST" enctype="multipart/form-data">
+            {{ csrfField() }}
+            <!-- libelle du lien -->
+            @!inputs.groupeInput({
+            text: 'Libelle* : ',
+            placeholder: 'Libelle du lien',
+            type: "text",
+            required: true,
+            name: "libelle",
+            oldValue: '',
+            })
+
+            <!-- path du lien -->
+            @!inputs.groupeInput({
+            text: 'Lien https* : ',
+            placeholder: 'Lien https du lien',
+            type: "text",
+            required: true,
+            name: "path",
+            oldValue: '',
+            })
+
+            <!-- image du lien -->
+            @!inputs.groupeInput({
+            text: 'Image : ',
+            placeholder: 'Image du lien',
+            type: "file",
+            required: false,
+            name: "fileInput",
+            oldValue: '',
+            })
+
+            <div class="flex justify-end mt-8">
+                @!btns.btn({text: 'Enregister', type: "submit"})
+            </div>
+        </form>
+        @end
+    </div>
+
+</div>

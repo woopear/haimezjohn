@@ -1,0 +1,33 @@
+@layout('layouts/main_private')
+@set('title', title)
+
+@section('main-private')
+<!-- titre de la page -->
+<div class="text-center mb-12">
+    @!titles.titlePageAdmin({title: 'Partie compétence'})
+</div>
+
+<!-- si competence -->
+@if(competence)
+<!-- form update -->
+@!competence.formCreateUpdate({
+title: 'Modifier la partie compétence',
+textBtn: 'Modifier compétence',
+competence: competence,
+upSubmit: "up-submit",
+upTarget: "up-target=[main-private]",
+pathRoute: route('CompetencesController.update'),
+newMethod: '?_method=PUT',
+method: "POST"
+})
+@else
+<!-- form create -->
+@!competence.formCreateUpdate({
+title: 'Créer la partie compétence',
+textBtn: 'Créer compétence',
+pathRoute: route('CompetencesController.create'),
+newMethod: '?_method=POST',
+method: "POST"
+})
+@end
+@end

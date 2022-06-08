@@ -1,0 +1,75 @@
+@set('competence', competence)
+
+<div class="lg:w-9/12 xl:w-8/12 mx-auto">
+    @boxs.box()
+    <!-- title de la box formulaire -->
+    @!titles.titleBox({title: title})
+    <form {{upSubmit}} {{upTarget}} class="mt-8" action="{{pathRoute}}{{newMethod}}" method="{{method}}"
+        enctype="multipart/form-data">
+        {{ csrfField() }}
+        <!-- input title -->
+        @!inputs.groupeInput({
+        text: 'Titre de la partie compétence* : ',
+        placeholder: "Titre de la partie compétence",
+        type: 'text',
+        required: true,
+        oldValue: competence ? competence.title : '',
+        name: 'title',
+        stylediv: "mb-4"
+        })
+
+        <!-- input description -->
+        @!inputs.groupeTextarea({
+        text: 'Description* : ',
+        placeholder: "La description de la partie",
+        type: 'text',
+        required: true,
+        value: competence ? competence.description ? competence.description : '' : '',
+        name: 'description',
+        stylediv: "mb-4"
+        })
+
+        <!-- input file select -->
+        @!inputs.groupeInput({
+        text: 'CV : ',
+        placeholder: "CV des compétences",
+        type: 'file',
+        required: false,
+        name: 'fileInput',
+        stylediv: "mb-4"
+        })
+
+        <!-- affiche cv si il existe -->
+        @if(competence)
+        @if(competence.images)
+        @!btns.btnLien({
+        text: "Supprimer",
+        href: route('CompetencesController.deleteFile',
+        {id: competence.images.id})
+        })
+        <div>
+            @!btns.btnText({
+            text: "Voir mon cv",
+            href: competence.images.path,
+            target: "_blank",
+            stylediv: "mt-4"
+            })
+            @!btns.btnText({
+            text: "Télécharger mon cv",
+            href: competence.images.path,
+            download: true,
+            stylediv: "mt-4 mb-12"
+            })
+        </div>
+        @else
+        @!titles.titleForm({title: 'aucun cv'})
+        @end
+        @end
+
+
+        <!-- btn sub -->
+        @!btns.btn({text: textBtn, stylediv: "flex justify-end mt-12 mb-8", type: "submit"})
+
+    </form>
+    @end
+</div>

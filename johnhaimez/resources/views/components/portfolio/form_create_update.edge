@@ -1,0 +1,30 @@
+@boxs.box({width: "lg:w-9/12 xl:w-7/12 mx-auto mt-12"})
+@!titles.titleBox({title: title})
+<form {{upSubmit}} {{upTarget}} class="mt-12" action="{{pathRoute}}{{newMethod}}" method="{{method}}"
+    enctype="multipart/form-data">
+    {{ csrfField() }}
+    <!-- input title -->
+    @!inputs.groupeInput({
+    text: 'Titre* : ',
+    placeholder: "Titre",
+    type: 'text',
+    required: true,
+    oldValue: portfolio ? portfolio.title : '',
+    name: 'title',
+    })
+
+    <!-- input description -->
+    @!inputs.groupeTextarea({
+    text: 'Description : ',
+    placeholder: "Une petite description pour le portfolio",
+    type: 'text',
+    required: true,
+    value: portfolio ? portfolio.description : '',
+    name: 'description',
+    stylediv: "mb-4"
+    })
+
+    <!-- btn submit -->
+    @!btns.btn({text: textBtn, stylediv: "flex justify-end mt-12 mb-8", type: "submit"})
+</form>
+@end

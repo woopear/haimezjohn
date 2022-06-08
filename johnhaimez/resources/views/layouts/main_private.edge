@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    @entryPointStyles('app')
+    @entryPointScripts('app')
+</head>
+
+<body id="#private" class="flex bg-fc dark:bg-fd text-black dark:text-white">
+    <!-- side menu -->
+    @include('partials/side_menu')
+
+    <!-- main -->
+    <main class="grow p-7" main-private>
+        @!section('main-private')
+    </main>
+</body>
+
+</html>

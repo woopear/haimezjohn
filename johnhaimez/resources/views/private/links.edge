@@ -1,0 +1,29 @@
+@layout('layouts/main_private')
+@set('title', title)
+
+@section('main-private')
+<!-- titre de la page -->
+<div class="text-center mb-12 active-mode-dark">
+    @!titles.titlePageAdmin({title: 'Mes liens'})
+</div>
+
+
+<!-- box create link -->
+<div class="mb-16">
+    @!links.formCreate()
+</div>
+
+@if(links.length > 0)
+<!-- box list update link -->
+@boxs.box({width: "lg:w-7/12 xl:w-9/12 mx-auto"})
+@!titles.titleBox({title: 'Liste de mes liens'})
+@each((item, index) in links)
+@!links.formUpdate({link: item, index: index})
+@end
+@end
+@else
+@boxs.box({width: "lg:w-7/12 xl:w-9/12 mx-auto"})
+@!titles.titleBox({title: 'Aucun lien'})
+@end
+@end
+@end

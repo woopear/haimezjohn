@@ -1,0 +1,27 @@
+@if(portfolio || projects)
+@sections.section({})
+<!-- title de la partie competence -->
+@!titles.titleSectionPublic({title: portfolio.title})
+
+<!-- description -->
+<p class="lg:w-6/12 md:mt-4 text-lg md:text-2xl font-thin">{{portfolio.description ? portfolio.description : ''}}</p>
+
+<!-- partie project -->
+@!titles.titleForm({title: "Projets", color: "text-red-600 ml-2 mt-8 md:mt-20 mb-2"})
+<div class="flex flex-wrap justify-evenly mx-auto w-full">
+    @each((item, index) in projects)
+    @boxs.box({width: "flex flex-col min-w-[100%] md:min-w-[43%] lg:min-w-[80%] xl:min-w-[43%] max-w-[45%] m-2"})
+    <!-- title -->
+    @!titles.titleBox({title: item.title})
+    <!-- description -->
+    <p class="flex-1 md:mt-4 text-lg md:text-2xl font-thin">{{item.description ? item.description : ''}}</p>
+
+    @!btns.btnText({text: 'Voir le site', href: item.path, stylediv: "mt-8 mb-4", target: "_blank"})
+    @!btns.btnText({text: 'Repo GitHub', href: item.githubpath, target: "_blank"})
+    @end
+    @end
+</div>
+@end
+@else
+<p>Aucun projet</p>
+@end

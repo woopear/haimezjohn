@@ -1,0 +1,6 @@
+<footer class="h-32 flex flex-col justify-center items-center flex-none bg-fc2 dark:bg-fd2">
+    @if(profil)
+    <p class="text-sm">© {{profil.copyright}} {{new Date().getFullYear()}}</p>
+    @end
+    @!component('components/menus/menu_footer/menu_footer')
+</footer>

@@ -1,0 +1,48 @@
+<div x-data="{open: false}">
+    @boxs.box({width: "lg:w-7/12 xl:w-9/12"})
+    <!-- btn affiche create hardskill -->
+    <div @click="open = !open">
+        @!btns.btn({text: 'Création hard skill'})
+    </div>
+    <div x-show="open">
+        <form id="#createhardskill" up-submit up-target="[main-private]" class="mt-8"
+            action="{{route('HardskillsController.create')}}" method="POST" enctype="multipart/form-data">
+            {{ csrfField() }}
+            <!-- title  -->
+            @!inputs.groupeInput({
+            text: 'Titre* : ',
+            placeholder: 'Titre',
+            type: "text",
+            required: true,
+            name: "title",
+            oldValue: '',
+            })
+
+            <!-- description hardskill-->
+            @!inputs.groupeTextarea({
+            text: 'Description* : ',
+            placeholder: "Une petite description du hardskill",
+            type: 'text',
+            required: true,
+            value: '',
+            name: 'description',
+            stylediv: "mb-4"
+            })
+
+            <!-- input multiple image -->
+            @!inputs.groupeInput({
+            text: 'Télécharger des images :',
+            type: 'file',
+            name: 'fileInput',
+            multiple: true,
+            required: false,
+            })
+
+            <div class="flex justify-end mt-8">
+                @!btns.btn({text: 'Enregistrer', type: "submit", formtarget: "createhardskill"})
+            </div>
+
+        </form>
+    </div>
+    @end
+</div>

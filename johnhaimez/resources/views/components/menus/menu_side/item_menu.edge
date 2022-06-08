@@ -1,0 +1,13 @@
+<li class="cursor-pointer">
+    @if(logout)
+    <!-- form pour déconnection user -->
+    <form class="w-full" action="{{route('AuthController.logout')}}?_method=DELETE" method="POST">
+        {{ csrfField() }}
+        <button class="w-full m-0 py-4 hover:bg-fc dark:hover:bg-fd text-base" type="submit">{{text}}</button>
+    </form>
+    @else
+    <a class="block pl-4 py-4 hover:bg-fc dark:hover:bg-fd text-base" href="{{href}}" {{uptarget}}>
+        {{text}}
+    </a>
+    @end
+</li>

@@ -1,0 +1,63 @@
+<div class="mt-12">
+    <div class="flex items-center justify-start">
+        @!titles.titleForm({title: 'Lien n° : ' + (Number(index) + Number(1))})
+        <a href="{{route('LinksController.deleteOne', {id: link.id})}}">
+            @!btns.btn({text: 'Supprimer le lien', stylediv: "ml-4"})
+        </a>
+    </div>
+    <form up-submit up-target="[main-private]" action="{{route('LinksController.update', { id: link.id })}}?_method=PUT"
+        method="POST" enctype="multipart/form-data">
+
+        {{ csrfField() }}
+        <!-- libelle du lien -->
+        @!inputs.groupeInput({
+        text: 'Libelle* : ',
+        placeholder: 'Libelle du lien',
+        type: "text",
+        required: true,
+        name: "libelle",
+        oldValue: link ? link.libelle : '',
+        })
+
+        <!-- path du lien -->
+        @!inputs.groupeInput({
+        text: 'Lien https* : ',
+        placeholder: 'Lien https du lien',
+        type: "text",
+        required: true,
+        name: "path",
+        oldValue: link ? link.path : '',
+        })
+
+        <!-- image du lien -->
+        @!inputs.groupeInput({
+        text: 'Image : ',
+        placeholder: 'Image du lien',
+        type: "file",
+        required: false,
+        name: "fileInput",
+        oldValue: '',
+        })
+
+        <!-- affiche toute les images + btn delete image -->
+        @if(link.images)
+        @!titles.titleForm({title: 'Image du lien : '})
+        <div class="flex mt-8 mb-12 flex-wrap">
+            <img width="150" height="150" src="{{link.images.path}}" class="mb-12" />
+            @!btns.btnLien({
+            text: 'Supprimer',
+            stylediv: "ml-4 mr-4",
+            href: route('LinksController.deleteImage',
+            {id: link.images.id})})
+        </div>
+        @else
+        <div class="mb-12 mt-8">
+            @!titles.titleForm({title: 'Aucune image'})
+        </div>
+        @end
+
+        <div class="flex justify-end mt-8">
+            @!btns.btn({text: 'Modifier'})
+        </div>
+    </form>
+</div>

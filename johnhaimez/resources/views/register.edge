@@ -1,0 +1,57 @@
+@layout('layouts/main_public')
+@set('title', 'Creation user')
+
+@section('main-public')
+<div class="p-4 md:p-8">
+    @boxs.box({width: "md:w-7/12 lg:w-6/12 xl:w-5/12 m-auto" })
+    <div class="flex flex-col items-center">
+        <!-- title form -->
+        @!titles.titleBox({title: "Création compte"})
+
+        <!-- form connexion -->
+        <div class="w-11/12 mt-12">
+            <form class="w-full" action="{{route('AuthController.register')}}" method="POST">
+                {{ csrfField() }}
+
+                <!-- email input -->
+                @!inputs.input({
+                placeholder: 'Email',
+                name: 'email',
+                type: 'text',
+                oldValue: '',
+                id: "email",
+                })
+
+                <!-- password input -->
+                @!inputs.input({
+                placeholder: 'Mot de passe',
+                name: 'password',
+                type: 'password',
+                oldValue: '',
+                id: "password",
+                })
+
+                <!-- cadre btn -->
+                <div class="flex flex-col-reverse sm:flex sm:flex-row justify-end mt-12">
+                    <!-- btn submit connexion -->
+                    @!btns.btnLien({
+                    text: "Annuler",
+                    stylediv: "flex justify-end sm:mr-4 mt-4 sm:mt-0",
+                    href: route('/')
+                    })
+                    <!-- btn retourne accueil connexion -->
+                    @!btns.btn({text: "S'inscrire", stylediv: "flex justify-end"})
+                </div>
+
+                <!-- message d'erreur -->
+                @if(flashMessages.has('auth.errors'))
+                <div class="mt-4 flex justify-center">
+                    <p class="text-red-500 font-bold text-xs">Impossible de vous inscrire</p>
+                </div>
+                @end
+            </form>
+        </div>
+    </div>
+    @end
+</div>
+@end

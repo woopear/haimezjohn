@@ -1,0 +1,57 @@
+<form class="mt-8" action="{{route('SoftskillsController.update', { id: item.id })}}?_method=Put" method="POST"
+    enctype="multipart/form-data">
+    {{ csrfField() }}
+    <!-- titre du softskill -->
+    @!inputs.groupeInput({
+    text: 'Titre* : ',
+    placeholder: 'Titre du softskill',
+    type: "text",
+    required: true,
+    name: "title",
+    oldValue: item ? item.title : '',
+    })
+
+    <!-- description softskill-->
+    @!inputs.groupeTextarea({
+    text: 'Description : ',
+    placeholder: "Une petite description du softskill",
+    type: 'text',
+    required: true,
+    value: item ? item.description : '',
+    name: 'description',
+    })
+
+    <!-- input multiple image -->
+    @!inputs.groupeInput({
+    text: 'Télécharger des images :',
+    type: 'file',
+    name: 'fileInput',
+    multiple: true,
+    })
+
+    <!-- affiche toute les images + btn delete image -->
+    @if(item.images)
+    @!titles.titleForm({title: 'Image du softskill : '})
+    <div class="flex mt-8 mb-12 flex-wrap">
+        @each((image, index )in item.images)
+        <img width="70" height="70" src="{{image.path}}" class="mb-12" />
+        @!btns.btnLien({
+        text: 'Supprimer',
+        stylediv: "ml-4 mr-4",
+        href: route('SoftskillsController.deleteImage',
+        {
+        id: image.id,
+        })
+        })
+        @end
+    </div>
+    @else
+    <div class="mb-12 mt-8">
+        @!titles.titleForm({title: 'Aucune image'})
+    </div>
+    @end
+
+    <div class="flex justify-end mt-8">
+        @!btns.btn({text: 'Enregistrer', type: "submit"})
+    </div>
+</form>

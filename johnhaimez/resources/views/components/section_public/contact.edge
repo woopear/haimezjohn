@@ -1,0 +1,56 @@
+@if(contact || profil)
+@sections.sectionColor({})
+<!-- title de la partie competence -->
+@!titles.titleSectionPublic({title: contact.title})
+
+<!-- description -->
+<p class="lg:w-6/12 md:mt-4 text-lg md:text-2xl font-thin">{{contact.description ? contact.description : ''}}</p>
+
+<!-- coordonné -->
+@!titles.titleForm({title: "Coordonnées", color: "text-red-600 ml-2 mt-8 md:mt-16 mb-2"})
+<div class="ml-2">
+    <p>{{profil.address}}</p>
+    <p>{{profil.codePost}} {{profil.city}}</p>
+    <p>{{profil.tel}}</p>
+</div>
+
+<!-- form -->
+<div class="lg:w-8/12 mx-auto mt-16 mb-16" section-email>
+    <form up-submit up-target="[section-email]" action="{{route('HomeController.sendMailContact')}}" method="POST">
+        {{ csrfField() }}
+
+        <!-- name user -->
+        @!inputs.groupeInput({
+        text: 'Votre nom prénom* : ',
+        placeholder: 'Nom, prénom',
+        name: 'user',
+        required: true,
+        oldValue: '',
+        })
+
+        <!-- email user -->
+        @!inputs.groupeInput({
+        text: 'Votre email* : ',
+        placeholder: 'Email',
+        name: 'userEmail',
+        required: true,
+        oldValue: '',
+        })
+
+        <!-- message -->
+        @!inputs.groupeTextarea({
+        text: 'Votre message* : ',
+        placeholder: 'Message',
+        name: 'userMessage',
+        required: true,
+        value: '',
+        })
+
+        @!btns.btn({text: 'Envoyer', stylediv: "flex justify-end mt-8"})
+    </form>
+</div>
+<p class="text-xs mt-12">* Champs obligatoire</p>
+@end
+@else
+<p>Aucun contact</p>
+@end

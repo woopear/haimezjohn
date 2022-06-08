@@ -1,0 +1,78 @@
+<nav>
+    <ul>
+        <!-- item dashboard -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Mon tableau de bord',
+        href: route('/private'),
+        uptarget: "up-target=main-private",
+        })
+
+        <!-- item profil -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Profil',
+        href: route('ProfilsController.displayProfilPrivate'),
+        uptarget: "up-target=main-private",
+        })
+
+        <!-- item link -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Liens',
+        href: route('LinksController.displayLinkPrivate'),
+        uptarget: "up-target=main-private",
+        })
+
+        <!-- item competence -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Compétence',
+        href: route('CompetencesController.displayCompetencePrivate'),
+        uptarget: "up-target=main-private",
+        })
+
+        <!-- item hard skill -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Hard skills',
+        href: route('HardskillsController.displayHardskillPrivate'),
+        uptarget: "up-target=main-private",
+        })
+
+        <!-- item soft skill -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Soft skills',
+        href: route('SoftskillsController.displaySoftskillPrivate'),
+        uptarget: "up-target=main-private",
+        })
+
+        <!-- item portfolio -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Portfolio',
+        href: route('PortfoliosController.displayPortfolioPrivate'),
+        uptarget: "up-target=main-private",
+        })
+
+        <!-- item project -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Projets',
+        href: route('ProjectsController.displayProjectPrivate'),
+        uptarget: "up-target=main-private",
+        })
+
+        <!-- item contact -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Contact',
+        href: route('ContactsController.displayContactPrivate'),
+        uptarget: "up-target=main-private",
+        })
+
+        <!-- item retour site -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Retour site',
+        href: route('/'),
+        })
+
+        <!-- item deconnexion -->
+        @!component('components/menus/menu_side/item_menu', {
+        text: 'Déconnexion',
+        logout: true,
+        })
+    </ul>
+</nav>
