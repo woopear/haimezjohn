@@ -18,11 +18,11 @@ stylediv: "mt-4"
 
 <!-- hardskills -->
 @!titles.titleForm({title: "HardSkills", color: "text-red-600 ml-2 mt-8 md:mt-20 mb-2"})
-<div class="flex flex-wrap md:flex-nowrap justify-center mx-auto">
+<div class="flex flex-wrap justify-evenly mx-auto w-full">
     @each((item, index) in hardskills)
-    @boxs.box({width: "md:w-1/2 mt-2 md:mt-0 md:mx-2 flex flex-col"})
+    @boxs.box({width: "flex flex-col min-w-[100%] md:min-w-[43%] lg:min-w-[80%] xl:min-w-[43%] max-w-[45%] m-2"})
     <!-- images -->
-    <div class="mb-8 flex">
+    <div class="w-fit mb-8 flex justify-start">
         @each((image, index) in item.images)
         <img class="mr-4 rounded-full" width="70" height="70" src="{{image.path}}" />
         @end
